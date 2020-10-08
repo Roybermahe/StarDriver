@@ -12,6 +12,7 @@ namespace StarDriver.domain.core.test
         public void Setup()
         {
         }
+        /*SI SE PUEDE VALIDAR ESTO?
         /*
           Escenario1: Identificación única
           H03: Cómo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales.
@@ -27,7 +28,7 @@ namespace StarDriver.domain.core.test
         */
 
 
-
+        /*
         [Test]
         public void IdentificacionInstructorUnicaInstructorTest()
         {
@@ -56,7 +57,7 @@ namespace StarDriver.domain.core.test
         Entonces
         El sistema presentará el mensaje. “No se puede realizar el registro,Ya existe un instructor con la misma identificación”.
         */
-
+        /*
         [Test]
         public void IdentificacionInstructorNoUnicaInstructorTest()
         {
@@ -76,7 +77,7 @@ namespace StarDriver.domain.core.test
             Assert.AreEqual("No se puede realizar el registro,Ya existe un instructor con la misma identificación", createInstructor2);
           
         }
-
+       
         /*
         No puede registrar instructor sin especializaciones (003)
         H1: Cómo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales.
@@ -91,7 +92,7 @@ namespace StarDriver.domain.core.test
         */
 
         [Test]
-        public void MinimoUnaEspecializacionInstructorTest()
+        public void CeroEspecializacionInstructorTest()
         {
             //Preparar
             List<string> especializations = new List<string>();
@@ -104,5 +105,89 @@ namespace StarDriver.domain.core.test
             //Verificación
             Assert.AreEqual("No se puede realizar el registro, Se necesita una o más especializaciones", createInstructor);
         }
+
+
+        /*
+        Instructor con numero de especializaciones mayor a 0
+        H1: Cómo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales.
+        Criterio de Aceptación:
+        2. El instructor debe tener una o varias especializaciones.
+        Dado
+        Un instructor (nombre: “Esteban”, edad: “25”, Especializaciones: “Normas de tránsito rurales” y “Normas de tránsito Terrestre”, telefono: 3022745590 ) que aún no ha sido registrado  y que coincide con un el número de teléfono de otro instructor
+        Cuando
+        Va a ser registrado.
+        Entonces
+        El sistema presentará el mensaje. “Instructor Registrado”.
+        */
+
+        [Test]
+        public void EspecializacionesMayorACeroInstructorTest()
+        {
+            //Preparar
+            List<string> especializations = new List<string>();
+            especializations.Add("Normas de tránsito Urbanas");
+            var instructor = new PInstructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+
+            //Acción
+
+            var createInstructor = instructor.CreateInstructor(instructor, especializations);
+
+            //Verificación
+            Assert.AreEqual("Instructor registrado", createInstructor);
+        }
+
+        /*
+         
+        Puede registrar instructor con teléfono de 10 dígitos (05)
+        H1: Cómo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales
+        Criterio de Aceptación:
+        3. El teléfono de un instructor debe estar en un intervalo de 7 a 10 dígitos.
+        Dado
+        Un instructor (nombre: “Esteban”, edad: “25”, Especializaciones: “Normas de tránsito rurales” y “Normas de tránsito Terrestre”, teléfono: 3012745590 ) y que NO coincide con un el número de teléfono de otro instructor.
+        Cuando
+        Va a ser registrado.
+        Entonces
+        El sistema presentará el mensaje. “Instructor registrado”.
+        */
+
+        /*
+        No puede registrar instructor con teléfono mayor de 10 dígitos (06)     
+        H1: Cómo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales.
+        Criterio de Aceptación:
+        4. El teléfono de un instructor debe estar en un intervalo de 7 a 10 dígitos.
+        Dado
+        Un instructor  (nombre: “Javier”, edad: “25”, Especializaciones: “Normas de tránsito rurales” , teléfono: 302295894000 ) 
+        Cuando
+        Va a ser registrado.
+        Entonces
+        El sistema presentará el mensaje. “Número de teléfono no permitido”.
+        */
+
+        /*
+        No puede registrar instructor con telefono menor de 7 dígitos (07) 
+        H1: Cómo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales.
+        Criterio de Aceptación:
+        4. El teléfono de un instructor debe estar en un intervalo de 7 a 10 dígitos.
+        Dado
+        Un instructor (nombre: “Javier”, edad: “25”, Especializaciones: “Normas de tránsito rurales” , teléfono: 302295 ).
+        Cuando
+        Va a ser registrado.
+        Entonces
+        El sistema presentará el mensaje. “Número de teléfono no permitido”.
+       */
+
+        /*
+        Puede registrar instructor con teléfono de 10 dígitos (05)
+        H1: Cómo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales
+        Criterio de Aceptación:
+        3. El teléfono de un instructor debe estar en un intervalo de 7 a 10 dígitos.
+        Dado
+        Un instructor (nombre: “Esteban”, edad: “25”, Especializaciones: “Normas de tránsito rurales” y “Normas de tránsito Terrestre”, teléfono: 3012745590 ) y que NO coincide con un el número de teléfono de otro instructor.
+        Cuando
+        Va a ser registrado.
+        Entonces
+        El sistema presentará el mensaje. “Instructor registrado”.
+        */
+
     }
 }
