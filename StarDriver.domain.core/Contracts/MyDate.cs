@@ -1,7 +1,6 @@
 ﻿using System;
-using StarDriver.domain.core.Contracts;
 
-namespace StarDriver.domain.core
+namespace StarDriver.domain.core.Contracts
 {
     public class MyDate: IDates
     {

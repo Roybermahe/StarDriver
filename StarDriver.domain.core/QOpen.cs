@@ -4,9 +4,9 @@
     {
         private readonly string _answer;
         
-        public Open(int identification, string content, decimal score, string optionalImage) : base(identification, content, score, optionalImage)
+        public Open(int identification, string content, decimal score, string optionalImage, string answer) : base(identification, content, score, optionalImage)
         {
-            _answer = string.Empty;
+            _answer = answer;
         }
     }
 }
