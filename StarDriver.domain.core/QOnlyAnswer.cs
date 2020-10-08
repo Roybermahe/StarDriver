@@ -4,13 +4,13 @@ namespace StarDriver.domain.core
 {
     public class OnlyAnswer: Question
     {
-        private readonly List<string> _options;
+        public readonly List<string> _options;
         private readonly string _answer;
         
-        public OnlyAnswer(int identification, string content, decimal score, string optionalImage) : base(identification, content, score, optionalImage)
+        public OnlyAnswer(int identification, string content, decimal score, string optionalImage, List<string> options, string answer) : base(identification, content, score, optionalImage)
         {
-            _options = new List<string>();
-            _answer = string.Empty;
+            _options = options;
+            _answer = answer;
         }
     }
 }
