@@ -29,7 +29,7 @@ namespace StarDriver.domain.core.test
 
 
         [Test]
-        public void IdentificacionInstructorUnicaTest()
+        public void IdentificacionInstructorUnicaInstructorTest()
         {
             //Preparar
             List<string> especializations = new List<string>();
@@ -58,21 +58,51 @@ namespace StarDriver.domain.core.test
         */
 
         [Test]
-        public void IdentificacionInstructorNoUnicaTest()
+        public void IdentificacionInstructorNoUnicaInstructorTest()
         {
             //Preparar
             List<string> especializations = new List<string>();
             especializations.Add("Normas de tránsito Urbanas");
             var instructor1 = new PInstructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
             var instructor2 = new PInstructor(idPerson: 1065630800, name: "Armando", surname: "Camacho", phone: "3012745590", mail: "armando@gmail.com", direction: "Manzana 58 Casa 50 450 años");
-            var createInstructor1 = instructor2.CreateInstructor(instructor1, especializations);
+            var createInstructor1 = instructor1.CreateInstructor(instructor1, especializations);
+
 
             //Acción
 
-            var createInstructor2 = instructor1.CreateInstructor(instructor2, especializations);
+            var createInstructor2 = instructor2.CreateInstructor(instructor2, especializations);
 
             //Verificación
             Assert.AreEqual("No se puede realizar el registro,Ya existe un instructor con la misma identificación", createInstructor2);
+          
+        }
+
+        /*
+        No puede registrar instructor sin especializaciones (003)
+        H1: Cómo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales.
+        Criterio de Aceptación:
+        2. El instructor debe tener una o varias especializaciones.
+        Dado
+        Un instructor (identificación: “1065630430”, nombre: “Javier”, edad: “25”,  teléfono: 3022745590 ) que no tiene una especialización.
+        Cuando
+        Va a ser registrado.
+        Entonces
+        El sistema presentará el mensaje. “No se puede realizar el registro, Se necesita una o más especializaciones” 
+        */
+
+        [Test]
+        public void MinimoUnaEspecializacionInstructorTest()
+        {
+            //Preparar
+            List<string> especializations = new List<string>();
+            
+            var instructor = new PInstructor(idPerson: 1065630430, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+            //Acción
+
+            var createInstructor = instructor.CreateInstructor(instructor, especializations);
+
+            //Verificación
+            Assert.AreEqual("No se puede realizar el registro, Se necesita una o más especializaciones", createInstructor);
         }
     }
 }
