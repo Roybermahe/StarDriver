@@ -150,6 +150,22 @@ namespace StarDriver.domain.core.test
         El sistema presentará el mensaje. “Instructor registrado”.
         */
 
+        [Test]
+        public void DigitosDeTelefonoCompletoInstructorTest()
+        {
+            //Preparar
+            List<string> especializations = new List<string>();
+            especializations.Add("Normas de tránsito Urbanas");
+            var instructor = new PInstructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+
+            //Acción
+
+            var createInstructor = instructor.CreateInstructor(instructor, especializations);
+
+            //Verificación
+            Assert.AreEqual("Instructor registrado", createInstructor);
+        }
+
         /*
         No puede registrar instructor con teléfono mayor de 10 dígitos (06)     
         H1: Cómo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales.
@@ -160,34 +176,25 @@ namespace StarDriver.domain.core.test
         Cuando
         Va a ser registrado.
         Entonces
-        El sistema presentará el mensaje. “Número de teléfono no permitido”.
+        El sistema presentará el mensaje. “No se puede realizar el registro, la cantidad de digitos del telefono no es permitida”.
         */
 
-        /*
-        No puede registrar instructor con telefono menor de 7 dígitos (07) 
-        H1: Cómo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales.
-        Criterio de Aceptación:
-        4. El teléfono de un instructor debe estar en un intervalo de 7 a 10 dígitos.
-        Dado
-        Un instructor (nombre: “Javier”, edad: “25”, Especializaciones: “Normas de tránsito rurales” , teléfono: 302295 ).
-        Cuando
-        Va a ser registrado.
-        Entonces
-        El sistema presentará el mensaje. “Número de teléfono no permitido”.
-       */
+        [Test]
+        public void DigitosDeTelefonoNoPermitidoInstructorTest()
+        {
+            //Preparar
+            List<string> especializations = new List<string>();
+            especializations.Add("Normas de tránsito Urbanas");
+            var instructor = new PInstructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "30227455890", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
 
-        /*
-        Puede registrar instructor con teléfono de 10 dígitos (05)
-        H1: Cómo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales
-        Criterio de Aceptación:
-        3. El teléfono de un instructor debe estar en un intervalo de 7 a 10 dígitos.
-        Dado
-        Un instructor (nombre: “Esteban”, edad: “25”, Especializaciones: “Normas de tránsito rurales” y “Normas de tránsito Terrestre”, teléfono: 3012745590 ) y que NO coincide con un el número de teléfono de otro instructor.
-        Cuando
-        Va a ser registrado.
-        Entonces
-        El sistema presentará el mensaje. “Instructor registrado”.
-        */
+            //Acción
+
+            var createInstructor = instructor.CreateInstructor(instructor, especializations);
+
+            //Verificación
+            Assert.AreEqual("No se puede realizar el registro, la cantidad de digitos del telefono no es permitida", createInstructor);
+        }
+
 
     }
 }

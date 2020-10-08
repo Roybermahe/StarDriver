@@ -22,6 +22,8 @@ namespace StarDriver.domain.core
 
             if (especializations.Count() == 0) return "No se puede realizar el registro, Se necesita una o más especializaciones";
 
+            if (pInstuctor.Phone.Length > 10 || pInstuctor.Phone.Length < 7) return "No se puede realizar el registro, la cantidad de digitos del telefono no es permitida";
+
             SavePerson(pInstuctor);
           
             return "Instructor registrado";
