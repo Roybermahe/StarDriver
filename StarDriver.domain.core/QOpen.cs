@@ -8,7 +8,7 @@ namespace StarDriver.domain.core
         
         public Open(int identification, string content, decimal score, string optionalImage) : base(identification, content, score, optionalImage)
         {
-            Answer = String.Empty;
+            Answer = string.Empty;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace StarDriver.domain.core.Contracts
             _dateTime = Convert.ToDateTime(date);
         }
         
-        public string GetDay()
+        /*public string GetDay()
         {
             return _dateTime.Day.ToString("dd");
         }
@@ -29,6 +29,6 @@ namespace StarDriver.domain.core.Contracts
         public string GetHours()
         {
             return _dateTime.Hour.ToString("HH");
-        }
+        }*/
     }
 }

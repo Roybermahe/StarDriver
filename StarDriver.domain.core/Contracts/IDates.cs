@@ -2,9 +2,9 @@
 {
     public interface IDates
     {
-        string GetDay();
-        string GetYear();
-        string GetMonth();
-        string GetHours();
+        // string GetDay();
+        // string GetYear();
+        // string GetMonth();
+        // string GetHours();
     }
 }
