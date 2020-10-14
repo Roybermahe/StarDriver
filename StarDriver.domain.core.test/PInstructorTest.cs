@@ -97,7 +97,7 @@ namespace StarDriver.domain.core.test
             //Preparar
             List<string> especializations = new List<string>();
             
-            var instructor = new PInstructor(idPerson: 1065630430, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+            var instructor = new Instructor(idPerson: 1065630430, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
             //Acción
 
             var createInstructor = instructor.CreateInstructor(instructor, especializations);
@@ -126,7 +126,7 @@ namespace StarDriver.domain.core.test
             //Preparar
             List<string> especializations = new List<string>();
             especializations.Add("Normas de tránsito Urbanas");
-            var instructor = new PInstructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+            var instructor = new Instructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
 
             //Acción
 
@@ -156,7 +156,7 @@ namespace StarDriver.domain.core.test
             //Preparar
             List<string> especializations = new List<string>();
             especializations.Add("Normas de tránsito Urbanas");
-            var instructor = new PInstructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+            var instructor = new Instructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
 
             //Acción
 
@@ -185,7 +185,7 @@ namespace StarDriver.domain.core.test
             //Preparar
             List<string> especializations = new List<string>();
             especializations.Add("Normas de tránsito Urbanas");
-            var instructor = new PInstructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "30227455890", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+            var instructor = new Instructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "30227455890", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
 
             //Acción
 

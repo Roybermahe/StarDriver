@@ -34,7 +34,6 @@ namespace StarDriver.domain.core
         protected bool ExistsInstructor(int idPerson)
         {
             return _instructors.FindAll(t => t.IdPerson == idPerson).Count > 0;
-
         }
     }
 }
