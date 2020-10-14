@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\royber manjarrez\RiderProjects\StarDriver\StarDriver.domain.core.test\QuestionsTest.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System.Collections.Generic;
+using NUnit.Framework;
+using StarDriver.domain.core.Contracts;
+
+namespace StarDriver.domain.core.test
+{
+    public class QuestionTest
+    {
+        [SetUp]
+        public void Setup()
+        {
+        }
+        /**
+         * 
+            Instructor, incluye una pregunta (Seleccion Multiple) al examen v&#225;lida
+            C&#243;mo instructor quiero elegir el tipo(Selecci&#243;n M&#250;ltiple, Abierta, &#218;nica respuesta) de pregunta que puedo incluir en el examen para medir el conocimiento de mis aprendices.
+            Criterio de Aceptaci&#243;n:
+            Una pregunta debe tener un contexto y una o varias posible respuesta de acuerdo al tipo
+
+            Dado
+            Un usuario Instructor que elige una pregunta de selecci&#243;n m&#250;ltiple contexto: “elija una de las siguientes opciones:”, respuestas: 2
+            Cuando
+            Va a crear la pregunta para el examen
+            Entonces
+            El sistema presentar&#225; un mensaje. “Se agrego la pregunta al examen”
+
+         */
+        [Test]
+        public void AddQuestionMultipleChoiceToExam()
+        {
+            var options = new List&lt;string&gt; {&quot;Option A&quot;,&quot;Option B&quot;, &quot;Option C&quot;};
+            var possibleAnswer = new List&lt;string&gt; {&quot;Option A&quot;, &quot;Option C&quot; };
+            var question = new MultipleChoice(
+                content: &quot;Elija una de las siguientes opciones&quot;, 
+                identification: 1, score: 2.7m, optionalImage:&quot;&quot;, 
+                options: options, possibleAnswer: possibleAnswer);
+            var exam = new Exam(identification: 1, tittle: &quot;Examen 1&quot;, description: &quot;Examen de estado&quot;,dateRealization: new MyDate(&quot;01/09/2020&quot;),dateFinish: new MyDate(&quot;01/09/2020&quot;));
+            var result = exam.AddQuestion(question);
+            Assert.AreEqual(&quot;Se agrego la pregunta al examen&quot;, result);
+        }
+        
+        [Test]
+        public void AddQuestionOnlyAnswerToExam()
+        {
+            var options = new List&lt;string&gt; {&quot;Option A&quot;,&quot;Option B&quot;, &quot;Option C&quot;};
+            const string answer = &quot;Option A&quot;;
+            var question = new OnlyAnswer(
+                content: &quot;Elija una de las siguientes opciones&quot;, 
+                identification: 1, score: 2.7m, optionalImage:&quot;&quot;,
+                answer: answer, options: options);
+            var exam = new Exam(identification: 1, tittle: &quot;Examen 1&quot;, description: &quot;Examen de estado&quot;,dateRealization: new MyDate(&quot;01/09/2020&quot;),dateFinish: new MyDate(&quot;01/09/2020&quot;));
+            var result = exam.AddQuestion(question);
+            Assert.AreEqual(&quot;Se agrego la pregunta al examen&quot;, result);
+        }
+        
+        [Test]
+        public void AddQuestionOpen()
+        {
+            var question = new Open(identification: 1, content: &quot;Elija una de las siguientes opciones&quot;, score: 2.7m, optionalImage: &quot;&quot;);
+            var exam = new Exam(identification: 1, tittle: &quot;Examen 1&quot;, description: &quot;Examen de estado&quot;,
+                dateRealization: new MyDate(&quot;01/09/2020&quot;), dateFinish: new MyDate(&quot;01/09/2020&quot;));
+            var result = exam.AddQuestion(question: question);
+            Assert.AreEqual(&quot;Se agrego la pregunta al examen&quot;, result);
+        }
+
+        [Test]
+        public void AddQuestionContentNull()
+        {
+            var options = new List&lt;string&gt; {&quot;Option A&quot;,&quot;Option B&quot;, &quot;Option C&quot;};
+            const string answer = &quot;Option A&quot;;
+            var question = new OnlyAnswer(
+                content: &quot;&quot;, 
+                identification: 1, score: 2.1m, optionalImage:&quot;&quot;,
+                answer: answer, options: options);
+            var exam = new Exam(identification: 1, tittle: &quot;Examen 1&quot;, description: &quot;Examen de estado&quot;,dateRealization: new MyDate(&quot;01/09/2020&quot;),dateFinish: new MyDate(&quot;01/09/2020&quot;));
+            var result = exam.AddQuestion(question);
+            Assert.AreEqual(&quot;No se permite una Pregunta sin contenido&quot;, result);
+        }
+
+        [Test]
+        public void TotalScoresOfExam()
+        {
+            var exam = new Exam(identification: 1, tittle: &quot;Examen 1&quot;, description: &quot;Examen de estado&quot;,dateRealization: new MyDate(&quot;01/09/2020&quot;),dateFinish: new MyDate(&quot;01/09/2020&quot;));
+            GetQuestions().ForEach(delegate(Question question)
+            {
+                exam.AddQuestion(question);
+            });
+            Assert.AreEqual(7.5m, exam.TotalScores());
+        }
+
+        private static List&lt;Question&gt; GetQuestions()
+        {
+            var options = new List&lt;string&gt; {&quot;Option A&quot;,&quot;Option B&quot;, &quot;Option C&quot;};
+            const string answer = &quot;Option A&quot;;
+            var question1 = new OnlyAnswer(
+                content: &quot;Elija una de las siguientes opciones&quot;, 
+                identification: 1, score: 2.1m, optionalImage:&quot;&quot;,
+                answer: answer, options: options);
+            var question2 = new Open(identification: 1, content: &quot;Elija una de las siguientes opciones&quot;, score: 2.7m, optionalImage: &quot;&quot;);
+            var possibleAnswer = new List&lt;string&gt; {&quot;Option A&quot;, &quot;Option C&quot; };
+            var question3 = new MultipleChoice(
+                content: &quot;Elija una de las siguientes opciones&quot;, 
+                identification: 1, score: 2.7m, optionalImage:&quot;&quot;, 
+                options: options, possibleAnswer: possibleAnswer);
+            return new List&lt;Question&gt;() { question1, question2, question3 };
+        }
+        
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[11,9,11,10,1],[12,9,12,10,1],[30,9,30,10,1],[31,13,31,80,1],[32,13,32,77,1],[33,13,36,67,1],[37,13,37,184,1],[38,13,38,53,1],[39,13,39,72,1],[40,9,40,10,1],[44,9,44,10,1],[45,13,45,80,1],[47,13,50,51,1],[51,13,51,184,1],[52,13,52,53,1],[53,13,53,72,1],[54,9,54,10,1],[58,9,58,10,1],[59,13,59,137,1],[60,13,61,98,1],[62,13,62,63,1],[63,13,63,72,1],[64,9,64,10,1],[68,9,68,10,1],[69,13,69,80,1],[71,13,74,51,1],[75,13,75,184,1],[76,13,76,53,1],[77,13,77,81,1],[78,9,78,10,1],[82,9,82,10,1],[83,13,83,184,1],[84,13,85,13,1],[85,13,85,14,1],[85,14,86,17,1],[86,17,86,44,1],[86,44,87,13,1],[87,13,87,14,1],[87,14,87,16,1],[84,13,87,16,1],[88,13,88,55,1],[89,9,89,10,1],[92,9,92,10,1],[93,13,93,80,1],[95,13,98,51,1],[99,13,99,138,1],[100,13,100,77,1],[101,13,104,67,1],[105,13,105,77,1],[106,9,106,10,1]]);
+    </script>
+  </body>
+</html>
