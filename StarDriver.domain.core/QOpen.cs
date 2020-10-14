@@ -1,12 +1,14 @@
-﻿namespace StarDriver.domain.core
+﻿using System;
+
+namespace StarDriver.domain.core
 {
     public class Open : Question
     {
-        private readonly string _answer;
+        public string Answer { get; set; }
         
-        public Open(int identification, string content, decimal score, string optionalImage, string answer) : base(identification, content, score, optionalImage)
+        public Open(int identification, string content, decimal score, string optionalImage) : base(identification, content, score, optionalImage)
         {
-            _answer = answer;
+            Answer = String.Empty;
         }
     }
 }

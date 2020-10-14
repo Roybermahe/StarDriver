@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\royber manjarrez\RiderProjects\StarDriver\StarDriver.domain.core\QOnlyAnswer.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System.Collections.Generic;
+
+namespace StarDriver.domain.core
+{
+    public class OnlyAnswer: Question
+    {
+        public readonly List&lt;string&gt; _options;
+        private readonly string _answer;
+        
+        public OnlyAnswer(int identification, string content, decimal score, string optionalImage, List&lt;string&gt; options, string answer) : base(identification, content, score, optionalImage)
+        {
+            _options = options;
+            _answer = answer;
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[10,139,10,190,1],[11,9,11,10,1],[12,13,12,32,1],[13,13,13,30,1],[14,9,14,10,1]]);
+    </script>
+  </body>
+</html>

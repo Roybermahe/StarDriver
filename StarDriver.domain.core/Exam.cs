@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using StarDriver.domain.core.Contracts;
 
 namespace StarDriver.domain.core
@@ -24,8 +25,19 @@ namespace StarDriver.domain.core
 
         public string AddQuestion(Question question)
         {
+            if (string.IsNullOrEmpty(question.Content) || string.IsNullOrWhiteSpace(question.Content)) return "No se permite una Pregunta sin contenido";
             _questions.Add(question);
             return "Se agrego la pregunta al examen";
+        }
+
+        public decimal TotalScores()
+        {
+            var total = 0m;
+            _questions.ForEach(delegate(Question question)
+            {
+                total += question.Score;
+            });
+            return total;
         }
     }
 }
