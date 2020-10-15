@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\royber manjarrez\RiderProjects\StarDriver\StarDriver.domain.core\DMainTheme.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System.Collections.Generic;
+using StarDriver.domain.core.Contracts;
+
+namespace StarDriver.domain.core
+{
+    public class MainTheme
+    {
+       private int Identification { get; set; }
+       private string Title { get; set; } 
+       private string Description { get; set; }
+       private List&lt;string&gt; Items { get; set; }
+
+       public MainTheme(int identification, string title, string description)
+       {
+           Identification = identification;
+           Title = title;
+           Description = description;
+           Items = new List&lt;string&gt;();
+       }
+
+       public string GetTitle()
+       {
+           return Title;
+       }
+
+       public string GetDescription()
+       {
+           return Description;
+       }
+
+       public int GetIdentification()
+       {
+           return Identification;
+       }
+       
+       public string AddItems(string item)
+       {
+           if (StringOperations.IsEmpty(item)) return &quot;No se permite un item sin descripci&#243;n&quot;;
+           Items.Add(item);
+           return &quot;Se agrego el item al eje tem&#225;tico&quot;;
+       }
+
+       public int TotalItems()
+       {
+           return Items.Count;
+       }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[8,37,8,41,0],[8,42,8,46,1],[9,31,9,35,1],[9,36,9,40,1],[10,37,10,41,1],[10,42,10,46,1],[11,37,11,41,1],[11,42,11,46,1],[13,8,13,78,1],[14,8,14,9,1],[15,12,15,44,1],[16,12,16,26,1],[17,12,17,38,1],[18,12,18,39,1],[19,8,19,9,1],[22,8,22,9,1],[23,12,23,25,1],[24,8,24,9,1],[27,8,27,9,1],[28,12,28,31,1],[29,8,29,9,1],[32,8,32,9,0],[33,12,33,34,0],[34,8,34,9,0],[37,8,37,9,1],[38,12,38,47,1],[38,48,38,95,1],[39,12,39,28,1],[40,12,40,55,1],[41,8,41,9,1],[44,8,44,9,1],[45,12,45,31,1],[46,8,46,9,1]]);
+    </script>
+  </body>
+</html>

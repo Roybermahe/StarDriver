@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using StarDriver.domain.core.Contracts;
 
 namespace StarDriver.domain.core
 {
@@ -17,6 +18,9 @@ namespace StarDriver.domain.core
 
         public string AddMainTheme(MainTheme mainTheme)
         {
+            if (StringOperations.IsEmpty(mainTheme.GetTitle()) || 
+                StringOperations.IsEmpty(mainTheme.GetDescription())) 
+                return "Se debe añadir el detalle al eje tematico";
             MainThemes.Add(mainTheme);
             return "Se agrego un eje temático";
         }

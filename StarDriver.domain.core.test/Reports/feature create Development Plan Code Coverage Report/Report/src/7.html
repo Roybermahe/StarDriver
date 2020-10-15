@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\royber manjarrez\RiderProjects\StarDriver\StarDriver.domain.core\QExamAnswers.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System.Collections.Generic;
+
+namespace StarDriver.domain.core
+{
+    public class QExamAnswers
+    {
+        private int Identification { get; set; }
+        private Apprentice Apprentice { get; }
+        private Exam Exam { get; }
+
+        public QExamAnswers(int identification,Apprentice apprentice, Exam exam)
+        {
+            Identification = identification;
+            Apprentice = apprentice;
+            Exam = exam;
+        }
+
+        public Exam GetExam()
+        {
+            return Exam;
+        }
+
+        public Apprentice GetApprentice()
+        {
+            return Apprentice;
+        }
+
+        public int Id()
+        {
+            return Identification;
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[7,38,7,42,1],[7,43,7,47,1],[8,41,8,45,0],[9,29,9,33,1],[11,9,11,81,1],[12,9,12,10,1],[13,13,13,45,1],[14,13,14,37,1],[15,13,15,25,1],[16,9,16,10,1],[19,9,19,10,1],[20,13,20,25,1],[21,9,21,10,1],[24,9,24,10,0],[25,13,25,31,0],[26,9,26,10,0],[29,9,29,10,1],[30,13,30,35,1],[31,9,31,10,1]]);
+    </script>
+  </body>
+</html>
