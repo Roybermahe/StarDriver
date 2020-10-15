@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\royber manjarrez\RiderProjects\StarDriver\StarDriver.domain.core.test\QuestionsTest.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System.Collections.Generic;
+using NUnit.Framework;
+using StarDriver.domain.core.Contracts;
+
+namespace StarDriver.domain.core.test
+{
+    public class QuestionTest
+    {
+        [SetUp]
+        public void Setup()
+        {
+        }
+        /**
+         * 
+            Instructor, incluye una pregunta (Seleccion Multiple) al examen v&#225;lida
+            C&#243;mo instructor quiero elegir el tipo(Selecci&#243;n M&#250;ltiple, Abierta, &#218;nica respuesta) de pregunta que puedo incluir en el examen para medir el conocimiento de mis aprendices.
+            Criterio de Aceptaci&#243;n:
+            Una pregunta debe tener un contexto y una o varias posible respuesta de acuerdo al tipo
+
+            Dado
+            Un usuario Instructor que elige una pregunta de selecci&#243;n m&#250;ltiple contexto: “elija una de las siguientes opciones:”, respuestas: 2
+            Cuando
+            Va a crear la pregunta para el examen
+            Entonces
+            El sistema presentar&#225; un mensaje. “Se agrego la pregunta al examen”
+
+         */
+        [Test]
+        public void AddQuestionMultipleChoiceToExam()
+        {
+            var options = new List&lt;string&gt; {&quot;Option A&quot;,&quot;Option B&quot;, &quot;Option C&quot;};
+            var possibleAnswer = new List&lt;string&gt; {&quot;Option A&quot;, &quot;Option C&quot; };
+            var question = new MultipleChoice(
+                content: &quot;Elija una de las siguientes opciones&quot;, 
+                identification: 1, score: 2.7m, optionalImage:&quot;&quot;, 
+                options: options, possibleAnswer: possibleAnswer);
+            var exam = new Exam(identification: 1, tittle: &quot;Examen 1&quot;, description: &quot;Examen de estado&quot;,dateRealization: new MyDate(&quot;01/09/2020&quot;),dateFinish: new MyDate(&quot;01/09/2020&quot;));
+            var result = exam.AddQuestion(question);
+            Assert.AreEqual(&quot;Se agrego la pregunta al examen&quot;, result);
+        }
+        
+        [Test]
+        public void AddQuestionOnlyAnswerToExam()
+        {
+            var options = new List&lt;string&gt; {&quot;Option A&quot;,&quot;Option B&quot;, &quot;Option C&quot;};
+            const string answer = &quot;Option A&quot;;
+            var question = new OnlyAnswer(
+                content: &quot;Elija una de las siguientes opciones&quot;, 
+                identification: 1, score: 2.7m, optionalImage:&quot;&quot;,
+                answer: answer, options: options);
+            var exam = new Exam(identification: 1, tittle: &quot;Examen 1&quot;, description: &quot;Examen de estado&quot;,dateRealization: new MyDate(&quot;01/09/2020&quot;),dateFinish: new MyDate(&quot;01/09/2020&quot;));
+            var result = exam.AddQuestion(question);
+            Assert.AreEqual(&quot;Se agrego la pregunta al examen&quot;, result);
+        }
+        
+        [Test]
+        public void AddQuestionOpen()
+        {
+            var question = new Open(identification: 1, content: &quot;Elija una de las siguientes opciones&quot;, score: 2.7m, optionalImage: &quot;&quot;);
+            var exam = new Exam(identification: 1, tittle: &quot;Examen 1&quot;, description: &quot;Examen de estado&quot;,
+                dateRealization: new MyDate(&quot;01/09/2020&quot;), dateFinish: new MyDate(&quot;01/09/2020&quot;));
+            var result = exam.AddQuestion(question: question);
+            Assert.AreEqual(&quot;Se agrego la pregunta al examen&quot;, result);
+        }
+
+        [Test]
+        public void AddQuestionContentNull()
+        {
+            var options = new List&lt;string&gt; {&quot;Option A&quot;,&quot;Option B&quot;, &quot;Option C&quot;};
+            const string answer = &quot;Option A&quot;;
+            var question = new OnlyAnswer(
+                content: &quot;&quot;, 
+                identification: 1, score: 2.1m, optionalImage:&quot;&quot;,
+                answer: answer, options: options);
+            var exam = new Exam(identification: 1, tittle: &quot;Examen 1&quot;, description: &quot;Examen de estado&quot;,dateRealization: new MyDate(&quot;01/09/2020&quot;),dateFinish: new MyDate(&quot;01/09/2020&quot;));
+            var result = exam.AddQuestion(question);
+            Assert.AreEqual(&quot;No se permite una Pregunta sin contenido&quot;, result);
+        }
+
+        [Test]
+        public void TotalScoresOfExam()
+        {
+            var exam = new Exam(identification: 1, tittle: &quot;Examen 1&quot;, description: &quot;Examen de estado&quot;,dateRealization: new MyDate(&quot;01/09/2020&quot;),dateFinish: new MyDate(&quot;01/09/2020&quot;));
+            GetQuestions().ForEach(delegate(Question question)
+            {
+                exam.AddQuestion(question);
+            });
+            Assert.AreEqual(7.5m, exam.TotalScores());
+        }
+
+        [Test]
+        public void AddResponsesToQuestion()
+        {
+            var exam = new Exam(identification: 1, tittle: &quot;Examen 1&quot;, description: &quot;Examen de estado&quot;,dateRealization: new MyDate(&quot;01/09/2020&quot;),dateFinish: new MyDate(&quot;01/09/2020&quot;));
+            GetQuestions().ForEach(delegate(Question question)
+            {
+                exam.AddQuestion(question);
+            });
+            var result = exam.RespondQuestion(1, &quot;Option B&quot;);
+            var result2 = exam.RespondQuestion(2, &quot;Response&quot;);
+            var result3 = exam.RespondQuestion(3, &quot;Option B|Option C&quot;);
+            Assert.AreEqual(&quot;Respuesta a&#241;adida&quot;,result);
+            Assert.AreEqual(&quot;Respuesta a&#241;adida&quot;,result2);
+            Assert.AreEqual(&quot;Respuesta a&#241;adida&quot;,result3);
+        }
+        
+        [Test]
+        public void AddResponsesToQuestionNull()
+        {
+            var exam = new Exam(identification: 1, tittle: &quot;Examen 1&quot;, description: &quot;Examen de estado&quot;,dateRealization: new MyDate(&quot;01/09/2020&quot;),dateFinish: new MyDate(&quot;01/09/2020&quot;));
+            GetQuestions().ForEach(delegate(Question question)
+            {
+                exam.AddQuestion(question);
+            });
+            var result = exam.RespondQuestion(1, &quot;&quot;);
+            Assert.AreEqual(&quot;No se admite una respuesta vacia.&quot;,result);
+        }
+        
+        [Test]
+        public void ModifyScoreAnswerToQuestion()
+        {
+            var exam = new Exam(identification: 1, tittle: &quot;Examen 1&quot;, description: &quot;Examen de estado&quot;,dateRealization: new MyDate(&quot;01/09/2020&quot;),dateFinish: new MyDate(&quot;01/09/2020&quot;));
+            GetQuestions().ForEach(delegate(Question question)
+            {
+                exam.AddQuestion(question);
+            });
+            var result = exam.ModifyScoreAnswer(2, 2.3m);
+            Assert.AreEqual(&quot;Se modific&#243; los puntos de esta pregunta&quot;,result);
+        }
+        
+        [Test]
+        public void ResponseScoreNoHigherThanTheQuestionScore()
+        {
+            var exam = new Exam(identification: 1, tittle: &quot;Examen 1&quot;, description: &quot;Examen de estado&quot;,dateRealization: new MyDate(&quot;01/09/2020&quot;),dateFinish: new MyDate(&quot;01/09/2020&quot;));
+            GetQuestions().ForEach(delegate(Question question)
+            {
+                exam.AddQuestion(question);
+            });
+            var result = exam.ModifyScoreAnswer(2, 3m);
+            Assert.AreEqual(&quot;Los puntos de respuesta no pueden ser mayor al puntaje total&quot;,result);
+        }
+        
+        
+        private static List&lt;Question&gt; GetQuestions()
+        {
+            var options = new List&lt;string&gt; {&quot;Option A&quot;,&quot;Option B&quot;, &quot;Option C&quot;};
+            const string answer = &quot;Option A&quot;;
+            var question1 = new OnlyAnswer(
+                content: &quot;Elija una de las siguientes opciones&quot;, 
+                identification: 1, score: 2.1m, optionalImage:&quot;&quot;,
+                answer: answer, options: options);
+            var question2 = new Open(identification: 2, content: &quot;Elija una de las siguientes opciones&quot;, score: 2.7m, optionalImage: &quot;&quot;);
+            var possibleAnswer = new List&lt;string&gt; {&quot;Option A&quot;, &quot;Option C&quot; };
+            var question3 = new MultipleChoice(
+                content: &quot;Elija una de las siguientes opciones&quot;, 
+                identification: 3, score: 2.7m, optionalImage:&quot;&quot;, 
+                options: options, possibleAnswer: possibleAnswer);
+            return new List&lt;Question&gt;() { question1, question2, question3 };
+        }
+        
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[11,9,11,10,1],[12,9,12,10,1],[30,9,30,10,1],[31,13,31,80,1],[32,13,32,77,1],[33,13,36,67,1],[37,13,37,184,1],[38,13,38,53,1],[39,13,39,72,1],[40,9,40,10,1],[44,9,44,10,1],[45,13,45,80,1],[47,13,50,51,1],[51,13,51,184,1],[52,13,52,53,1],[53,13,53,72,1],[54,9,54,10,1],[58,9,58,10,1],[59,13,59,137,1],[60,13,61,98,1],[62,13,62,63,1],[63,13,63,72,1],[64,9,64,10,1],[68,9,68,10,1],[69,13,69,80,1],[71,13,74,51,1],[75,13,75,184,1],[76,13,76,53,1],[77,13,77,81,1],[78,9,78,10,1],[82,9,82,10,1],[83,13,83,184,1],[84,13,85,13,1],[85,13,85,14,1],[85,14,86,17,1],[86,17,86,44,1],[86,44,87,13,1],[87,13,87,14,1],[87,14,87,16,1],[84,13,87,16,1],[88,13,88,55,1],[89,9,89,10,1],[93,9,93,10,1],[94,13,94,184,1],[95,13,96,13,1],[96,13,96,14,1],[96,14,97,17,1],[97,17,97,44,1],[97,44,98,13,1],[98,13,98,14,1],[98,14,98,16,1],[95,13,98,16,1],[99,13,99,62,1],[100,13,100,63,1],[101,13,101,72,1],[102,13,102,57,1],[103,13,103,58,1],[104,13,104,58,1],[105,9,105,10,1],[109,9,109,10,1],[110,13,110,184,1],[111,13,112,13,1],[112,13,112,14,1],[112,14,113,17,1],[113,17,113,44,1],[113,44,114,13,1],[114,13,114,14,1],[114,14,114,16,1],[111,13,114,16,1],[115,13,115,54,1],[116,13,116,73,1],[117,9,117,10,1],[121,9,121,10,1],[122,13,122,184,1],[123,13,124,13,1],[124,13,124,14,1],[124,14,125,17,1],[125,17,125,44,1],[125,44,126,13,1],[126,13,126,14,1],[126,14,126,16,1],[123,13,126,16,1],[127,13,127,58,1],[128,13,128,79,1],[129,9,129,10,1],[133,9,133,10,1],[134,13,134,184,1],[135,13,136,13,1],[136,13,136,14,1],[136,14,137,17,1],[137,17,137,44,1],[137,44,138,13,1],[138,13,138,14,1],[138,14,138,16,1],[135,13,138,16,1],[139,13,139,56,1],[140,13,140,100,1],[141,9,141,10,1],[145,9,145,10,1],[146,13,146,80,1],[148,13,151,51,1],[152,13,152,138,1],[153,13,153,77,1],[154,13,157,67,1],[158,13,158,77,1],[159,9,159,10,1]]);
+    </script>
+  </body>
+</html>

@@ -1,11 +1,14 @@
-﻿namespace StarDriver.domain.core
+﻿using System.Collections.Generic;
+
+namespace StarDriver.domain.core
 {
     public abstract class Question
     {
-        private int Identification { get; }
+        public int Identification { get; }
         public string Content { get; }
         public decimal Score { get; }
         public string OptionalImage { get; }
+        public decimal ScoreAnswer { get; set; }
 
         protected Question(int identification, string content, decimal score, string optionalImage)
         {
@@ -13,6 +16,10 @@
             Content = content;
             Score = score;
             OptionalImage = optionalImage;
+            ScoreAnswer = Score;
         }
+
+        public abstract string AddResponse(string response = "");
+        public abstract bool ValidateResponse();
     }
 }
