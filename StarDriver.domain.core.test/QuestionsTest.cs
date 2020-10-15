@@ -88,6 +88,59 @@ namespace StarDriver.domain.core.test
             Assert.AreEqual(7.5m, exam.TotalScores());
         }
 
+        [Test]
+        public void AddResponsesToQuestion()
+        {
+            var exam = new Exam(identification: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            GetQuestions().ForEach(delegate(Question question)
+            {
+                exam.AddQuestion(question);
+            });
+            var result = exam.RespondQuestion(1, "Option B");
+            var result2 = exam.RespondQuestion(2, "Response");
+            var result3 = exam.RespondQuestion(3, "Option B|Option C");
+            Assert.AreEqual("Respuesta añadida",result);
+            Assert.AreEqual("Respuesta añadida",result2);
+            Assert.AreEqual("Respuesta añadida",result3);
+        }
+        
+        [Test]
+        public void AddResponsesToQuestionNull()
+        {
+            var exam = new Exam(identification: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            GetQuestions().ForEach(delegate(Question question)
+            {
+                exam.AddQuestion(question);
+            });
+            var result = exam.RespondQuestion(1, "");
+            Assert.AreEqual("No se admite una respuesta vacia.",result);
+        }
+        
+        [Test]
+        public void ModifyScoreAnswerToQuestion()
+        {
+            var exam = new Exam(identification: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            GetQuestions().ForEach(delegate(Question question)
+            {
+                exam.AddQuestion(question);
+            });
+            var result = exam.ModifyScoreAnswer(2, 2.3m);
+            Assert.AreEqual("Se modificó los puntos de esta pregunta",result);
+        }
+        
+        [Test]
+        public void ResponseScoreNoHigherThanTheQuestionScore()
+        {
+            var exam = new Exam(identification: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            GetQuestions().ForEach(delegate(Question question)
+            {
+                exam.AddQuestion(question);
+            });
+            var result = exam.ModifyScoreAnswer(2, 3m);
+            Assert.AreEqual("Los puntos de respuesta no pueden ser mayor al puntaje total",result);
+        }
+        
+        
         private static List<Question> GetQuestions()
         {
             var options = new List<string> {"Option A","Option B", "Option C"};
@@ -96,11 +149,11 @@ namespace StarDriver.domain.core.test
                 content: "Elija una de las siguientes opciones", 
                 identification: 1, score: 2.1m, optionalImage:"",
                 answer: answer, options: options);
-            var question2 = new Open(identification: 1, content: "Elija una de las siguientes opciones", score: 2.7m, optionalImage: "");
+            var question2 = new Open(identification: 2, content: "Elija una de las siguientes opciones", score: 2.7m, optionalImage: "");
             var possibleAnswer = new List<string> {"Option A", "Option C" };
             var question3 = new MultipleChoice(
                 content: "Elija una de las siguientes opciones", 
-                identification: 1, score: 2.7m, optionalImage:"", 
+                identification: 3, score: 2.7m, optionalImage:"", 
                 options: options, possibleAnswer: possibleAnswer);
             return new List<Question>() { question1, question2, question3 };
         }

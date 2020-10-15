@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\royber manjarrez\RiderProjects\StarDriver\StarDriver.domain.core\QOpen.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+using System.Collections.Generic;
+using StarDriver.domain.core.Contracts;
+
+namespace StarDriver.domain.core
+{
+    public class Open : Question
+    {
+        public string Answer { get; set; }
+        
+        public Open(int identification, string content, decimal score, string optionalImage) : base(identification, content, score, optionalImage)
+        {
+            Answer = string.Empty;
+        }
+
+        public override string AddResponse(string response = &quot;&quot;)
+        {
+            if (StringOperations.IsEmpty(response)) return &quot;No se admite una respuesta sin contenido&quot;;
+            Answer = response;
+            return &quot;Respuesta a&#241;adida&quot;;
+        }
+        
+        public override bool ValidateResponse()
+        {
+            return true;
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[9,32,9,36,0],[9,37,9,41,1],[11,96,11,147,1],[12,9,12,10,1],[13,13,13,35,1],[14,9,14,10,1],[17,9,17,10,1],[18,13,18,52,1],[18,53,18,103,0],[19,13,19,31,1],[20,13,20,40,1],[21,9,21,10,1],[24,9,24,10,1],[25,13,25,25,1],[26,9,26,10,1]]);
+    </script>
+  </body>
+</html>

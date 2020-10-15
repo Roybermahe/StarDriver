@@ -25,7 +25,7 @@ namespace StarDriver.domain.core
 
         public string AddQuestion(Question question)
         {
-            if (string.IsNullOrEmpty(question.Content) || string.IsNullOrWhiteSpace(question.Content)) return "No se permite una Pregunta sin contenido";
+            if (StringOperations.IsEmpty(question.Content)) return "No se permite una Pregunta sin contenido";
             _questions.Add(question);
             return "Se agrego la pregunta al examen";
         }
@@ -38,6 +38,36 @@ namespace StarDriver.domain.core
                 total += question.Score;
             });
             return total;
+        }
+
+        public string RespondQuestion(int IdQuestion, string respond)
+        {
+            
+            return GetQuestion(IdQuestion)?.AddResponse(respond);
+        }
+
+        public decimal ExamResult()
+        {
+            var total = 0m;
+            _questions.ForEach(delegate(Question question)
+            {
+                question.ValidateResponse();
+                total += question.ScoreAnswer;
+            });
+            return total;
+        }
+
+        public string ModifyScoreAnswer(int idPregunta, decimal scorePoints)
+        {
+            var question = GetQuestion(idPregunta);
+            if (scorePoints > question.Score) return "Los puntos de respuesta no pueden ser mayor al puntaje total";
+            GetQuestion(idPregunta).ScoreAnswer = scorePoints;
+            return "Se modificó los puntos de esta pregunta";
+        }
+        
+        private Question GetQuestion(int IdQuestion)
+        {
+            return _questions.Find(t => t.Identification == IdQuestion);
         }
     }
 }
