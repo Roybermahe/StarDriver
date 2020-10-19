@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\royber manjarrez\RiderProjects\StarDriver\StarDriver.domain.core\PApprentice.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System.Collections.Generic;
+
+namespace StarDriver.domain.core
+{
+    public class Apprentice
+    {
+        private List&lt;QExamAnswers&gt; ExamAnswerses;
+
+        public Apprentice()
+        {
+            ExamAnswerses = new List&lt;QExamAnswers&gt;();
+        }
+
+        public string AddExamAnswers(QExamAnswers examAnswers)
+        {
+            if (examAnswers.GetExam().TotalScores() == 0m) return &quot;El examen no contiene preguntas&quot;;
+            ExamAnswerses.Add(examAnswers);
+            return &quot;Se agrego un examen respondido.&quot;;
+        }
+
+        public Exam GetExamAnswers(int id)
+        {
+            return ExamAnswerses.Find(t =&gt; t.Id() == id)?.GetExam();
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[9,9,9,28,1],[10,9,10,10,1],[11,13,11,54,1],[12,9,12,10,1],[15,9,15,10,1],[16,13,16,59,1],[16,60,16,101,1],[17,13,17,44,1],[18,13,18,54,1],[19,9,19,10,1],[22,9,22,10,1],[23,13,23,44,1],[23,44,23,56,1],[23,56,23,69,1],[23,13,23,69,1],[24,9,24,10,1]]);
+    </script>
+  </body>
+</html>
