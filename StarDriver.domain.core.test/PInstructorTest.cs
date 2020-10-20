@@ -12,7 +12,7 @@ namespace StarDriver.domain.core.test
         public void Setup()
         {
         }
-        /*SI SE PUEDE VALIDAR ESTO?
+        
         /*
           Escenario1: Identificación única
           H03: Cómo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales.
@@ -26,9 +26,11 @@ namespace StarDriver.domain.core.test
           Entonces
           El sistema presentará el mensaje. “Instructor registrado”
         */
+        
+        
 
 
-        /*
+        
         [Test]
         public void IdentificacionInstructorUnicaInstructorTest()
         {
@@ -57,7 +59,7 @@ namespace StarDriver.domain.core.test
         Entonces
         El sistema presentará el mensaje. “No se puede realizar el registro,Ya existe un instructor con la misma identificación”.
         */
-        /*
+        
         [Test]
         public void IdentificacionInstructorNoUnicaInstructorTest()
         {
@@ -75,6 +77,7 @@ namespace StarDriver.domain.core.test
 
             //Verificación
             Assert.AreEqual("No se puede realizar el registro,Ya existe un instructor con la misma identificación", createInstructor2);
+            Assert.AreEqual(2,instructor2.CountPersons());
           
         }
        
