@@ -16,4 +16,8 @@
       <ProjectReference Include="..\StarDriver.domain.core\StarDriver.domain.core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="UnitTest1.cs" />
+    </ItemGroup>
+
 </Project>

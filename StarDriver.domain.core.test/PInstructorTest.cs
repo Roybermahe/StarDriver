@@ -34,53 +34,28 @@ namespace StarDriver.domain.core.test
         [Test]
         public void IdentificacionInstructorUnicaInstructorTest()
         {
-            //Preparar
-            List<string> especializations = new List<string>();
-            especializations.Add("Normas de tránsito Urbanas");
-            var instructor = new PInstructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
-            var administrator = new PAdministrator(idPerson: 1065630700, name: "Eva", surname: "Rodrigues", phone: "30227455890", mail: "eva@gmail.com", direction: "Manzana 58 Casa 13 450 años");
-            //Acción
-
-            var createInstructor = administrator.CreateInstructor(instructor, especializations);
-
-            //Verificación
-            Assert.AreEqual("Instructor registrado", createInstructor);
-        }
-
-        /*
-        Escenario 2: No puede registrar instructor con identificación no única (002)
-        H1: Cómo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales.
-        Criterio de Aceptación:
-        1. El instructor debe tener una identificación única 
-        Dado
-        Un instructor (identificación: “1065630800”, nombre: “Javier”, edad: “25”,  telefono: 3022745590, especialización: “Normas de tránsito Urbanas”) y ya existe otro instructor registrado con esa identificación
-        Cuando
-        Va a ser registrado.
-        Entonces
-        El sistema presentará el mensaje. “No se puede realizar el registro,Ya existe un instructor con la misma identificación”.
-        */
-        
-        [Test]
-        public void IdentificacionInstructorNoUnicaInstructorTest()
-        {
+           
             //Preparar
             List<string> especializations = new List<string>();
             especializations.Add("Normas de tránsito Urbanas");
             var administrator = new PAdministrator(idPerson: 1065630700, name: "Eva", surname: "Rodrigues", phone: "30227455890", mail: "eva@gmail.com", direction: "Manzana 58 Casa 13 450 años");
             var instructor1 = new PInstructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
-            var instructor2 = new PInstructor(idPerson: 1065630800, name: "Armando", surname: "Camacho", phone: "3012745590", mail: "armando@gmail.com", direction: "Manzana 58 Casa 50 450 años");
-            var createInstructor1 = administrator.CreateInstructor(instructor1, especializations);
+            var instructor2 = new PInstructor(idPerson: 1065630700, name: "Alvaro", surname: "Camacho", phone: "3012745590", mail: "armando@gmail.com", direction: "Manzana 58 Casa 50 450 años");
+            var instructor3 = new PInstructor(idPerson: 1065630800, name: "Armando", surname: "Camacho", phone: "3012745590", mail: "armando@gmail.com", direction: "Manzana 58 Casa 50 450 años");
             
+            var createInstructor1 = administrator.CreateInstructor(instructor1, especializations);
+            var createInstructor2 = administrator.CreateInstructor(instructor2, especializations);
 
             //Acción
 
-            var createInstructor2 = administrator.CreateInstructor(instructor2, especializations);
+            var createInstructor3 = administrator.CreateInstructor(instructor3, especializations);
 
             //Verificación
-            Assert.AreEqual("No se puede realizar el registro,Ya existe un instructor con la misma identificación", createInstructor2);
-            
-          
+            Assert.AreEqual("No se puede realizar el registro,Ya existe un instructor con la misma identificación", createInstructor3);
+            Assert.AreEqual(2,administrator.Persons.Count);
         }
+
+       
        
         /*
         No puede registrar instructor sin especializaciones (003)
