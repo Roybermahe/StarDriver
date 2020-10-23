@@ -7,7 +7,7 @@ namespace StarDriver.domain.core
     
     public abstract class Person
     {
-        public readonly List<Person> Persons = new List<Person>();
+        
         public Person(int idPerson, string name, string surname, string phone, string mail, string direction)
         {
             IdPerson = idPerson;
@@ -26,21 +26,7 @@ namespace StarDriver.domain.core
         public string Mail { get; set; }
         public string Direction { get; set; }
 
-        protected void SavePerson(Person person)
-        {
-            Persons.Add(person);
-        }
-
-        protected bool ExistsPerson(int idPerson)
-        {
-            return Persons.FindAll(t => t.IdPerson == idPerson).Count > 0;
-
-        }
-
-        public int CountPersons()
-        {
-            return Persons.Count;
-        }
+       
           
     }
 }
