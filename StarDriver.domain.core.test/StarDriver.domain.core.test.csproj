@@ -18,6 +18,7 @@
 
     <ItemGroup>
       <Compile Remove="UnitTest1.cs" />
+      <Compile Remove="PAdministratorTest.cs" />
     </ItemGroup>
 
 </Project>

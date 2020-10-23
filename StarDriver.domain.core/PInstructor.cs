@@ -15,17 +15,22 @@ namespace StarDriver.domain.core
 
         }
 
-        public string AddSpecializations(List<string> specializations)
+        public string AddSpecializations(string specializations)
         {
-            if (specializations.Count == 0) return "No se puede realizar el registro";
-            Specializations= specializations;
+            if (specializations.Length == 0) return "No se puede realizar el registro";
+            Specializations.Add(specializations);
             return "Especializaciones agregadas";
         }
-        protected string DeleteSpecializations(string specializations)
+       /* protected string DeleteSpecializations(string specializations)
         {
             if (specializations == "") return "No se puede eliminar";
             Specializations.Remove(specializations);
             return "Especializaciones agregadas";
+        }*/
+
+        public bool HaveSpecialization()
+        {
+            return Specializations.Count > 0;
         }
         
  

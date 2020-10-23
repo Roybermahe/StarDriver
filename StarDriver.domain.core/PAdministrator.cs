@@ -12,11 +12,11 @@ namespace StarDriver.domain.core
         {
         }
         
-        public string CreateInstructor(PInstructor pInstuctor, List<string> specializations)
+        public string CreateInstructor(PInstructor pInstuctor)
         {
             
             if (ExistsPerson(pInstuctor.IdPerson)) return "No se puede realizar el registro,Ya existe un instructor con la misma identificación";
-            if (specializations.Count == 0) return "No se puede realizar el registro, Se necesita una o más especializaciones";
+            if (!pInstuctor.HaveSpecialization()) return "No se puede realizar el registro, Se necesita una o más especializaciones";
             if (pInstuctor.Phone.Length > 10 || pInstuctor.Phone.Length < 7) return "No se puede realizar el registro, la cantidad de digitos del telefono no es permitida";
 
             SavePerson(pInstuctor);
