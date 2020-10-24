@@ -5,11 +5,11 @@ using System.Text;
 
 namespace StarDriver.domain.core
 {
-    public class PInstructor : Person
+    public class Instructor : Person
     {
-        List<string> Specializations;
+        readonly List<string> Specializations;
    
-        public PInstructor(int idPerson, string name, string surname,  string phone, string mail, string direction) : base(idPerson, name, surname, phone, mail, direction)
+        public Instructor(int idPerson, string name, string surname,  string phone, string mail, string direction) : base(idPerson, name, surname, phone, mail, direction)
         {
             Specializations =  new List<string>();
 
