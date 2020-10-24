@@ -17,7 +17,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Reports" />
+      <Compile Remove="UnitTest1.cs" />
+      <Compile Remove="PAdministratorTest.cs" />
     </ItemGroup>
 
 </Project>

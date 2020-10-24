@@ -12,7 +12,7 @@ namespace StarDriver.domain.core.test
         public void Setup()
         {
         }
-        /*SI SE PUEDE VALIDAR ESTO?
+        
         /*
           Escenario1: Identificación única
           H03: Cómo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales.
@@ -26,57 +26,35 @@ namespace StarDriver.domain.core.test
           Entonces
           El sistema presentará el mensaje. “Instructor registrado”
         */
-
-
-        /*
+        
         [Test]
         public void IdentificacionInstructorUnicaInstructorTest()
         {
+           
             //Preparar
             List<string> especializations = new List<string>();
             especializations.Add("Normas de tránsito Urbanas");
-            var instructor = new PInstructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
-
-            //Acción
-
-            var createInstructor=instructor.CreateInstructor(instructor, especializations);
-
-            //Verificación
-            Assert.AreEqual("Instructor registrado", createInstructor);
-        }
-
-        /*
-        Escenario 2: No puede registrar instructor con identificación no única (002)
-        H1: Cómo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales.
-        Criterio de Aceptación:
-        1. El instructor debe tener una identificación única 
-        Dado
-        Un instructor (identificación: “1065630800”, nombre: “Javier”, edad: “25”,  telefono: 3022745590, especialización: “Normas de tránsito Urbanas”) y ya existe otro instructor registrado con esa identificación
-        Cuando
-        Va a ser registrado.
-        Entonces
-        El sistema presentará el mensaje. “No se puede realizar el registro,Ya existe un instructor con la misma identificación”.
-        */
-        /*
-        [Test]
-        public void IdentificacionInstructorNoUnicaInstructorTest()
-        {
-            //Preparar
-            List<string> especializations = new List<string>();
-            especializations.Add("Normas de tránsito Urbanas");
+            var administrator = new PAdministrator(idPerson: 1065630700, name: "Eva", surname: "Rodrigues", phone: "30227455890", mail: "eva@gmail.com", direction: "Manzana 58 Casa 13 450 años");
             var instructor1 = new PInstructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
-            var instructor2 = new PInstructor(idPerson: 1065630800, name: "Armando", surname: "Camacho", phone: "3012745590", mail: "armando@gmail.com", direction: "Manzana 58 Casa 50 450 años");
-            var createInstructor1 = instructor1.CreateInstructor(instructor1, especializations);
-
+            instructor1.AddSpecializations("Normas de tránsito Urbanas");
+            var instructor2 = new PInstructor(idPerson: 1065630700, name: "Alvaro", surname: "Camacho", phone: "3012745590", mail: "armando@gmail.com", direction: "Manzana 58 Casa 50 450 años");
+            instructor2.AddSpecializations("Normas de tránsito Urbanas");
+            var instructor3 = new PInstructor(idPerson: 1065630800, name: "Armando", surname: "Camacho", phone: "3012745590", mail: "armando@gmail.com", direction: "Manzana 58 Casa 50 450 años");
+            
+            var createInstructor1 = administrator.CreateInstructor(instructor1);
+            var createInstructor2 = administrator.CreateInstructor(instructor2);
+            
 
             //Acción
-
-            var createInstructor2 = instructor2.CreateInstructor(instructor2, especializations);
+            instructor3.AddSpecializations("Normas de tránsito Urbanas");
+            var createInstructor3 = administrator.CreateInstructor(instructor3);
 
             //Verificación
-            Assert.AreEqual("No se puede realizar el registro,Ya existe un instructor con la misma identificación", createInstructor2);
-          
+            Assert.AreEqual("No se puede realizar el registro,Ya existe un instructor con la misma identificación", createInstructor3);
+            Assert.AreEqual(2,administrator.CountPersons());
         }
+
+       
        
         /*
         No puede registrar instructor sin especializaciones (003)
@@ -95,15 +73,16 @@ namespace StarDriver.domain.core.test
         public void CeroEspecializacionInstructorTest()
         {
             //Preparar
-            List<string> especializations = new List<string>();
             
-            var instructor = new Instructor(idPerson: 1065630430, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+            var administrator = new PAdministrator(idPerson: 1065630700, name: "Eva", surname: "Rodrigues", phone: "30227455890", mail: "eva@gmail.com", direction: "Manzana 58 Casa 13 450 años");
+            var instructor = new PInstructor(idPerson: 1065630430, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
             //Acción
-
-            var createInstructor = instructor.CreateInstructor(instructor, especializations);
+            
+            var createInstructor = administrator.CreateInstructor(instructor);
 
             //Verificación
             Assert.AreEqual("No se puede realizar el registro, Se necesita una o más especializaciones", createInstructor);
+            
         }
 
 
@@ -124,17 +103,49 @@ namespace StarDriver.domain.core.test
         public void EspecializacionesMayorACeroInstructorTest()
         {
             //Preparar
-            List<string> especializations = new List<string>();
-            especializations.Add("Normas de tránsito Urbanas");
-            var instructor = new Instructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
-
+            
+            var administrator = new PAdministrator(idPerson: 1065630700, name: "Eva", surname: "Rodrigues", phone: "30227455890", mail: "eva@gmail.com", direction: "Manzana 58 Casa 13 450 años");
+            var instructor = new PInstructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+            instructor.AddSpecializations("Normas de tránsito Urbanas");
             //Acción
 
-            var createInstructor = instructor.CreateInstructor(instructor, especializations);
+            var createInstructor = administrator.CreateInstructor(instructor);
 
             //Verificación
             Assert.AreEqual("Instructor registrado", createInstructor);
         }
+        
+        /*
+        Instructor con numero de especializaciones mayor a 0
+        H1: Cómo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales.
+        Criterio de Aceptación:
+        2. El instructor debe tener una o varias especializaciones.
+        Dado
+        Un instructor (nombre: “Esteban”, edad: “25”, Especializaciones: “” , telefono: 3022745590 ) que aún no ha sido registrado  y que coincide con un el número de teléfono de otro instructor
+        Cuando
+        Va a ser registrado.
+        Entonces
+        El sistema presentará el mensaje. “Instructor Registrado”.
+        */
+
+        [Test]
+        public void EspecializacionesVaciasInstructorTest()
+        {
+            //Preparar
+            
+            var administrator = new PAdministrator(idPerson: 1065630700, name: "Eva", surname: "Rodrigues", phone: "30227455890", mail: "eva@gmail.com", direction: "Manzana 58 Casa 13 450 años");
+            var instructor = new PInstructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+            var vacia=instructor.AddSpecializations("");
+            //Acción
+
+            var createInstructor = administrator.CreateInstructor(instructor);
+
+            //Verificación
+            Assert.AreEqual("No se puede realizar el registro",vacia);
+            Assert.AreEqual("No se puede realizar el registro, Se necesita una o más especializaciones", createInstructor);
+            
+        }
+
 
         /*
          
@@ -154,13 +165,13 @@ namespace StarDriver.domain.core.test
         public void DigitosDeTelefonoCompletoInstructorTest()
         {
             //Preparar
-            List<string> especializations = new List<string>();
-            especializations.Add("Normas de tránsito Urbanas");
-            var instructor = new Instructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
-
+            
+            var administrator = new PAdministrator(idPerson: 1065630700, name: "Eva", surname: "Rodrigues", phone: "30227455890", mail: "eva@gmail.com", direction: "Manzana 58 Casa 13 450 años");
+            var instructor = new PInstructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+            instructor.AddSpecializations("Normas de tránsito Urbanas");
             //Acción
 
-            var createInstructor = instructor.CreateInstructor(instructor, especializations);
+            var createInstructor = administrator.CreateInstructor(instructor);
 
             //Verificación
             Assert.AreEqual("Instructor registrado", createInstructor);
@@ -183,13 +194,12 @@ namespace StarDriver.domain.core.test
         public void DigitosDeTelefonoNoPermitidoInstructorTest()
         {
             //Preparar
-            List<string> especializations = new List<string>();
-            especializations.Add("Normas de tránsito Urbanas");
-            var instructor = new Instructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "30227455890", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
-
+            var administrator = new PAdministrator(idPerson: 1065630700, name: "Eva", surname: "Rodrigues", phone: "30227455890", mail: "eva@gmail.com", direction: "Manzana 58 Casa 13 450 años");
+            var instructor = new PInstructor(idPerson: 1065630800, name: "Javier", surname: "Rodrigues", phone: "30227455890", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+            instructor.AddSpecializations("Normas de tránsito Urbanas");
             //Acción
 
-            var createInstructor = instructor.CreateInstructor(instructor, especializations);
+            var createInstructor = administrator.CreateInstructor(instructor);
 
             //Verificación
             Assert.AreEqual("No se puede realizar el registro, la cantidad de digitos del telefono no es permitida", createInstructor);
