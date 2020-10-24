@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\royber manjarrez\RiderProjects\StarDriver\StarDriver.domain.core\Business\Persons\Person.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace StarDriver.domain.core
+{
+    public abstract class Person
+    {
+        protected Person(int idPerson, string name, string surname, string phone, string mail, string direction)
+        {
+            IdPerson = idPerson;
+            Name = name;
+            Surname = surname;
+            Phone = phone;
+            Mail = mail;
+            Direction = direction;
+        }
+
+        public int IdPerson { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Phone { get; set; }
+        public string Mail { get; set; }
+        public string Direction { get; set; }
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[9,9,9,113,1],[10,9,10,10,1],[11,13,11,33,1],[12,13,12,25,1],[13,13,13,31,1],[14,13,14,27,1],[15,13,15,25,1],[16,13,16,35,1],[17,9,17,10,1],[19,31,19,35,1],[19,36,19,40,1],[20,30,20,34,0],[20,35,20,39,1],[21,33,21,37,0],[21,38,21,42,1],[22,31,22,35,1],[22,36,22,40,1],[23,30,23,34,0],[23,35,23,39,1],[24,35,24,39,0],[24,40,24,44,1]]);
+    </script>
+  </body>
+</html>

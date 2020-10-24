@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\royber manjarrez\RiderProjects\StarDriver\StarDriver.domain.core.test\DevelopmentPlanTest.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using NUnit.Framework;
+
+namespace StarDriver.domain.core.test
+{
+    public class DevelopmentPlanTest
+    {
+        [SetUp]
+        public void SetUp()
+        {
+        }
+
+        [Test]
+        public void AddMainThemeToPlan()
+        {
+            var plan = new DevelopmentPlan(identification: 1, level: &quot;1&quot;);
+            Assert.AreEqual(plan.LevelOfPlan(), &quot;1&quot;);
+            var maintheme = new MainTheme(identification: 1, title: &quot;V&#237;as y carreteras&quot;, description: &quot;En este tema hablaremos acerca de las v&#237;as...&quot;);
+            var resultItem = maintheme.AddItems(&quot;primer v&#237;a&quot;);
+            Assert.AreEqual(&quot;Se agrego el item al eje tem&#225;tico&quot;, resultItem);
+            
+            resultItem = maintheme.AddItems(&quot;&quot;);
+            Assert.AreEqual(&quot;No se permite un item sin descripci&#243;n&quot;, resultItem);
+            
+            maintheme.AddItems(&quot;tercera v&#237;a&quot;);
+            var result = plan.AddMainTheme(maintheme);
+            Assert.AreEqual(maintheme.TotalItems(), 2);
+            Assert.AreEqual(&quot;Se agrego un eje tem&#225;tico&quot;, result);
+            Assert.AreEqual(plan.TotalMainThemes(), 1);
+        }
+
+        [Test]
+        public void AddMainThemeToPlanFail()
+        {
+            var plan = new DevelopmentPlan(identification: 1, level: &quot;1&quot;);
+            var maintheme = new MainTheme(identification: 1, title: &quot;&quot;, description: &quot;&quot;);
+            maintheme.AddItems(&quot;primer v&#237;a&quot;);
+            maintheme.AddItems(&quot;segunda v&#237;a&quot;);
+            maintheme.AddItems(&quot;tercera v&#237;a&quot;);
+            var result = plan.AddMainTheme(maintheme);
+            Assert.AreEqual(&quot;Se debe a&#241;adir el detalle al eje tematico&quot;, result);
+        }
+        [Test]
+        public void AddMainThemeExistToPlan()
+        {
+            var plan = new DevelopmentPlan(identification: 1, level: &quot;1&quot;);
+            var maintheme = new MainTheme(identification: 1, title: &quot;eje tematico 1&quot;, description: &quot;v&#237;as&quot;);
+            maintheme.AddItems(&quot;primer v&#237;a&quot;);
+            maintheme.AddItems(&quot;segunda v&#237;a&quot;);
+            maintheme.AddItems(&quot;tercera v&#237;a&quot;);
+            plan.AddMainTheme(maintheme);
+            var result = plan.AddMainTheme(maintheme);
+            Assert.AreEqual(&quot;Ya este eje tem&#225;tico fue agregado al plan&quot;, result);
+        }
+        
+        [Test]
+        public void ModifyMainThemeAdded()
+        {
+            var plan = new DevelopmentPlan(identification: 1, level: &quot;1&quot;);
+            var maintheme = new MainTheme(identification: 1, title: &quot;eje tematico 1&quot;, description: &quot;v&#237;as&quot;);
+            maintheme.AddItems(&quot;primer v&#237;a&quot;);
+            maintheme.AddItems(&quot;segunda v&#237;a&quot;);
+            maintheme.AddItems(&quot;tercera v&#237;a&quot;);
+            plan.AddMainTheme(maintheme);
+            maintheme.AddItems(&quot;cuarta v&#237;a&quot;);
+            maintheme.AddItems(&quot;quinta v&#237;a&quot;);
+            var result = plan.UpdateMainTheme(maintheme);
+            Assert.AreEqual(&quot;Se actualizo el eje tem&#225;tico&quot;, result);
+        }
+        
+        [Test]
+        public void ModifyMainThemeAddedFail()
+        {
+            var plan = new DevelopmentPlan(identification: 1, level: &quot;1&quot;);
+            var maintheme = new MainTheme(identification: 1, title: &quot;eje tematico 1&quot;, description: &quot;v&#237;as&quot;);
+            maintheme.AddItems(&quot;primer v&#237;a&quot;);
+            maintheme.AddItems(&quot;segunda v&#237;a&quot;);
+            maintheme.AddItems(&quot;tercera v&#237;a&quot;);
+            plan.AddMainTheme(maintheme);
+            maintheme = new MainTheme(identification: 2, title: &quot;eje tematico 2&quot;, description: &quot;v&#237;as&quot;);
+            maintheme.AddItems(&quot;cuarta v&#237;a&quot;);
+            maintheme.AddItems(&quot;quinta v&#237;a&quot;);
+            var result = plan.UpdateMainTheme(maintheme);
+            Assert.AreEqual(&quot;No existe este eje tem&#225;tico&quot;, result);
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[9,9,9,10,1],[10,9,10,10,1],[14,9,14,10,1],[15,13,15,75,1],[16,13,16,54,1],[17,13,17,152,1],[18,13,18,63,1],[19,13,19,78,1],[21,13,21,49,1],[22,13,22,82,1],[24,13,24,47,1],[25,13,25,55,1],[26,13,26,56,1],[27,13,27,66,1],[28,13,28,56,1],[29,9,29,10,1],[33,9,33,10,1],[34,13,34,75,1],[35,13,35,90,1],[36,13,36,46,1],[37,13,37,47,1],[38,13,38,47,1],[39,13,39,55,1],[40,13,40,82,1],[41,9,41,10,1],[44,9,44,10,1],[45,13,45,75,1],[46,13,46,108,1],[47,13,47,46,1],[48,13,48,47,1],[49,13,49,47,1],[50,13,50,42,1],[51,13,51,55,1],[52,13,52,82,1],[53,9,53,10,1],[57,9,57,10,1],[58,13,58,75,1],[59,13,59,108,1],[60,13,60,46,1],[61,13,61,47,1],[62,13,62,47,1],[63,13,63,42,1],[64,13,64,46,1],[65,13,65,46,1],[66,13,66,58,1],[67,13,67,69,1],[68,9,68,10,1],[72,9,72,10,1],[73,13,73,75,1],[74,13,74,108,1],[75,13,75,46,1],[76,13,76,47,1],[77,13,77,47,1],[78,13,78,42,1],[79,13,79,104,1],[80,13,80,46,1],[81,13,81,46,1],[82,13,82,58,1],[83,13,83,68,1],[84,9,84,10,1]]);
+    </script>
+  </body>
+</html>
