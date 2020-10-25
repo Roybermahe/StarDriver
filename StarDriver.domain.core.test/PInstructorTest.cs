@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
+using StarDriver.domain.core.Business.Persons;
 
 namespace StarDriver.domain.core.test
 {

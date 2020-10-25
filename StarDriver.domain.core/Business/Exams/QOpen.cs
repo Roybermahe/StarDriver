@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using StarDriver.domain.core.Contracts;
 
-namespace StarDriver.domain.core
+namespace StarDriver.domain.core.Business.Exams
 {
     public class Open : Question
     {

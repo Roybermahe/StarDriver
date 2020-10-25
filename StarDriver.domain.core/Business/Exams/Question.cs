@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace StarDriver.domain.core
+﻿namespace StarDriver.domain.core.Business.Exams
 {
     public abstract class Question
     {

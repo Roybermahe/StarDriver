@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
+using StarDriver.domain.core.Business.Exams;
+using StarDriver.domain.core.Business.Persons;
 using StarDriver.domain.core.Contracts;
 
 namespace StarDriver.domain.core.test
