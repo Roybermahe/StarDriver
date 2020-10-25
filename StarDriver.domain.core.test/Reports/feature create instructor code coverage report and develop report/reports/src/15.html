@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\royber manjarrez\RiderProjects\StarDriver\StarDriver.domain.core\Business\Persons\PInstructor.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using StarDriver.domain.core.Contracts;
+
+namespace StarDriver.domain.core
+{
+    public class Instructor : Person
+    {
+        readonly List&lt;string&gt; Specializations;
+   
+        public Instructor(int idPerson, string name, string surname,  string phone, string mail, string direction) : base(idPerson, name, surname, phone, mail, direction)
+        {
+            Specializations =  new List&lt;string&gt;();
+
+        }
+
+        public string AddSpecializations(string specializations)
+        {
+            if (StringOperations.IsEmpty(specializations)) return &quot;No se puede realizar el registro&quot;;
+            Specializations.Add(specializations);
+            return &quot;Especializaciones agregadas&quot;;
+        }
+       /* protected string DeleteSpecializations(string specializations)
+        {
+            if (specializations == &quot;&quot;) return &quot;No se puede eliminar&quot;;
+            Specializations.Remove(specializations);
+            return &quot;Especializaciones agregadas&quot;;
+        }*/
+
+        public bool HaveSpecialization()
+        {
+            return Specializations.Count &gt; 0;
+        }
+        
+ 
+
+       
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[13,118,13,171,1],[14,9,14,10,1],[15,13,15,51,1],[17,9,17,10,1],[20,9,20,10,1],[21,13,21,59,1],[21,60,21,102,1],[22,13,22,50,1],[23,13,23,50,1],[24,9,24,10,1],[33,9,33,10,1],[34,13,34,46,1],[35,9,35,10,1]]);
+    </script>
+  </body>
+</html>

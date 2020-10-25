@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\royber manjarrez\RiderProjects\StarDriver\StarDriver.domain.core.test\PInstructorTest.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using NUnit.Framework;
+using System.Collections.Generic;
+
+namespace StarDriver.domain.core.test
+{
+    public class InstructorTest
+    {
+        [SetUp]
+        public void Setup()
+        {
+        }
+        
+        /*
+          Escenario1: Identificaci&#243;n &#250;nica
+          H03: C&#243;mo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales.
+          Criterio de Aceptaci&#243;n:
+          La identificaci&#243;n de un instructor debe ser &#250;nica.
+
+          Dado
+          Un instructor (identificaci&#243;n: “1065630800”, nombre: “Javier”, fecha de nacimiento “15/09/1990”,  telefono: 3022745590, especializaci&#243;n: “Normas de tr&#225;nsito Urbanas”) 
+          Cuando
+          Va a ser registrado
+          Entonces
+          El sistema presentar&#225; el mensaje. “Instructor registrado”
+        */
+        
+        [Test]
+        public void IdentificacionInstructorUnicaInstructorTest()
+        {
+           
+            //Preparar
+            List&lt;string&gt; especializations = new List&lt;string&gt;();
+            especializations.Add(&quot;Normas de tr&#225;nsito Urbanas&quot;);
+            var administrator = new Administrator(idPerson: 1065630700, name: &quot;Eva&quot;, surname: &quot;Rodrigues&quot;, phone: &quot;30227455890&quot;, mail: &quot;eva@gmail.com&quot;, direction: &quot;Manzana 58 Casa 13 450 a&#241;os&quot;);
+            var instructor1 = new Instructor(idPerson: 1065630800, name: &quot;Javier&quot;, surname: &quot;Rodrigues&quot;, phone: &quot;3022745590&quot;, mail: &quot;javier@gmail.com&quot;, direction: &quot;Manzana 59 Casa 13 450 a&#241;os&quot;);
+            instructor1.AddSpecializations(&quot;Normas de tr&#225;nsito Urbanas&quot;);
+            var instructor2 = new Instructor(idPerson: 1065630700, name: &quot;Alvaro&quot;, surname: &quot;Camacho&quot;, phone: &quot;3012745590&quot;, mail: &quot;armando@gmail.com&quot;, direction: &quot;Manzana 58 Casa 50 450 a&#241;os&quot;);
+            instructor2.AddSpecializations(&quot;Normas de tr&#225;nsito Urbanas&quot;);
+            var instructor3 = new Instructor(idPerson: 1065630800, name: &quot;Armando&quot;, surname: &quot;Camacho&quot;, phone: &quot;3012745590&quot;, mail: &quot;armando@gmail.com&quot;, direction: &quot;Manzana 58 Casa 50 450 a&#241;os&quot;);
+            
+            var createInstructor1 = administrator.SaveInstructor(instructor1);
+            var createInstructor2 = administrator.SaveInstructor(instructor2);
+            
+
+            //Acci&#243;n
+            instructor3.AddSpecializations(&quot;Normas de tr&#225;nsito Urbanas&quot;);
+            var createInstructor3 = administrator.SaveInstructor(instructor3);
+
+            //Verificaci&#243;n
+            Assert.AreEqual(&quot;No se puede realizar el registro,Ya existe un instructor con la misma identificaci&#243;n&quot;, createInstructor3);
+            Assert.AreEqual(2,administrator.CountPersons());
+        }
+
+       
+       
+        /*
+        No puede registrar instructor sin especializaciones (003)
+        H1: C&#243;mo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales.
+        Criterio de Aceptaci&#243;n:
+        2. El instructor debe tener una o varias especializaciones.
+        Dado
+        Un instructor (identificaci&#243;n: “1065630430”, nombre: “Javier”, edad: “25”,  tel&#233;fono: 3022745590 ) que no tiene una especializaci&#243;n.
+        Cuando
+        Va a ser registrado.
+        Entonces
+        El sistema presentar&#225; el mensaje. “No se puede realizar el registro, Se necesita una o m&#225;s especializaciones” 
+        */
+
+        [Test]
+        public void CeroEspecializacionInstructorTest()
+        {
+            //Preparar
+            
+            var administrator = new Administrator(idPerson: 1065630700, name: &quot;Eva&quot;, surname: &quot;Rodrigues&quot;, phone: &quot;30227455890&quot;, mail: &quot;eva@gmail.com&quot;, direction: &quot;Manzana 58 Casa 13 450 a&#241;os&quot;);
+            var instructor = new Instructor(idPerson: 1065630430, name: &quot;Javier&quot;, surname: &quot;Rodrigues&quot;, phone: &quot;3022745590&quot;, mail: &quot;javier@gmail.com&quot;, direction: &quot;Manzana 59 Casa 13 450 a&#241;os&quot;);
+            //Acci&#243;n
+            
+            var createInstructor = administrator.SaveInstructor(instructor);
+
+            //Verificaci&#243;n
+            Assert.AreEqual(&quot;No se puede realizar el registro, Se necesita una o m&#225;s especializaciones&quot;, createInstructor);
+            
+        }
+
+
+        /*
+        Instructor con numero de especializaciones mayor a 0
+        H1: C&#243;mo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales.
+        Criterio de Aceptaci&#243;n:
+        2. El instructor debe tener una o varias especializaciones.
+        Dado
+        Un instructor (nombre: “Esteban”, edad: “25”, Especializaciones: “Normas de tr&#225;nsito rurales” y “Normas de tr&#225;nsito Terrestre”, telefono: 3022745590 ) que a&#250;n no ha sido registrado  y que coincide con un el n&#250;mero de tel&#233;fono de otro instructor
+        Cuando
+        Va a ser registrado.
+        Entonces
+        El sistema presentar&#225; el mensaje. “Instructor Registrado”.
+        */
+
+        [Test]
+        public void EspecializacionesMayorACeroInstructorTest()
+        {
+            //Preparar
+            
+            var administrator = new Administrator(idPerson: 1065630700, name: &quot;Eva&quot;, surname: &quot;Rodrigues&quot;, phone: &quot;30227455890&quot;, mail: &quot;eva@gmail.com&quot;, direction: &quot;Manzana 58 Casa 13 450 a&#241;os&quot;);
+            var instructor = new Instructor(idPerson: 1065630800, name: &quot;Javier&quot;, surname: &quot;Rodrigues&quot;, phone: &quot;3022745590&quot;, mail: &quot;javier@gmail.com&quot;, direction: &quot;Manzana 59 Casa 13 450 a&#241;os&quot;);
+            instructor.AddSpecializations(&quot;Normas de tr&#225;nsito Urbanas&quot;);
+            //Acci&#243;n
+
+            var createInstructor = administrator.SaveInstructor(instructor);
+
+            //Verificaci&#243;n
+            Assert.AreEqual(&quot;Instructor registrado&quot;, createInstructor);
+        }
+        
+        /*
+        Instructor con numero de especializaciones mayor a 0
+        H1: C&#243;mo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales.
+        Criterio de Aceptaci&#243;n:
+        2. El instructor debe tener una o varias especializaciones.
+        Dado
+        Un instructor (nombre: “Esteban”, edad: “25”, Especializaciones: “” , telefono: 3022745590 ) que a&#250;n no ha sido registrado  y que coincide con un el n&#250;mero de tel&#233;fono de otro instructor
+        Cuando
+        Va a ser registrado.
+        Entonces
+        El sistema presentar&#225; el mensaje. “Instructor Registrado”.
+        */
+
+        [Test]
+        public void EspecializacionesVaciasInstructorTest()
+        {
+            //Preparar
+            
+            var administrator = new Administrator(idPerson: 1065630700, name: &quot;Eva&quot;, surname: &quot;Rodrigues&quot;, phone: &quot;30227455890&quot;, mail: &quot;eva@gmail.com&quot;, direction: &quot;Manzana 58 Casa 13 450 a&#241;os&quot;);
+            var instructor = new Instructor(idPerson: 1065630800, name: &quot;Javier&quot;, surname: &quot;Rodrigues&quot;, phone: &quot;3022745590&quot;, mail: &quot;javier@gmail.com&quot;, direction: &quot;Manzana 59 Casa 13 450 a&#241;os&quot;);
+            var vacia=instructor.AddSpecializations(&quot;&quot;);
+            //Acci&#243;n
+
+            var createInstructor = administrator.SaveInstructor(instructor);
+
+            //Verificaci&#243;n
+            Assert.AreEqual(&quot;No se puede realizar el registro&quot;,vacia);
+            Assert.AreEqual(&quot;No se puede realizar el registro, Se necesita una o m&#225;s especializaciones&quot;, createInstructor);
+            
+        }
+
+
+        /*
+         
+        Puede registrar instructor con tel&#233;fono de 10 d&#237;gitos (05)
+        H1: C&#243;mo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales
+        Criterio de Aceptaci&#243;n:
+        3. El tel&#233;fono de un instructor debe estar en un intervalo de 7 a 10 d&#237;gitos.
+        Dado
+        Un instructor (nombre: “Esteban”, edad: “25”, Especializaciones: “Normas de tr&#225;nsito rurales” y “Normas de tr&#225;nsito Terrestre”, tel&#233;fono: 3012745590 ) y que NO coincide con un el n&#250;mero de tel&#233;fono de otro instructor.
+        Cuando
+        Va a ser registrado.
+        Entonces
+        El sistema presentar&#225; el mensaje. “Instructor registrado”.
+        */
+
+        [Test]
+        public void DigitosDeTelefonoCompletoInstructorTest()
+        {
+            //Preparar
+            
+            var administrator = new Administrator(idPerson: 1065630700, name: &quot;Eva&quot;, surname: &quot;Rodrigues&quot;, phone: &quot;30227455890&quot;, mail: &quot;eva@gmail.com&quot;, direction: &quot;Manzana 58 Casa 13 450 a&#241;os&quot;);
+            var instructor = new Instructor(idPerson: 1065630800, name: &quot;Javier&quot;, surname: &quot;Rodrigues&quot;, phone: &quot;3022745590&quot;, mail: &quot;javier@gmail.com&quot;, direction: &quot;Manzana 59 Casa 13 450 a&#241;os&quot;);
+            instructor.AddSpecializations(&quot;Normas de tr&#225;nsito Urbanas&quot;);
+            //Acci&#243;n
+
+            var createInstructor = administrator.SaveInstructor(instructor);
+
+            //Verificaci&#243;n
+            Assert.AreEqual(&quot;Instructor registrado&quot;, createInstructor);
+        }
+
+        /*
+        No puede registrar instructor con tel&#233;fono mayor de 10 d&#237;gitos (06)     
+        H1: C&#243;mo administrador, quiero realizar el registro de los instructores para asignarles salas virtuales.
+        Criterio de Aceptaci&#243;n:
+        4. El tel&#233;fono de un instructor debe estar en un intervalo de 7 a 10 d&#237;gitos.
+        Dado
+        Un instructor  (nombre: “Javier”, edad: “25”, Especializaciones: “Normas de tr&#225;nsito rurales” , tel&#233;fono: 302295894000 ) 
+        Cuando
+        Va a ser registrado.
+        Entonces
+        El sistema presentar&#225; el mensaje. “No se puede realizar el registro, la cantidad de digitos del telefono no es permitida”.
+        */
+
+        [Test]
+        public void DigitosDeTelefonoNoPermitidoInstructorTest()
+        {
+            //Preparar
+            var administrator = new Administrator(idPerson: 1065630700, name: &quot;Eva&quot;, surname: &quot;Rodrigues&quot;, phone: &quot;30227455890&quot;, mail: &quot;eva@gmail.com&quot;, direction: &quot;Manzana 58 Casa 13 450 a&#241;os&quot;);
+            var instructor = new Instructor(idPerson: 1065630800, name: &quot;Javier&quot;, surname: &quot;Rodrigues&quot;, phone: &quot;30227455890&quot;, mail: &quot;javier@gmail.com&quot;, direction: &quot;Manzana 59 Casa 13 450 a&#241;os&quot;);
+            instructor.AddSpecializations(&quot;Normas de tr&#225;nsito Urbanas&quot;);
+            //Acci&#243;n
+
+            var createInstructor = administrator.SaveInstructor(instructor);
+
+            //Verificaci&#243;n
+            Assert.AreEqual(&quot;No se puede realizar el registro, la cantidad de digitos del telefono no es permitida&quot;, createInstructor);
+        }
+
+
+    }
+}
+
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[10,9,10,10,1],[11,9,11,10,1],[29,9,29,10,1],[32,13,32,64,1],[33,13,33,64,1],[34,13,34,195,1],[35,13,35,195,1],[36,13,36,74,1],[37,13,37,194,1],[38,13,38,74,1],[39,13,39,195,1],[41,13,41,79,1],[42,13,42,79,1],[46,13,46,74,1],[47,13,47,79,1],[50,13,50,136,1],[51,13,51,61,1],[52,9,52,10,1],[71,9,71,10,1],[74,13,74,195,1],[75,13,75,194,1],[78,13,78,77,1],[81,13,81,124,1],[83,9,83,10,1],[101,9,101,10,1],[104,13,104,195,1],[105,13,105,194,1],[106,13,106,73,1],[109,13,109,77,1],[112,13,112,72,1],[113,9,113,10,1],[130,9,130,10,1],[133,13,133,195,1],[134,13,134,194,1],[135,13,135,57,1],[138,13,138,77,1],[141,13,141,71,1],[142,13,142,124,1],[144,9,144,10,1],[163,9,163,10,1],[166,13,166,195,1],[167,13,167,194,1],[168,13,168,73,1],[171,13,171,77,1],[174,13,174,72,1],[175,9,175,10,1],[192,9,192,10,1],[194,13,194,195,1],[195,13,195,195,1],[196,13,196,73,1],[199,13,199,77,1],[202,13,202,136,1],[203,9,203,10,1]]);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\royber manjarrez\RiderProjects\StarDriver\StarDriver.domain.core\Business\DevPlans\DevelopmentPlan.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System.Collections.Generic;
+using StarDriver.domain.core.Contracts;
+
+namespace StarDriver.domain.core
+{
+    public class DevelopmentPlan
+    {
+        private int Identification { get; set; }
+        private string Level { get; set; }
+        private List&lt;MainTheme&gt; MainThemes { get; set; }
+
+        public DevelopmentPlan(int identification, string level)
+        {
+            Identification = identification;
+            Level = level;
+            MainThemes = new List&lt;MainTheme&gt;();
+        }
+
+        public string AddMainTheme(MainTheme mainTheme)
+        {
+            if (MainThemeExist(mainTheme.GetIdentification())) return &quot;Ya este eje tem&#225;tico fue agregado al plan&quot;;
+            if (StringOperations.IsEmpty(mainTheme.GetTitle()) 
+                || StringOperations.IsEmpty(mainTheme.GetDescription())) 
+                return &quot;Se debe a&#241;adir el detalle al eje tematico&quot;;
+            MainThemes.Add(mainTheme);
+            return &quot;Se agrego un eje tem&#225;tico&quot;;
+        }
+
+        public string UpdateMainTheme(MainTheme mainTheme)
+        {
+            var identification = mainTheme.GetIdentification();
+            if (!MainThemeExist(identification)) return &quot;No existe este eje tem&#225;tico&quot;;
+            MainThemes[GetMainTheme(identification)] = mainTheme;
+            return &quot;Se actualizo el eje tem&#225;tico&quot;;
+        }
+        
+        public int TotalMainThemes()
+        {
+            return MainThemes.Count;
+        }
+
+        public string LevelOfPlan()
+        {
+            return Level;
+        }
+
+        private bool MainThemeExist(int identification)
+        {
+            return MainThemes.FindAll(t 
+                =&gt; t.GetIdentification() == identification
+                ).Count &gt; 0;
+        }
+
+        private int GetMainTheme(int identification)
+        {
+            return MainThemes.FindIndex(t =&gt; t.GetIdentification() == identification);
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[8,38,8,42,0],[8,43,8,47,1],[9,32,9,36,1],[9,37,9,41,1],[10,46,10,50,1],[10,51,10,55,1],[12,9,12,65,1],[13,9,13,10,1],[14,13,14,45,1],[15,13,15,27,1],[16,13,16,48,1],[17,9,17,10,1],[20,9,20,10,1],[21,13,21,63,1],[21,64,21,115,1],[22,13,23,73,1],[24,17,24,68,1],[25,13,25,39,1],[26,13,26,48,1],[27,9,27,10,1],[30,9,30,10,1],[31,13,31,64,1],[32,13,32,49,1],[32,50,32,87,1],[33,13,33,66,1],[34,13,34,51,1],[35,9,35,10,1],[38,9,38,10,1],[39,13,39,37,1],[40,9,40,10,1],[43,9,43,10,1],[44,13,44,26,1],[45,9,45,10,1],[48,9,48,10,1],[49,13,50,20,1],[50,20,50,59,1],[50,59,51,29,1],[49,13,51,29,1],[52,9,52,10,1],[55,9,55,10,1],[56,13,56,46,1],[56,46,56,85,1],[56,85,56,87,1],[56,13,56,87,1],[57,9,57,10,1]]);
+    </script>
+  </body>
+</html>

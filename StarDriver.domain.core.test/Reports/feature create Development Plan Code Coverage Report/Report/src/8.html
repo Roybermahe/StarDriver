@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\royber manjarrez\RiderProjects\StarDriver\StarDriver.domain.core\QExam.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System;
+using System.Collections.Generic;
+using StarDriver.domain.core.Contracts;
+
+namespace StarDriver.domain.core
+{
+    public class Exam
+    {
+        private int Identification { get; set; }
+        private string Tittle { get; set; }
+        private string Description { get; set; }
+        private readonly List&lt;Question&gt; _questions;
+        private IDates DateRealization { get; set; }
+        private IDates DateFinish { get; set; }
+
+        public Exam(int identification, string tittle, string description, IDates dateRealization, IDates dateFinish)
+        {
+            Identification = identification;
+            Tittle = tittle;
+            Description = description;
+            DateRealization = dateRealization;
+            DateFinish = dateFinish;
+            _questions = new List&lt;Question&gt;();
+        }
+
+        public string AddQuestion(Question question)
+        {
+            if (StringOperations.IsEmpty(question.Content)) return &quot;No se permite una Pregunta sin contenido&quot;;
+            _questions.Add(question);
+            return &quot;Se agrego la pregunta al examen&quot;;
+        }
+
+        public decimal TotalScores()
+        {
+            var total = 0m;
+            _questions.ForEach(delegate(Question question)
+            {
+                total += question.Score;
+            });
+            return total;
+        }
+
+        public string RespondQuestion(int IdQuestion, string respond)
+        {
+            
+            return GetQuestion(IdQuestion)?.AddResponse(respond);
+        }
+
+        public decimal ExamResult()
+        {
+            var total = 0m;
+            _questions.ForEach(delegate(Question question)
+            {
+                question.ValidateResponse();
+                total += question.ScoreAnswer;
+            });
+            return total;
+        }
+
+        public string ModifyScoreAnswer(int idPregunta, decimal scorePoints)
+        {
+            var question = GetQuestion(idPregunta);
+            if (scorePoints &gt; question.Score) return &quot;Los puntos de respuesta no pueden ser mayor al puntaje total&quot;;
+            GetQuestion(idPregunta).ScoreAnswer = scorePoints;
+            return &quot;Se modific&#243; los puntos de esta pregunta&quot;;
+        }
+        
+        private Question GetQuestion(int IdQuestion)
+        {
+            return _questions.Find(t =&gt; t.Identification == IdQuestion);
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[9,38,9,42,0],[9,43,9,47,1],[10,33,10,37,0],[10,38,10,42,1],[11,38,11,42,0],[11,43,11,47,1],[13,42,13,46,0],[13,47,13,51,1],[14,37,14,41,0],[14,42,14,46,1],[16,9,16,118,1],[17,9,17,10,1],[18,13,18,45,1],[19,13,19,29,1],[20,13,20,39,1],[21,13,21,47,1],[22,13,22,37,1],[23,13,23,47,1],[24,9,24,10,1],[27,9,27,10,1],[28,13,28,60,1],[28,61,28,111,1],[29,13,29,38,1],[30,13,30,54,1],[31,9,31,10,1],[34,9,34,10,1],[35,13,35,28,1],[36,13,37,13,1],[37,13,37,14,1],[37,14,38,17,1],[38,17,38,41,1],[38,41,39,13,1],[39,13,39,14,1],[39,14,39,16,1],[36,13,39,16,1],[40,13,40,26,1],[41,9,41,10,1],[44,9,44,10,1],[46,13,46,66,1],[47,9,47,10,1],[50,9,50,10,1],[51,13,51,28,1],[52,13,53,13,1],[53,13,53,14,1],[53,14,54,17,1],[54,17,54,45,1],[54,45,55,17,1],[55,17,55,47,1],[55,47,56,13,1],[56,13,56,14,1],[56,14,56,16,1],[52,13,56,16,1],[57,13,57,26,1],[58,9,58,10,1],[61,9,61,10,1],[62,13,62,52,1],[63,13,63,46,1],[63,47,63,117,1],[64,13,64,63,1],[65,13,65,62,1],[66,9,66,10,1],[69,9,69,10,1],[70,13,70,41,1],[70,41,70,71,1],[70,71,70,73,1],[70,13,70,73,1],[71,9,71,10,1]]);
+    </script>
+  </body>
+</html>

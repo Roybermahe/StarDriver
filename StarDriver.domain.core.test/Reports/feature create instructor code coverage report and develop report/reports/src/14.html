@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>C:\Users\royber manjarrez\RiderProjects\StarDriver\StarDriver.domain.core\Business\Exams\QOnlyAnswer.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+using System.Collections.Generic;
+using StarDriver.domain.core.Contracts;
+
+namespace StarDriver.domain.core
+{
+    public class OnlyAnswer: Question
+    {
+        public readonly List&lt;string&gt; _options;
+        private readonly string _answer;
+        public string UserAnswer { get; private set; }
+
+        public OnlyAnswer(int identification, string content, decimal score, string optionalImage, List&lt;string&gt; options, string answer) : base(identification, content, score, optionalImage)
+        {
+            _options = options;
+            _answer = answer;
+            UserAnswer = string.Empty;
+        }
+
+        public override string AddResponse(string response = &quot;&quot;)
+        {
+            if (StringOperations.IsEmpty(response)) return &quot;No se admite una respuesta vacia.&quot;;
+            UserAnswer = response;
+            return &quot;Respuesta a&#241;adida&quot;;
+        }
+
+        public override bool ValidateResponse()
+        {
+            var validate = StringOperations.IsEqual(UserAnswer, _answer);
+            ScoreAnswer =  validate ? Score : 0m;
+            return validate;
+        }
+    }
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[10,36,10,40,1],[10,41,10,53,1],[12,139,12,190,1],[13,9,13,10,1],[14,13,14,32,1],[15,13,15,30,1],[16,13,16,39,1],[17,9,17,10,1],[20,9,20,10,1],[21,13,21,52,1],[21,53,21,96,1],[22,13,22,35,1],[23,13,23,40,1],[24,9,24,10,1],[27,9,27,10,1],[28,13,28,74,1],[29,13,29,50,1],[30,13,30,29,1],[31,9,31,10,1]]);
+    </script>
+  </body>
+</html>

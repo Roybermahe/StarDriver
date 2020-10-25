@@ -6,4 +6,9 @@
         <RootNamespace>StarDriver.domain.core</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Base" />
+      <Folder Include="Repos" />
+    </ItemGroup>
+
 </Project>
