@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using StarDriver.domain.core.Base;
 using StarDriver.domain.core.Contracts;
 
 namespace StarDriver.domain.core
 {
-    public class Exam
+    public class Exam : Entity<int>
     {
-        private int Identification { get; set; }
+        
         private string Tittle { get; set; }
         private string Description { get; set; }
         private readonly List<Question> _questions;
         private IDates DateRealization { get; set; }
         private IDates DateFinish { get; set; }
 
-        public Exam(int identification, string tittle, string description, IDates dateRealization, IDates dateFinish)
+        public Exam(int id, string tittle, string description, IDates dateRealization, IDates dateFinish)
         {
-            Identification = identification;
+            Id = id;
             Tittle = tittle;
             Description = description;
             DateRealization = dateRealization;
@@ -67,7 +68,7 @@ namespace StarDriver.domain.core
         
         private Question GetQuestion(int IdQuestion)
         {
-            return _questions.Find(t => t.Identification == IdQuestion);
+            return _questions.Find(t => t.Id == IdQuestion);
         }
     }
 }

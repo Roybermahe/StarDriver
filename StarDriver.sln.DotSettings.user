@@ -4,4 +4,10 @@
     &lt;Project Location="C:\Users\Ricky\Documents\proyectos\proyectoAsoinstruvalle\StarDriver\StarDriver.domain.core.test" Presentation="&amp;lt;StarDriver.domain.core.test&amp;gt;" /&gt;&#xD;
     &lt;Namespace&gt;StarDriver.domain.core.test&lt;/Namespace&gt;&#xD;
   &lt;/And&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9e9aef9b_002Dcc4c_002D484e_002D9422_002D9d85c05fe41d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d5592585_002De130_002D4b7c_002D8033_002D05ba86083e67/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

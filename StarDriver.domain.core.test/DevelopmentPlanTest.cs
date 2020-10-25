@@ -12,9 +12,9 @@ namespace StarDriver.domain.core.test
         [Test]
         public void AddMainThemeToPlan()
         {
-            var plan = new DevelopmentPlan(identification: 1, level: "1");
+            var plan = new DevelopmentPlan(id: 1, level: "1");
             Assert.AreEqual(plan.LevelOfPlan(), "1");
-            var maintheme = new MainTheme(identification: 1, title: "Vías y carreteras", description: "En este tema hablaremos acerca de las vías...");
+            var maintheme = new MainTheme(id: 1, title: "Vías y carreteras", description: "En este tema hablaremos acerca de las vías...");
             var resultItem = maintheme.AddItems("primer vía");
             Assert.AreEqual("Se agrego el item al eje temático", resultItem);
             
@@ -31,8 +31,8 @@ namespace StarDriver.domain.core.test
         [Test]
         public void AddMainThemeToPlanFail()
         {
-            var plan = new DevelopmentPlan(identification: 1, level: "1");
-            var maintheme = new MainTheme(identification: 1, title: "", description: "");
+            var plan = new DevelopmentPlan(id: 1, level: "1");
+            var maintheme = new MainTheme(id: 1, title: "", description: "");
             maintheme.AddItems("primer vía");
             maintheme.AddItems("segunda vía");
             maintheme.AddItems("tercera vía");
@@ -42,8 +42,8 @@ namespace StarDriver.domain.core.test
         [Test]
         public void AddMainThemeExistToPlan()
         {
-            var plan = new DevelopmentPlan(identification: 1, level: "1");
-            var maintheme = new MainTheme(identification: 1, title: "eje tematico 1", description: "vías");
+            var plan = new DevelopmentPlan(id: 1, level: "1");
+            var maintheme = new MainTheme(id: 1, title: "eje tematico 1", description: "vías");
             maintheme.AddItems("primer vía");
             maintheme.AddItems("segunda vía");
             maintheme.AddItems("tercera vía");
@@ -55,8 +55,8 @@ namespace StarDriver.domain.core.test
         [Test]
         public void ModifyMainThemeAdded()
         {
-            var plan = new DevelopmentPlan(identification: 1, level: "1");
-            var maintheme = new MainTheme(identification: 1, title: "eje tematico 1", description: "vías");
+            var plan = new DevelopmentPlan(id: 1, level: "1");
+            var maintheme = new MainTheme(id: 1, title: "eje tematico 1", description: "vías");
             maintheme.AddItems("primer vía");
             maintheme.AddItems("segunda vía");
             maintheme.AddItems("tercera vía");
@@ -70,13 +70,13 @@ namespace StarDriver.domain.core.test
         [Test]
         public void ModifyMainThemeAddedFail()
         {
-            var plan = new DevelopmentPlan(identification: 1, level: "1");
-            var maintheme = new MainTheme(identification: 1, title: "eje tematico 1", description: "vías");
+            var plan = new DevelopmentPlan(id: 1, level: "1");
+            var maintheme = new MainTheme(id: 1, title: "eje tematico 1", description: "vías");
             maintheme.AddItems("primer vía");
             maintheme.AddItems("segunda vía");
             maintheme.AddItems("tercera vía");
             plan.AddMainTheme(maintheme);
-            maintheme = new MainTheme(identification: 2, title: "eje tematico 2", description: "vías");
+            maintheme = new MainTheme(id: 2, title: "eje tematico 2", description: "vías");
             maintheme.AddItems("cuarta vía");
             maintheme.AddItems("quinta vía");
             var result = plan.UpdateMainTheme(maintheme);

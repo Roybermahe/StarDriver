@@ -9,7 +9,7 @@ namespace StarDriver.domain.core
         private readonly string _answer;
         public string UserAnswer { get; private set; }
 
-        public OnlyAnswer(int identification, string content, decimal score, string optionalImage, List<string> options, string answer) : base(identification, content, score, optionalImage)
+        public OnlyAnswer(int id, string content, decimal score, string optionalImage, List<string> options, string answer) : base(id, content, score, optionalImage)
         {
             _options = options;
             _answer = answer;
