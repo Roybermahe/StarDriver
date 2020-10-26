@@ -9,7 +9,7 @@ namespace StarDriver.domain.core
         public readonly List<string> PossibleAnswer;
         public List<string> UserResponse { get; private set; }
         
-        public MultipleChoice(int identification, string content, decimal score, string optionalImage, List<string> options, List<string> possibleAnswer) : base(identification, content, score, optionalImage)
+        public MultipleChoice(int id, string content, decimal score, string optionalImage, List<string> options, List<string> possibleAnswer) : base(id, content, score, optionalImage)
         {
             Options = options;
             PossibleAnswer = possibleAnswer;

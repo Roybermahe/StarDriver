@@ -2,13 +2,19 @@
 
 namespace StarDriver.domain.core
 {
-    public class Apprentice
+    public class Apprentice : Person
     {
         private List<QExamAnswers> ExamAnswerses;
 
-        public Apprentice()
+        public Apprentice(int id, string name, string surname,  string phone, string mail, string direction)
         {
             ExamAnswerses = new List<QExamAnswers>();
+            Id = id;
+            Name = name;
+            Surname = surname;
+            Phone = phone;
+            Mail = mail;
+            Direction = direction;  
         }
 
         public string AddExamAnswers(QExamAnswers examAnswers)
@@ -20,7 +26,7 @@ namespace StarDriver.domain.core
 
         public Exam GetExamAnswers(int id)
         {
-            return ExamAnswerses.Find(t => t.Id() == id)?.GetExam();
+            return ExamAnswerses.Find(t => t.Id == id)?.GetExam();
         }
     }
 }

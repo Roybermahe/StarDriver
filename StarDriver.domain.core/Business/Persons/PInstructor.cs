@@ -10,9 +10,15 @@ namespace StarDriver.domain.core
     {
         readonly List<string> Specializations;
    
-        public Instructor(int idPerson, string name, string surname,  string phone, string mail, string direction) : base(idPerson, name, surname, phone, mail, direction)
+        public Instructor(int id, string name, string surname,  string phone, string mail, string direction) 
         {
             Specializations =  new List<string>();
+            Id = id;
+            Name = name;
+            Surname = surname;
+            Phone = phone;
+            Mail = mail;
+            Direction = direction;
 
         }
 

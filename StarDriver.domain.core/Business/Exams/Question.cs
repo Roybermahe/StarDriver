@@ -1,18 +1,20 @@
 ﻿using System.Collections.Generic;
+using StarDriver.domain.core.Base;
 
 namespace StarDriver.domain.core
 {
-    public abstract class Question
+    public abstract class Question : Entity<int>
     {
-        public int Identification { get; }
+        
+        
         public string Content { get; }
         public decimal Score { get; }
         public string OptionalImage { get; }
         public decimal ScoreAnswer { get; set; }
 
-        protected Question(int identification, string content, decimal score, string optionalImage)
+        protected Question(int id, string content, decimal score, string optionalImage)
         {
-            Identification = identification;
+            Id = id;
             Content = content;
             Score = score;
             OptionalImage = optionalImage;
