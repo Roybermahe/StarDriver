@@ -3,11 +3,7 @@ using StarDriver.domain.core.Base;
 
 namespace StarDriver.domain.core.Contracts
 {
-    public interface IRepository
-    {
-    }
-    
-    public interface IGenericRepository<T> : IRepository
+    public interface IGenericRepository<T> where T : BaseEntity
     {
         T Find(object id);
         void Add(T entity);
