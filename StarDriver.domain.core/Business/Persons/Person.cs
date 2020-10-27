@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using StarDriver.domain.core.Base;
 
 namespace StarDriver.domain.core.Business.Persons
 {
-    public abstract class Person
+    public abstract class Person: Entity<int>
     {
-        protected Person(int idPerson, string name, string surname, string phone, string mail, string direction)
+        protected Person()
         {
-            IdPerson = idPerson;
-            Name = name;
-            Surname = surname;
-            Phone = phone;
-            Mail = mail;
-            Direction = direction;
+            
         }
 
-        public int IdPerson { get; set; }
+        
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Phone { get; set; }

@@ -8,7 +8,7 @@ namespace StarDriver.domain.core.Business.Exams
     {
         public string Answer { get; set; }
         
-        public Open(int identification, string content, decimal score, string optionalImage) : base(identification, content, score, optionalImage)
+        public Open(int id, string content, decimal score, string optionalImage) : base(id, content, score, optionalImage)
         {
             Answer = string.Empty;
         }

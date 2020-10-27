@@ -33,9 +33,9 @@ namespace StarDriver.domain.core.test
             var possibleAnswer = new List<string> {"Option A", "Option C" };
             var question = new MultipleChoice(
                 content: "Elija una de las siguientes opciones", 
-                identification: 1, score: 2.7m, optionalImage:"", 
+                id: 1, score: 2.7m, optionalImage:"", 
                 options: options, possibleAnswer: possibleAnswer);
-            var exam = new Exam(identification: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             var result = exam.AddQuestion(question);
             Assert.AreEqual("Se agrego la pregunta al examen", result);
         }
@@ -47,9 +47,9 @@ namespace StarDriver.domain.core.test
             const string answer = "Option A";
             var question = new OnlyAnswer(
                 content: "Elija una de las siguientes opciones", 
-                identification: 1, score: 2.7m, optionalImage:"",
+                id: 1, score: 2.7m, optionalImage:"",
                 answer: answer, options: options);
-            var exam = new Exam(identification: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             var result = exam.AddQuestion(question);
             Assert.AreEqual("Se agrego la pregunta al examen", result);
         }
@@ -57,8 +57,8 @@ namespace StarDriver.domain.core.test
         [Test]
         public void AddQuestionOpen()
         {
-            var question = new Open(identification: 1, content: "Elija una de las siguientes opciones", score: 2.7m, optionalImage: "");
-            var exam = new Exam(identification: 1, tittle: "Examen 1", description: "Examen de estado",
+            var question = new Open(id: 1, content: "Elija una de las siguientes opciones", score: 2.7m, optionalImage: "");
+            var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",
                 dateRealization: new MyDate("01/09/2020"), dateFinish: new MyDate("01/09/2020"));
             var result = exam.AddQuestion(question: question);
             Assert.AreEqual("Se agrego la pregunta al examen", result);
@@ -71,9 +71,9 @@ namespace StarDriver.domain.core.test
             const string answer = "Option A";
             var question = new OnlyAnswer(
                 content: "", 
-                identification: 1, score: 2.1m, optionalImage:"",
+                id: 1, score: 2.1m, optionalImage:"",
                 answer: answer, options: options);
-            var exam = new Exam(identification: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             var result = exam.AddQuestion(question);
             Assert.AreEqual("No se permite una Pregunta sin contenido", result);
         }
@@ -81,7 +81,7 @@ namespace StarDriver.domain.core.test
         [Test]
         public void TotalScoresOfExam()
         {
-            var exam = new Exam(identification: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             GetQuestions().ForEach(delegate(Question question)
             {
                 exam.AddQuestion(question);
@@ -92,7 +92,7 @@ namespace StarDriver.domain.core.test
         [Test]
         public void AddResponsesToQuestion()
         {
-            var exam = new Exam(identification: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             GetQuestions().ForEach(delegate(Question question)
             {
                 exam.AddQuestion(question);
@@ -108,7 +108,7 @@ namespace StarDriver.domain.core.test
         [Test]
         public void AddResponsesToQuestionNull()
         {
-            var exam = new Exam(identification: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             GetQuestions().ForEach(delegate(Question question)
             {
                 exam.AddQuestion(question);
@@ -120,7 +120,7 @@ namespace StarDriver.domain.core.test
         [Test]
         public void ModifyScoreAnswerToQuestion()
         {
-            var exam = new Exam(identification: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             GetQuestions().ForEach(delegate(Question question)
             {
                 exam.AddQuestion(question);
@@ -132,7 +132,7 @@ namespace StarDriver.domain.core.test
         [Test]
         public void ResponseScoreNoHigherThanTheQuestionScore()
         {
-            var exam = new Exam(identification: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             GetQuestions().ForEach(delegate(Question question)
             {
                 exam.AddQuestion(question);
@@ -148,13 +148,13 @@ namespace StarDriver.domain.core.test
             const string answer = "Option A";
             var question1 = new OnlyAnswer(
                 content: "Elija una de las siguientes opciones", 
-                identification: 1, score: 2.1m, optionalImage:"",
+                id: 1, score: 2.1m, optionalImage:"",
                 answer: answer, options: options);
-            var question2 = new Open(identification: 2, content: "Elija una de las siguientes opciones", score: 2.7m, optionalImage: "");
+            var question2 = new Open(id: 2, content: "Elija una de las siguientes opciones", score: 2.7m, optionalImage: "");
             var possibleAnswer = new List<string> {"Option A", "Option C" };
             var question3 = new MultipleChoice(
                 content: "Elija una de las siguientes opciones", 
-                identification: 3, score: 2.7m, optionalImage:"", 
+                id: 3, score: 2.7m, optionalImage:"", 
                 options: options, possibleAnswer: possibleAnswer);
             return new List<Question>() { question1, question2, question3 };
         }

@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
-using StarDriver.domain.core.Business.Persons;
+using StarDriver.domain.core.Base;
 
 namespace StarDriver.domain.core.Business.Exams
 {
-    public class QExamAnswers
+    public class QExamAnswers : Entity<int>
     {
-        private int Identification { get; set; }
+        
         private Apprentice Apprentice { get; }
         private Exam Exam { get; }
 
-        public QExamAnswers(int identification,Apprentice apprentice, Exam exam)
+        public QExamAnswers(int id,Apprentice apprentice, Exam exam)
         {
-            Identification = identification;
+            Id= id;
             Apprentice = apprentice;
             Exam = exam;
         }
@@ -26,9 +26,9 @@ namespace StarDriver.domain.core.Business.Exams
             return Apprentice;
         }
 
-        public int Id()
+        /*public int Id()
         {
             return Identification;
-        }
+        }*/
     }
 }

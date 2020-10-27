@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
+using StarDriver.domain.core.Base;
 using StarDriver.domain.core.Contracts;
 
 namespace StarDriver.domain.core
 {
-    public class MainTheme
+    public class MainTheme : Entity<int>
     {
-       private int Identification { get; set; }
-       private string Title { get; set; } 
+        private string Title { get; set; } 
        private string Description { get; set; }
        private List<string> Items { get; set; }
 
-       public MainTheme(int identification, string title, string description)
+       public MainTheme(int id, string title, string description)
        {
-           Identification = identification;
+           Id = id;
            Title = title;
            Description = description;
            Items = new List<string>();
@@ -30,7 +30,7 @@ namespace StarDriver.domain.core
 
        public int GetIdentification()
        {
-           return Identification;
+           return Id;
        }
        
        public string AddItems(string item)

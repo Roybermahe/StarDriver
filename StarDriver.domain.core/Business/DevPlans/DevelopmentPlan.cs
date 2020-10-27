@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
+using StarDriver.domain.core.Base;
 using StarDriver.domain.core.Contracts;
 
 namespace StarDriver.domain.core
 {
-    public class DevelopmentPlan
+    public class DevelopmentPlan : Entity<int>
     {
-        private int Identification { get; set; }
+        
         private string Level { get; set; }
         private List<MainTheme> MainThemes { get; set; }
 
-        public DevelopmentPlan(int identification, string level)
+        public DevelopmentPlan(int id, string level)
         {
-            Identification = identification;
+            Id = id;
             Level = level;
             MainThemes = new List<MainTheme>();
         }
@@ -51,9 +52,9 @@ namespace StarDriver.domain.core
                 ).Count > 0;
         }
 
-        private int GetMainTheme(int identification)
+        private int GetMainTheme(int id)
         {
-            return MainThemes.FindIndex(t => t.GetIdentification() == identification);
+            return MainThemes.FindIndex(t => t.GetIdentification() == id);
         }
     }
 }
