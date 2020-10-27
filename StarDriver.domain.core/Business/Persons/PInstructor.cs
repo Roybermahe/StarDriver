@@ -33,9 +33,5 @@ namespace StarDriver.domain.core.Business.Persons
         {
             return _specializations.Count > 0;
         }
-        
- 
-
-       
     }
 }

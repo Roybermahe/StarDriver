@@ -3,7 +3,7 @@ using StarDriver.domain.core.Contracts;
 
 namespace StarDriver.domain.core.Repos
 {
-    public interface IExamsAnswer: IGenericRepository<QExamAnswers>
+    public interface IExamsAnswerRepository: IGenericRepository<QExamAnswers>
     {
     }
 }

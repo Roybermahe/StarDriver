@@ -1,8 +1,13 @@
 ﻿using System.Collections.Generic;
+using StarDriver.domain.core.Base;
 
 namespace StarDriver.domain.core.Contracts
 {
-    public interface IGenericRepository<T>
+    public interface IRepository
+    {
+    }
+    
+    public interface IGenericRepository<T> : IRepository
     {
         T Find(object id);
         void Add(T entity);

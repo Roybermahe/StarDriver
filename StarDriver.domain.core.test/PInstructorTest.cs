@@ -28,7 +28,6 @@ namespace StarDriver.domain.core.test
         [Test]
         public void IdentificacionInstructorUnicaInstructorTest()
         {
-           
             //Preparar
             List<string> especializations = new List<string>();
             especializations.Add("Normas de tránsito Urbanas");
