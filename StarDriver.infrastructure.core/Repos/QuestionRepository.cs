@@ -1,4 +1,5 @@
 ﻿using StarDriver.domain.core;
+using StarDriver.domain.core.Business.Exams;
 using StarDriver.domain.core.Repos;
 using StarDriver.infrastructure.core.Base;
 

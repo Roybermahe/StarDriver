@@ -11,7 +11,7 @@ namespace StarDriver.domain.core.Business.Exams
 
         public QExamAnswers(int id,Apprentice apprentice, Exam exam)
         {
-            Id= id;
+            Id = id;
             Apprentice = apprentice;
             Exam = exam;
         }

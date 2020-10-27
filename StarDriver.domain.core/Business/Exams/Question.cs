@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using StarDriver.domain.core.Base;
+﻿using StarDriver.domain.core.Base;
 
-namespace StarDriver.domain.core
+namespace StarDriver.domain.core.Business.Exams
 {
     public abstract class Question : Entity<int>
     {

@@ -2,7 +2,7 @@
 using StarDriver.domain.core.Base;
 using StarDriver.domain.core.Contracts;
 
-namespace StarDriver.domain.core
+namespace StarDriver.domain.core.Business.DevPlans
 {
     public class MainTheme : Entity<int>
     {
