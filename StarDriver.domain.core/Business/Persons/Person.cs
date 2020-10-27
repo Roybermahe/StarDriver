@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StarDriver.domain.core
+namespace StarDriver.domain.core.Business.Persons
 {
     public abstract class Person
     {

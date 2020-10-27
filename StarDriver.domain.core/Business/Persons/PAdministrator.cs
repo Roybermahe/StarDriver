@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace StarDriver.domain.core
+namespace StarDriver.domain.core.Business.Persons
 {
     public class Administrator : Person
     {
@@ -13,12 +13,12 @@ namespace StarDriver.domain.core
             Persons = new List<Person>();
         }
         
-        public string SaveInstructor(Instructor pInstuctor)
+        public string SaveInstructor(Instructor instructor)
         {
-            if (ExistsPerson(pInstuctor.IdPerson)) return "No se puede realizar el registro,Ya existe un instructor con la misma identificación";
-            if (!pInstuctor.HaveSpecialization()) return "No se puede realizar el registro, Se necesita una o más especializaciones";
-            if (pInstuctor.Phone.Length > 10 || pInstuctor.Phone.Length < 7) return "No se puede realizar el registro, la cantidad de digitos del telefono no es permitida";
-            SavePerson(pInstuctor);
+            if (ExistsPerson(instructor.IdPerson)) return "No se puede realizar el registro,Ya existe un instructor con la misma identificación";
+            if (!instructor.HaveSpecialization()) return "No se puede realizar el registro, Se necesita una o más especializaciones";
+            if (instructor.Phone.Length > 10 || instructor.Phone.Length < 7) return "No se puede realizar el registro, la cantidad de digitos del telefono no es permitida";
+            SavePerson(instructor);
             return "Instructor registrado";
         }
 

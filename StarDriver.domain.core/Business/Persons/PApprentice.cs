@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using StarDriver.domain.core.Business.Exams;
 
-namespace StarDriver.domain.core
+namespace StarDriver.domain.core.Business.Persons
 {
     public class Apprentice
     {

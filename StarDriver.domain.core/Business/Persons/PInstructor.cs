@@ -4,22 +4,22 @@ using System.Linq;
 using System.Text;
 using StarDriver.domain.core.Contracts;
 
-namespace StarDriver.domain.core
+namespace StarDriver.domain.core.Business.Persons
 {
     public class Instructor : Person
     {
-        readonly List<string> Specializations;
+        private readonly List<string> _specializations;
    
         public Instructor(int idPerson, string name, string surname,  string phone, string mail, string direction) : base(idPerson, name, surname, phone, mail, direction)
         {
-            Specializations =  new List<string>();
+            _specializations =  new List<string>();
 
         }
 
         public string AddSpecializations(string specializations)
         {
             if (StringOperations.IsEmpty(specializations)) return "No se puede realizar el registro";
-            Specializations.Add(specializations);
+            _specializations.Add(specializations);
             return "Especializaciones agregadas";
         }
        /* protected string DeleteSpecializations(string specializations)
@@ -31,11 +31,7 @@ namespace StarDriver.domain.core
 
         public bool HaveSpecialization()
         {
-            return Specializations.Count > 0;
+            return _specializations.Count > 0;
         }
-        
- 
-
-       
     }
 }
