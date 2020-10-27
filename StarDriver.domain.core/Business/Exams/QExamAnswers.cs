@@ -6,7 +6,6 @@ namespace StarDriver.domain.core.Business.Exams
 {
     public class QExamAnswers : Entity<int>
     {
-        
         private Apprentice Apprentice { get; }
         private Exam Exam { get; }
 
