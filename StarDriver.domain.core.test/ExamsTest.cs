@@ -87,18 +87,18 @@ namespace StarDriver.domain.core.test
         
         private static List<Question> GetQuestions()
         {
-            var options = new List<string> {"Option A","Option B", "Option C"};
+            var options = "Option A|Option B|Option C";
             const string answer = "Option A";
             var question1 = new OnlyAnswer(
                 content: "Elija una de las siguientes opciones", 
-                id: 1, score: 2.1m, optionalImage:"",
-                answer: answer, options: options);
-            var question2 = new Open(id: 2, content: "Elija una de las siguientes opciones", score: 2.7m, optionalImage: "");
-            var possibleAnswer = new List<string> {"Option A", "Option C" };
+                score: 2.1m, optionalImage:"",
+                answer: answer, options: options) { Id = 1};
+            var question2 = new Open( content: "Elija una de las siguientes opciones", score: 2.7m, optionalImage: "") { Id = 2 };
+            var possibleAnswer = "Option A|Option C";
             var question3 = new MultipleChoice(
                 content: "Elija una de las siguientes opciones", 
-                id: 3, score: 2.7m, optionalImage:"", 
-                options: options, possibleAnswer: possibleAnswer);
+                score: 2.7m, optionalImage:"", 
+                options: options, answer: possibleAnswer) { Id = 3};
             return new List<Question>() { question1, question2, question3 };
         }
     }

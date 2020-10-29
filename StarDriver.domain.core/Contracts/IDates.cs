@@ -1,4 +1,6 @@
-﻿namespace StarDriver.domain.core.Contracts
+﻿using System;
+
+namespace StarDriver.domain.core.Contracts
 {
     public interface IDates
     {
@@ -6,5 +8,7 @@
         // string GetYear();
         // string GetMonth();
         // string GetHours();
+        void SetTime(string date);
+        string GetTime();
     }
 }

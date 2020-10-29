@@ -29,12 +29,12 @@ namespace StarDriver.domain.core.test
         [Test]
         public void AddQuestionMultipleChoiceToExam()
         {
-            var options = new List<string> {"Option A","Option B", "Option C"};
-            var possibleAnswer = new List<string> {"Option A", "Option C" };
+            var options = "Option A|Option B|Option C";
+            var possibleAnswer = "Option A|Option C";
             var question = new MultipleChoice(
                 content: "Elija una de las siguientes opciones", 
-                id: 1, score: 2.7m, optionalImage:"", 
-                options: options, possibleAnswer: possibleAnswer);
+                score: 2.7m, optionalImage:"", 
+                options: options, answer: possibleAnswer) { Id = 1};
             var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             var result = exam.AddQuestion(question);
             Assert.AreEqual("Se agrego la pregunta al examen", result);
@@ -43,12 +43,12 @@ namespace StarDriver.domain.core.test
         [Test]
         public void AddQuestionOnlyAnswerToExam()
         {
-            var options = new List<string> {"Option A","Option B", "Option C"};
+            var options = "Option A|Option B|Option C";
             const string answer = "Option A";
             var question = new OnlyAnswer(
                 content: "Elija una de las siguientes opciones", 
-                id: 1, score: 2.7m, optionalImage:"",
-                answer: answer, options: options);
+                score: 2.7m, optionalImage:"",
+                answer: answer, options: options) {Id = 1};
             var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             var result = exam.AddQuestion(question);
             Assert.AreEqual("Se agrego la pregunta al examen", result);
@@ -57,7 +57,7 @@ namespace StarDriver.domain.core.test
         [Test]
         public void AddQuestionOpen()
         {
-            var question = new Open(id: 1, content: "Elija una de las siguientes opciones", score: 2.7m, optionalImage: "");
+            var question = new Open(content: "Elija una de las siguientes opciones", score: 2.7m, optionalImage: "") { Id = 1 };
             var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",
                 dateRealization: new MyDate("01/09/2020"), dateFinish: new MyDate("01/09/2020"));
             var result = exam.AddQuestion(question: question);
@@ -67,12 +67,11 @@ namespace StarDriver.domain.core.test
         [Test]
         public void AddQuestionContentNull()
         {
-            var options = new List<string> {"Option A","Option B", "Option C"};
+            var options = "Option A|Option B|Option C";
             const string answer = "Option A";
             var question = new OnlyAnswer(
-                content: "", 
-                id: 1, score: 2.1m, optionalImage:"",
-                answer: answer, options: options);
+                content: "", score: 2.1m, optionalImage:"",
+                answer: answer, options: options){Id = 1};
             var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             var result = exam.AddQuestion(question);
             Assert.AreEqual("No se permite una Pregunta sin contenido", result);
@@ -144,18 +143,18 @@ namespace StarDriver.domain.core.test
         
         private static List<Question> GetQuestions()
         {
-            var options = new List<string> {"Option A","Option B", "Option C"};
+            var options = "Option A|Option B|Option C";
             const string answer = "Option A";
             var question1 = new OnlyAnswer(
                 content: "Elija una de las siguientes opciones", 
-                id: 1, score: 2.1m, optionalImage:"",
+                score: 2.1m, optionalImage:"",
                 answer: answer, options: options);
-            var question2 = new Open(id: 2, content: "Elija una de las siguientes opciones", score: 2.7m, optionalImage: "");
-            var possibleAnswer = new List<string> {"Option A", "Option C" };
+            var question2 = new Open(content: "Elija una de las siguientes opciones", score: 2.7m, optionalImage: "",options: "",answer: "");
+            var possibleAnswer ="Option A|Option C";
             var question3 = new MultipleChoice(
                 content: "Elija una de las siguientes opciones", 
-                id: 3, score: 2.7m, optionalImage:"", 
-                options: options, possibleAnswer: possibleAnswer);
+                score: 2.7m, optionalImage:"", 
+                options: options, answer: possibleAnswer);
             return new List<Question>() { question1, question2, question3 };
         }
         

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using StarDriver.domain.core.Base;
 using StarDriver.domain.core.Contracts;
 
@@ -7,20 +8,36 @@ namespace StarDriver.domain.core.Business.Exams
 {
     public class Exam : Entity<int>
     {
+        public Exam()
+        {
+            _questions = new List<Question>();
+        }
         
-        private string Tittle { get; set; }
-        private string Description { get; set; }
-        private readonly List<Question> _questions;
-        private IDates DateRealization { get; set; }
-        private IDates DateFinish { get; set; }
+        public string Tittle { get; set; }
+        public string Description { get; set; }
+        public List<Question> _questions { get; set; }
+        private readonly IDates _dateRealization;
+        private readonly IDates _dateFinish;
+
+        public string DateRealization
+        {
+            get => _dateRealization.GetTime();
+            set => _dateRealization.SetTime(value);
+        }
+
+        public string DateFinish
+        {
+            get => _dateFinish.GetTime();
+            set => _dateFinish.SetTime(value);
+        }
 
         public Exam(int id, string tittle, string description, IDates dateRealization, IDates dateFinish)
         {
             Id = id;
             Tittle = tittle;
             Description = description;
-            DateRealization = dateRealization;
-            DateFinish = dateFinish;
+            _dateRealization = dateRealization;
+            _dateFinish = dateFinish;
             _questions = new List<Question>();
         }
 
@@ -41,10 +58,9 @@ namespace StarDriver.domain.core.Business.Exams
             return total;
         }
 
-        public string RespondQuestion(int IdQuestion, string respond)
+        public string RespondQuestion(int idQuestion, string respond)
         {
-            
-            return GetQuestion(IdQuestion)?.AddResponse(respond);
+            return GetQuestion(idQuestion)?.AddResponse(respond);
         }
 
         public decimal ExamResult()

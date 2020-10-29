@@ -5,15 +5,11 @@ namespace StarDriver.domain.core.Business.Exams
 {
     public class MultipleChoice : Question
     {
-        public readonly List<string> Options;
-        public readonly List<string> PossibleAnswer;
-        public List<string> UserResponse { get; private set; }
-        
-        public MultipleChoice(int id, string content, decimal score, string optionalImage, List<string> options, List<string> possibleAnswer) : base(id, content, score, optionalImage)
+        private List<string> _possibleAnswer; 
+        private readonly List<string> _userResponse = new List<string>();
+
+        public MultipleChoice(string content, decimal score, string optionalImage = "", string options = "", string answer = "", string type = "MultipleChoice") : base(content, score, optionalImage, options, answer, type)
         {
-            Options = options;
-            PossibleAnswer = possibleAnswer;
-            UserResponse = new List<string>();
         }
 
         public override string AddResponse(string response = "")
@@ -21,20 +17,21 @@ namespace StarDriver.domain.core.Business.Exams
             if(StringOperations.IsEmpty(response)) return "No se admite una respuesta vacia.";
             foreach (var responses in StringOperations.Split(response))
             {
-                UserResponse.Add(responses);
+                _userResponse.Add(responses);
             }
             return "Respuesta añadida";
         }
 
         public override bool ValidateResponse()
         {
+            _possibleAnswer = (List<string>) StringOperations.Split(Options); 
             var totalCount = 0;
-            UserResponse.ForEach(delegate(string resp)
+            _userResponse.ForEach(delegate(string resp)
             {
-                totalCount = PossibleAnswer.Contains(resp) ? (totalCount + 1) : totalCount;
+                totalCount = _possibleAnswer.Contains(resp) ? (totalCount + 1) : totalCount;
             });
-            var validate = totalCount == PossibleAnswer.Count;
-            ScoreAnswer = validate ? Score : (Score / PossibleAnswer.Count) * totalCount;
+            var validate = totalCount == _possibleAnswer.Count;
+            ScoreAnswer = validate ? Score : (Score / _possibleAnswer.Count) * totalCount;
             return validate;
         }
     }
