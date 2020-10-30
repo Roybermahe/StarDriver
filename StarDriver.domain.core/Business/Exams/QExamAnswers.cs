@@ -2,7 +2,8 @@
 
 namespace StarDriver.domain.core
 {
-    public class QExamAnswers
+    public class 
+        QExamAnswers
     {
         private int Identification { get; set; }
         private Apprentice Apprentice { get; }
