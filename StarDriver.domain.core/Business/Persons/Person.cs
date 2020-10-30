@@ -11,7 +11,6 @@ namespace StarDriver.domain.core.Business.Persons
         {
             
         }
-
         
         public string Name { get; set; }
         public string Surname { get; set; }
