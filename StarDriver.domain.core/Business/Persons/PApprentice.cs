@@ -1,26 +1,22 @@
 ﻿using System.Collections.Generic;
 
-namespace StarDriver.domain.core
+namespace StarDriver.domain.core.Business.Persons
 {
-    public class Apprentice
+    public class Apprentice : Person
     {
-        private List<QExamAnswers> ExamAnswerses;
-
         public Apprentice()
         {
-            ExamAnswerses = new List<QExamAnswers>();
+            
         }
-
-        public string AddExamAnswers(QExamAnswers examAnswers)
+        
+        public Apprentice(int id, string name, string surname,  string phone, string mail, string direction)
         {
-            if (examAnswers.GetExam().TotalScores() == 0m) return "El examen no contiene preguntas";
-            ExamAnswerses.Add(examAnswers);
-            return "Se agrego un examen respondido.";
-        }
-
-        public Exam GetExamAnswers(int id)
-        {
-            return ExamAnswerses.Find(t => t.Id() == id)?.GetExam();
+            Id = id;
+            Name = name;
+            Surname = surname;
+            Phone = phone;
+            Mail = mail;
+            Direction = direction;  
         }
     }
 }

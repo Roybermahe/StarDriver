@@ -1,7 +1,17 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=387c62e8_002D382c_002D417d_002D86e2_002D8348f14afb66/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Session" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;And&gt;&#xD;
-    &lt;Project Location="C:\Users\Ricky\Documents\proyectos\proyectoAsoinstruvalle\StarDriver\StarDriver.domain.core.test" Presentation="&amp;lt;StarDriver.domain.core.test&amp;gt;" /&gt;&#xD;
-    &lt;Namespace&gt;StarDriver.domain.core.test&lt;/Namespace&gt;&#xD;
-  &lt;/And&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=20c8c01a_002Db4b5_002D4193_002Db477_002D721887e5561e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="VirtualRoomTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7BF239FA-4E46-4064-924C-2DEBACE28172::.NETCoreApp,Version=v3.1::StarDriver.domain.core.test.VirtualRoomTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5bab82f8_002D89cd_002D480c_002Db108_002Deb1856911a58/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="VirtualRoomTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7BF239FA-4E46-4064-924C-2DEBACE28172::.NETCoreApp,Version=v3.1::StarDriver.domain.core.test.VirtualRoomTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ab47b8b9_002D98e2_002D46a2_002Dbfee_002D9fd3756aac54/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c1ab56d1_002D9798_002D4bca_002Db308_002D2a546ba40f8e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

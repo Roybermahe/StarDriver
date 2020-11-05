@@ -1,40 +1,28 @@
 ﻿using System.Collections.Generic;
 using StarDriver.domain.core.Contracts;
 
-namespace StarDriver.domain.core
+namespace StarDriver.domain.core.Business.Exams
 {
     public class MultipleChoice : Question
     {
-        public readonly List<string> Options;
-        public readonly List<string> PossibleAnswer;
-        public List<string> UserResponse { get; private set; }
+        private List<string> PossibleAnswer { get; set; } 
+        private List<string> UserResponse { get; set; }
+
+        public MultipleChoice(string content, decimal score, string optionalImage = "", string options = "", string answer = "", string type = "MultipleChoice") : base(content, score, optionalImage, options, answer, type)
+        {
+        }
         
-        public MultipleChoice(int identification, string content, decimal score, string optionalImage, List<string> options, List<string> possibleAnswer) : base(identification, content, score, optionalImage)
+        public override bool ValidateResponse(QExamAnswers answers)
         {
-            Options = options;
-            PossibleAnswer = possibleAnswer;
-            UserResponse = new List<string>();
-        }
-
-        public override string AddResponse(string response = "")
-        {
-            if(StringOperations.IsEmpty(response)) return "No se admite una respuesta vacia.";
-            foreach (var responses in StringOperations.Split(response))
-            {
-                UserResponse.Add(responses);
-            }
-            return "Respuesta añadida";
-        }
-
-        public override bool ValidateResponse()
-        {
+            PossibleAnswer = StringOperations.Split(Answer);
+            UserResponse = StringOperations.Split(answers.UserResponse);
             var totalCount = 0;
             UserResponse.ForEach(delegate(string resp)
             {
                 totalCount = PossibleAnswer.Contains(resp) ? (totalCount + 1) : totalCount;
             });
             var validate = totalCount == PossibleAnswer.Count;
-            ScoreAnswer = validate ? Score : (Score / PossibleAnswer.Count) * totalCount;
+            answers.ScoreAnswer = validate ? Score : (Score / PossibleAnswer.Count) * totalCount;
             return validate;
         }
     }

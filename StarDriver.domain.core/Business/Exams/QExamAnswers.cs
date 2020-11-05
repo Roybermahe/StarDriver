@@ -1,34 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using StarDriver.domain.core.Base;
+using StarDriver.domain.core.Business.Persons;
 
-namespace StarDriver.domain.core
+namespace StarDriver.domain.core.Business.Exams
 {
-    public class 
-        QExamAnswers
+    public class QExamAnswers : Entity<int>
     {
-        private int Identification { get; set; }
-        private Apprentice Apprentice { get; }
-        private Exam Exam { get; }
+        public int PersonId { get; set; }
+        public int QuestionId { get; set; }
+        public string UserResponse { get; set; }
+        public decimal ScoreAnswer { get; set; }
 
-        public QExamAnswers(int identification,Apprentice apprentice, Exam exam)
+        public QExamAnswers()
         {
-            Identification = identification;
-            Apprentice = apprentice;
-            Exam = exam;
+            UserResponse = string.Empty;
+            ScoreAnswer = 0m;
         }
 
-        public Exam GetExam()
+        public QExamAnswers(int personId, int questionId, string userResponse, decimal scoreAnswer)
         {
-            return Exam;
-        }
-
-        public Apprentice GetApprentice()
-        {
-            return Apprentice;
-        }
-
-        public int Id()
-        {
-            return Identification;
+            PersonId = personId;
+            QuestionId = questionId;
+            UserResponse = userResponse;
+            ScoreAnswer = scoreAnswer;
         }
     }
 }

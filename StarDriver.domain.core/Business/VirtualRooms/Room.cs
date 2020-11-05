@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using StarDriver.domain.core.Business.Persons;
 using  StarDriver.domain.core.Contracts;
 
 namespace StarDriver.domain.core.Business.VirtualRooms
@@ -26,19 +27,32 @@ namespace StarDriver.domain.core.Business.VirtualRooms
             _apprentice = apprentice;
 
         }
-
-        public string UpdateVirtualRoom(string name, string description, bool state, List<Apprentice> apprentices)
+        
+        public string UpdateVirtualRoom(string name, string description, bool state, List<Apprentice> newApprentices, Instructor instructor)
         {
-            if (StringOperations.IsEmpty(name) && StringOperations.IsEmpty(description) && state.Equals(State) && apprentices.Count == 0)
-                return "Debe ingresar al menos un campo para poder actualizar la sala virtual";
+            if (Name.Equals(name) && Description.Equals(description) && state.Equals(State) && newApprentices.Count == 0 && instructor.Id == _instructor.Id)
+                return "Debe modificar al menos un campo para poder actualizar la sala virtual";
 
             Name = name;
             Description = description;
             State = state;
-            foreach (var apprentice in apprentices)
+            _instructor = instructor;
+            
+            foreach (var newApprentice in newApprentices)
             {
-                _apprentice.Add(apprentice);
+                int count = 0;
+
+                foreach (var apprenticeRegister in _apprentice){
+
+                    if(apprenticeRegister.Id == newApprentice.Id ){
+                        count = 1;
+                    }
+                }
+                if(count == 0){
+                    _apprentice.Add(newApprentice);
+                }
             }
+
             return "sala virtual actualizada con exito";
             
         }

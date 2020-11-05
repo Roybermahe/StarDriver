@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using StarDriver.domain.core.Business.Persons;
 using StarDriver.domain.core.Business.VirtualRooms;
 
 namespace StarDriver.domain.core.Business.ServiceOffer
