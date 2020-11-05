@@ -8,7 +8,9 @@ namespace StarDriver.domain.core.Business.Persons
 {
     public class Instructor : Person
     {
-        private readonly List<string> _specializations;
+        public readonly List<string> _specializations;
+        
+        public Instructor(){}
    
         public Instructor(int id, string name, string surname,  string phone, string mail, string direction) 
         {
@@ -19,7 +21,6 @@ namespace StarDriver.domain.core.Business.Persons
             Phone = phone;
             Mail = mail;
             Direction = direction;
-
         }
 
         public string AddSpecializations(string specializations)
@@ -28,12 +29,7 @@ namespace StarDriver.domain.core.Business.Persons
             _specializations.Add(specializations);
             return "Especializaciones agregadas";
         }
-       /* protected string DeleteSpecializations(string specializations)
-        {
-            if (specializations == "") return "No se puede eliminar";
-            Specializations.Remove(specializations);
-            return "Especializaciones agregadas";
-        }*/
+       
 
         public bool HaveSpecialization()
         {

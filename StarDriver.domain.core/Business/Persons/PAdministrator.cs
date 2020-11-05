@@ -1,22 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using StarDriver.domain.core.Base;
 
 namespace StarDriver.domain.core.Business.Persons
 {
-    public class Administrator : Person
+    public class Administrator : Entity<int>
     {
         private readonly List<Person> _persons;
+        public string Name { get; set; }
+        public string Surname { get; set; }
         
-        public Administrator(int id, string name, string surname, string phone, string mail, string direction) 
+        public Administrator() {}
+        
+        public Administrator(int id, string name, string surname) 
         {
             _persons = new List<Person>();
             Id = id;
             Name = name;
             Surname = surname;
-            Phone = phone;
-            Mail = mail;
-            Direction = direction;        }
+        }
+        
+
         
         public string SaveInstructor(Instructor instructor)
         {
