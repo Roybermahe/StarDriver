@@ -16,9 +16,9 @@ namespace StarDriver.domain.core.Contracts
             return string.Equals(wordA, wordB);
         }
 
-        public static IEnumerable<string> Split(string word)
+        public static List<string> Split(string word)
         {
-            return word.Split(Separator);
+            return new List<string>(word.Split(Separator));
         }
     }
 }

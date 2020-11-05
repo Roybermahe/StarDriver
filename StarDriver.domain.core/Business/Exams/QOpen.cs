@@ -6,22 +6,13 @@ namespace StarDriver.domain.core.Business.Exams
 {
     public class Open : Question
     {
-        public string Answer { get; set; }
-        
-        public Open(int id, string content, decimal score, string optionalImage) : base(id, content, score, optionalImage)
+        public Open(string content, decimal score, string optionalImage = "", string options = "", string answer = "", string type = "Open") : base(content, score, optionalImage, options, answer, type)
         {
-            Answer = string.Empty;
         }
 
-        public override string AddResponse(string response = "")
+        public override bool ValidateResponse(QExamAnswers answers)
         {
-            if (StringOperations.IsEmpty(response)) return "No se admite una respuesta sin contenido";
-            Answer = response;
-            return "Respuesta añadida";
-        }
-        
-        public override bool ValidateResponse()
-        {
+            answers.ScoreAnswer = Score;
             return true;
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using StarDriver.domain.core.Base;
 using StarDriver.domain.core.Business.Persons;
 
@@ -6,29 +7,23 @@ namespace StarDriver.domain.core.Business.Exams
 {
     public class QExamAnswers : Entity<int>
     {
-        private Apprentice Apprentice { get; }
-        private Exam Exam { get; }
+        public int PersonId { get; set; }
+        public int QuestionId { get; set; }
+        public string UserResponse { get; set; }
+        public decimal ScoreAnswer { get; set; }
 
-        public QExamAnswers(int id,Apprentice apprentice, Exam exam)
+        public QExamAnswers()
         {
-            Id = id;
-            Apprentice = apprentice;
-            Exam = exam;
+            UserResponse = string.Empty;
+            ScoreAnswer = 0m;
         }
 
-        public Exam GetExam()
+        public QExamAnswers(int personId, int questionId, string userResponse, decimal scoreAnswer)
         {
-            return Exam;
+            PersonId = personId;
+            QuestionId = questionId;
+            UserResponse = userResponse;
+            ScoreAnswer = scoreAnswer;
         }
-
-        public Apprentice GetApprentice()
-        {
-            return Apprentice;
-        }
-
-        /*public int Id()
-        {
-            return Identification;
-        }*/
     }
 }

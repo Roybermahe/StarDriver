@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.Extensions.Configuration;
 
 namespace StarDriver.infrastructure.core.Base
 {
@@ -12,9 +13,9 @@ namespace StarDriver.infrastructure.core.Base
         int SaveChanges();
     }
     
-    public class DbContextBase : DbContext, IDbContext
+    public class DomainContextBase : DbContext, IDbContext
     {
-        public DbContextBase(DbContextOptions options) : base(options)
+        public DomainContextBase(DbContextOptions options) : base(options)
         {
         }
 

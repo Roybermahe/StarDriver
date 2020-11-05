@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="StarDriveProduction@localhost" uuid="9a411679-8bb1-4da4-9d07-9b3dde75487a">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <remarks>sql server production database</remarks>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://localhost\MSSQLSERVER:1433;database=master</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="StarDriverDev@localhost" uuid="f2ef9d0a-8da7-4ec0-a4b9-422daae68333">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://localhost:3306/StarDriverDev</jdbc-url>
+    </data-source>
+  </component>
+</project>

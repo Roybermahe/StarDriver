@@ -4,31 +4,27 @@ namespace StarDriver.domain.core.Contracts
 {
     public class MyDate: IDates
     {
-        private readonly DateTime _dateTime;
+        private DateTime _dateTime;
+        
+        public MyDate(string date = "01/01/1998")
+        {
+            SetTime(date);
+        }
 
-        public MyDate(string date)
+        public int CompareTo(string dateB)
+        {
+            var timeB = Convert.ToDateTime(dateB);
+            return _dateTime.CompareTo(timeB);
+        }
+
+        public void SetTime(string date)
         {
             _dateTime = Convert.ToDateTime(date);
         }
-        
-        /*public string GetDay()
-        {
-            return _dateTime.Day.ToString("dd");
-        }
 
-        public string GetYear()
+        public string GetTime()
         {
-            return _dateTime.Year.ToString("yyyy");
+            return _dateTime.ToString("MM'/'dd'/'yyyy");
         }
-
-        public string GetMonth()
-        {
-            return _dateTime.Month.ToString("MM");
-        }
-
-        public string GetHours()
-        {
-            return _dateTime.Hour.ToString("HH");
-        }*/
     }
 }

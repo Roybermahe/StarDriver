@@ -8,6 +8,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{9D462211-A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarDriver.infrastructure.core", "StarDriver.infrastructure.core\StarDriver.infrastructure.core.csproj", "{2ADBEB7C-6903-422A-9379-2B0E8126B202}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{54BA5C43-3356-4942-B476-1BD92AD2308F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interface", "Interface", "{7961F743-F20A-4FA6-B07F-EBF5BC4FCFEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarDriver.application.core", "StarDriver.application.core\StarDriver.application.core.csproj", "{D1B5CED1-E179-45A2-9B9A-9F3318C2E4BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,8 +32,17 @@ Global
 		{2ADBEB7C-6903-422A-9379-2B0E8126B202}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2ADBEB7C-6903-422A-9379-2B0E8126B202}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2ADBEB7C-6903-422A-9379-2B0E8126B202}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54BA5C43-3356-4942-B476-1BD92AD2308F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54BA5C43-3356-4942-B476-1BD92AD2308F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54BA5C43-3356-4942-B476-1BD92AD2308F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54BA5C43-3356-4942-B476-1BD92AD2308F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1B5CED1-E179-45A2-9B9A-9F3318C2E4BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1B5CED1-E179-45A2-9B9A-9F3318C2E4BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1B5CED1-E179-45A2-9B9A-9F3318C2E4BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1B5CED1-E179-45A2-9B9A-9F3318C2E4BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7BF239FA-4E46-4064-924C-2DEBACE28172} = {9D462211-AD13-4CEF-9075-E96C0E640D32}
+		{54BA5C43-3356-4942-B476-1BD92AD2308F} = {7961F743-F20A-4FA6-B07F-EBF5BC4FCFEE}
 	EndGlobalSection
 EndGlobal
