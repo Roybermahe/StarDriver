@@ -1,3 +1,4 @@
+        }
 ﻿namespace StarDriver.domain.core.Base
 {
     public interface IEntity<T>
