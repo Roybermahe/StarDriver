@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StarDriver.domain.core.Business.DevPlans;
 using StarDriver.domain.core.Business.Exams;
 using StarDriver.domain.core.Business.Persons;
+using StarDriver.domain.core.Business.VirtualRooms;
 using StarDriver.infrastructure.core.Base;
 
 namespace StarDriver.infrastructure.core.DomainContexts
@@ -10,6 +12,8 @@ namespace StarDriver.infrastructure.core.DomainContexts
         public StarDriverContext(DbContextOptions options) : base(options)
         {
         }
+        
+        public DbSet<Room> Rooms { get; set; }
         
         public DbSet<QExamAnswers> ExamAnswerses { get; set; }
         public DbSet<Exam> Exams { get; set; }

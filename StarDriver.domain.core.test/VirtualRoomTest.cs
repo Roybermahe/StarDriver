@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
+using StarDriver.domain.core.Business.DevPlans;
 using StarDriver.domain.core.Business.Persons;
 using StarDriver.domain.core.Business.VirtualRooms;
 using StarDriver.domain.core.Contracts;
@@ -43,8 +44,8 @@ namespace StarDriver.domain.core.test
                instructor.AddSpecializations("Normas de tránsito rurales");
                
                // crear plan de desarrollo
-               var plan = new DevelopmentPlan(identification: 1, level: "1");
-               var maintheme = new MainTheme(identification: 1, title: "Vías y carreteras", description: "En este tema hablaremos acerca de las vías...");
+               var plan = new DevelopmentPlan(id: 1, level: "1");
+               var maintheme = new MainTheme(id: 1, title: "Vías y carreteras", description: "En este tema hablaremos acerca de las vías...");
                maintheme.AddItems("primer vía");
                plan.AddMainTheme(maintheme);
 
@@ -98,8 +99,8 @@ namespace StarDriver.domain.core.test
                instructor.AddSpecializations("Normas de tránsito rurales");
                
                // crear plan de desarrollo
-               var plan = new DevelopmentPlan(identification: 1, level: "1");
-               var maintheme = new MainTheme(identification: 1, title: "Vías y carreteras", description: "En este tema hablaremos acerca de las vías...");
+               var plan = new DevelopmentPlan(id: 1, level: "1");
+               var maintheme = new MainTheme(id: 1, title: "Vías y carreteras", description: "En este tema hablaremos acerca de las vías...");
                maintheme.AddItems("primer vía");
                plan.AddMainTheme(maintheme);
 

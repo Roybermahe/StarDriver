@@ -7,9 +7,10 @@ namespace StarDriver.domain.core.Business.DevPlans
     public class DevelopmentPlan : Entity<int>
     {
         
-        private string Level { get; set; }
-        private List<MainTheme> MainThemes { get; set; }
+        public string Level { get; set; }
+        public List<MainTheme> MainThemes { get; set; }
 
+        public DevelopmentPlan() {}
         public DevelopmentPlan(int id, string level)
         {
             Id = id;

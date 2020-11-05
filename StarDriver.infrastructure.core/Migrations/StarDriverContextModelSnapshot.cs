@@ -19,6 +19,44 @@ namespace StarDriver.infrastructure.core.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0-rc.2.20475.6");
 
+            modelBuilder.Entity("StarDriver.domain.core.Business.DevPlans.DevelopmentPlan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Level")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DevelopmentPlan");
+                });
+
+            modelBuilder.Entity("StarDriver.domain.core.Business.DevPlans.MainTheme", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("DevelopmentPlanId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DevelopmentPlanId");
+
+                    b.ToTable("MainTheme");
+                });
+
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.Exam", b =>
                 {
                     b.Property<int>("Id")
@@ -146,6 +184,37 @@ namespace StarDriver.infrastructure.core.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Person");
                 });
 
+            modelBuilder.Entity("StarDriver.domain.core.Business.VirtualRooms.Room", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("State")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("_developmentPlanId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("_instructorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("_developmentPlanId");
+
+                    b.HasIndex("_instructorId");
+
+                    b.ToTable("Rooms");
+                });
+
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.MultipleChoice", b =>
                 {
                     b.HasBaseType("StarDriver.domain.core.Business.Exams.Question");
@@ -181,6 +250,13 @@ namespace StarDriver.infrastructure.core.Migrations
                     b.HasDiscriminator().HasValue("Instructor");
                 });
 
+            modelBuilder.Entity("StarDriver.domain.core.Business.DevPlans.MainTheme", b =>
+                {
+                    b.HasOne("StarDriver.domain.core.Business.DevPlans.DevelopmentPlan", null)
+                        .WithMany("MainThemes")
+                        .HasForeignKey("DevelopmentPlanId");
+                });
+
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.QExamAnswers", b =>
                 {
                     b.HasOne("StarDriver.domain.core.Business.Exams.Exam", null)
@@ -193,6 +269,26 @@ namespace StarDriver.infrastructure.core.Migrations
                     b.HasOne("StarDriver.domain.core.Business.Exams.Exam", null)
                         .WithMany("_questions")
                         .HasForeignKey("ExamId");
+                });
+
+            modelBuilder.Entity("StarDriver.domain.core.Business.VirtualRooms.Room", b =>
+                {
+                    b.HasOne("StarDriver.domain.core.Business.DevPlans.DevelopmentPlan", "_developmentPlan")
+                        .WithMany()
+                        .HasForeignKey("_developmentPlanId");
+
+                    b.HasOne("StarDriver.domain.core.Business.Persons.Instructor", "_instructor")
+                        .WithMany()
+                        .HasForeignKey("_instructorId");
+
+                    b.Navigation("_developmentPlan");
+
+                    b.Navigation("_instructor");
+                });
+
+            modelBuilder.Entity("StarDriver.domain.core.Business.DevPlans.DevelopmentPlan", b =>
+                {
+                    b.Navigation("MainThemes");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.Exam", b =>

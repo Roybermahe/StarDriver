@@ -5,11 +5,12 @@ using StarDriver.domain.core.Contracts;
 namespace StarDriver.domain.core.Business.DevPlans
 {
     public class MainTheme : Entity<int>
-    {
-        private string Title { get; set; } 
-       private string Description { get; set; }
+    { 
+       public string Title { get; set; } 
+       public string Description { get; set; }
        private List<string> Items { get; set; }
 
+       public MainTheme(){}
        public MainTheme(int id, string title, string description)
        {
            Id = id;
