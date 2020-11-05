@@ -4,6 +4,7 @@ namespace StarDriver.domain.core.Contracts
 {
     public interface IDates
     {
+        int CompareTo(string dateB);
         // string GetDay();
         // string GetYear();
         // string GetMonth();

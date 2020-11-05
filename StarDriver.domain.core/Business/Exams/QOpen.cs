@@ -10,15 +10,9 @@ namespace StarDriver.domain.core.Business.Exams
         {
         }
 
-        public override string AddResponse(string response = "")
+        public override bool ValidateResponse(QExamAnswers answers)
         {
-            if (StringOperations.IsEmpty(response)) return "No se admite una respuesta sin contenido";
-            Answer = response;
-            return "Respuesta añadida";
-        }
-        
-        public override bool ValidateResponse()
-        {
+            answers.ScoreAnswer = Score;
             return true;
         }
     }

@@ -16,7 +16,6 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0-rc.2.20475.5" />
-      <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.3" />
     </ItemGroup>
 
     <ItemGroup>
@@ -27,10 +26,6 @@
       <Compile Update="Base\UnitRepos.cs">
         <DependentUpon>UnitOfWork.cs</DependentUpon>
       </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Migrations" />
     </ItemGroup>
 
 </Project>

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using StarDriver.domain.core.Base;
 using StarDriver.domain.core.Contracts;
@@ -17,7 +19,7 @@ namespace StarDriver.infrastructure.core.Base
             _dbset = context.Set<T>();
         }
 
-        public T Find(object id)
+        public T Find(int id)
         {
             return _dbset.Find(id);
         }
@@ -50,6 +52,12 @@ namespace StarDriver.infrastructure.core.Base
         public virtual IEnumerable<T> GetAll()
         {
             return _dbset.AsEnumerable();
+        }
+
+        public T FindFirstOrDefault(Expression<Func<T, bool>> predicate)
+        {
+            var query = _dbset.FirstOrDefault(predicate);
+            return query;
         }
     }
 }

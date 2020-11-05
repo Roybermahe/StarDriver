@@ -19,6 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\StarDriver.application.core\StarDriver.application.core.csproj" />
       <ProjectReference Include="..\StarDriver.infrastructure.core\StarDriver.infrastructure.core.csproj" />
     </ItemGroup>
 

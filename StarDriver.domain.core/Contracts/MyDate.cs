@@ -6,9 +6,15 @@ namespace StarDriver.domain.core.Contracts
     {
         private DateTime _dateTime;
         
-        public MyDate(string date = "01/01/97")
+        public MyDate(string date = "01/01/1998")
         {
             SetTime(date);
+        }
+
+        public int CompareTo(string dateB)
+        {
+            var timeB = Convert.ToDateTime(dateB);
+            return _dateTime.CompareTo(timeB);
         }
 
         public void SetTime(string date)
@@ -18,7 +24,7 @@ namespace StarDriver.domain.core.Contracts
 
         public string GetTime()
         {
-           return _dateTime.ToLongDateString();
+            return _dateTime.ToString("MM'/'dd'/'yyyy");
         }
     }
 }

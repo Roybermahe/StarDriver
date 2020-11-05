@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using StarDriver.domain.core.Base;
+﻿using StarDriver.domain.core.Base;
 
 namespace StarDriver.domain.core.Business.Persons
 {
@@ -9,9 +6,7 @@ namespace StarDriver.domain.core.Business.Persons
     {
         protected Person()
         {
-            
         }
-
         
         public string Name { get; set; }
         public string Surname { get; set; }

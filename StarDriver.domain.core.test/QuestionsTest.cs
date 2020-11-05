@@ -35,7 +35,7 @@ namespace StarDriver.domain.core.test
                 content: "Elija una de las siguientes opciones", 
                 score: 2.7m, optionalImage:"", 
                 options: options, answer: possibleAnswer) { Id = 1};
-            var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            var exam = new Exam(tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             var result = exam.AddQuestion(question);
             Assert.AreEqual("Se agrego la pregunta al examen", result);
         }
@@ -49,7 +49,7 @@ namespace StarDriver.domain.core.test
                 content: "Elija una de las siguientes opciones", 
                 score: 2.7m, optionalImage:"",
                 answer: answer, options: options) {Id = 1};
-            var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            var exam = new Exam(tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             var result = exam.AddQuestion(question);
             Assert.AreEqual("Se agrego la pregunta al examen", result);
         }
@@ -58,7 +58,7 @@ namespace StarDriver.domain.core.test
         public void AddQuestionOpen()
         {
             var question = new Open(content: "Elija una de las siguientes opciones", score: 2.7m, optionalImage: "") { Id = 1 };
-            var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",
+            var exam = new Exam(tittle: "Examen 1", description: "Examen de estado",
                 dateRealization: new MyDate("01/09/2020"), dateFinish: new MyDate("01/09/2020"));
             var result = exam.AddQuestion(question: question);
             Assert.AreEqual("Se agrego la pregunta al examen", result);
@@ -72,7 +72,7 @@ namespace StarDriver.domain.core.test
             var question = new OnlyAnswer(
                 content: "", score: 2.1m, optionalImage:"",
                 answer: answer, options: options){Id = 1};
-            var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            var exam = new Exam(tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             var result = exam.AddQuestion(question);
             Assert.AreEqual("No se permite una Pregunta sin contenido", result);
         }
@@ -80,7 +80,7 @@ namespace StarDriver.domain.core.test
         [Test]
         public void TotalScoresOfExam()
         {
-            var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            var exam = new Exam(tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             GetQuestions().ForEach(delegate(Question question)
             {
                 exam.AddQuestion(question);
@@ -91,52 +91,58 @@ namespace StarDriver.domain.core.test
         [Test]
         public void AddResponsesToQuestion()
         {
-            var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            var exam = new Exam(tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             GetQuestions().ForEach(delegate(Question question)
             {
                 exam.AddQuestion(question);
             });
-            var result = exam.RespondQuestion(1, "Option B");
-            var result2 = exam.RespondQuestion(2, "Response");
-            var result3 = exam.RespondQuestion(3, "Option B|Option C");
-            Assert.AreEqual("Respuesta añadida",result);
-            Assert.AreEqual("Respuesta añadida",result2);
-            Assert.AreEqual("Respuesta añadida",result3);
+            var result = exam.RespondQuestion(new QExamAnswers() { Id = 1, PersonId = 1, QuestionId = 1, UserResponse = "Opcion A"});
+            var result2 = exam.RespondQuestion(new QExamAnswers() { Id = 2, PersonId = 1, QuestionId = 2, UserResponse = "Response"});
+            var result3 = exam.RespondQuestion(new QExamAnswers() { Id = 3, PersonId = 1, QuestionId = 3, UserResponse = "Option B|Option C"});
+            Assert.AreEqual("Respuesta Añadida.",result);
+            Assert.AreEqual("Respuesta Añadida.",result2);
+            Assert.AreEqual("Respuesta Añadida.",result3);
         }
         
         [Test]
         public void AddResponsesToQuestionNull()
         {
-            var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            var exam = new Exam(tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             GetQuestions().ForEach(delegate(Question question)
             {
                 exam.AddQuestion(question);
             });
-            var result = exam.RespondQuestion(1, "");
+            var result = exam.RespondQuestion(new QExamAnswers() { Id = 1, PersonId = 1, QuestionId = 1, UserResponse = ""});
             Assert.AreEqual("No se admite una respuesta vacia.",result);
         }
         
         [Test]
         public void ModifyScoreAnswerToQuestion()
         {
-            var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            var exam = new Exam(tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             GetQuestions().ForEach(delegate(Question question)
             {
                 exam.AddQuestion(question);
             });
-            var result = exam.ModifyScoreAnswer(2, 2.3m);
+            exam.RespondQuestion(new QExamAnswers() { Id = 1, PersonId = 1, QuestionId = 1, UserResponse = "Option A"});
+            exam.RespondQuestion(new QExamAnswers() { Id = 2, PersonId = 1, QuestionId = 2, UserResponse = "Response"});
+            exam.RespondQuestion(new QExamAnswers() { Id = 3, PersonId = 1, QuestionId = 3, UserResponse = "Option A|Option C"});
+            var result = exam.ModifyScoreAnswer(new QExamAnswers() { Id = 1, QuestionId = 1, PersonId = 1 }, 2.0m);
             Assert.AreEqual("Se modificó los puntos de esta pregunta",result);
         }
         
         [Test]
         public void ResponseScoreNoHigherThanTheQuestionScore()
         {
-            var exam = new Exam(id: 1, tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
+            var exam = new Exam(tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             GetQuestions().ForEach(delegate(Question question)
             {
                 exam.AddQuestion(question);
             });
-            var result = exam.ModifyScoreAnswer(2, 3m);
+            exam.RespondQuestion(new QExamAnswers() { Id = 1, PersonId = 1, QuestionId = 1, UserResponse = "Option A"});
+            exam.RespondQuestion(new QExamAnswers() { Id = 2, PersonId = 1, QuestionId = 2, UserResponse = "Response"});
+            exam.RespondQuestion(new QExamAnswers() { Id = 3, PersonId = 1, QuestionId = 3, UserResponse = "Option A|Option C"});
+            var result = exam.ModifyScoreAnswer(new QExamAnswers() { Id = 1, QuestionId = 1, PersonId = 1 }, 3m);
             Assert.AreEqual("Los puntos de respuesta no pueden ser mayor al puntaje total",result);
         }
         
@@ -148,13 +154,13 @@ namespace StarDriver.domain.core.test
             var question1 = new OnlyAnswer(
                 content: "Elija una de las siguientes opciones", 
                 score: 2.1m, optionalImage:"",
-                answer: answer, options: options);
-            var question2 = new Open(content: "Elija una de las siguientes opciones", score: 2.7m, optionalImage: "",options: "",answer: "");
-            var possibleAnswer ="Option A|Option C";
+                answer: answer, options: options) { Id = 1};
+            var question2 = new Open( content: "Elija una de las siguientes opciones", score: 2.7m, optionalImage: "") { Id = 2 };
+            var possibleAnswer = "Option A|Option C";
             var question3 = new MultipleChoice(
                 content: "Elija una de las siguientes opciones", 
                 score: 2.7m, optionalImage:"", 
-                options: options, answer: possibleAnswer);
+                options: options, answer: possibleAnswer) { Id = 3};
             return new List<Question>() { question1, question2, question3 };
         }
         

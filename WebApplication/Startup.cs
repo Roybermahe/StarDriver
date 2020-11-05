@@ -30,11 +30,11 @@ namespace WebApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = Configuration.GetConnectionString("ExamContext");
-            services.AddDbContext<ExamContext>(opt => opt.UseSqlServer(connectionString));
-
+            var connectionString = Configuration.GetConnectionString("AllContext");
+            services.AddDbContext<DbContext>(opt => opt.UseSqlServer(connectionString));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IDbContext, ExamContext>();
+            services.AddScoped<IDbContext, StarDriverContext>();
+            //services.AddScoped<IDbContext, PersonContext>();
             services.AddScoped<IDates, MyDate>();
 
             #region swagger doc generation

@@ -5,33 +5,24 @@ namespace StarDriver.domain.core.Business.Exams
 {
     public class MultipleChoice : Question
     {
-        private List<string> _possibleAnswer; 
-        private readonly List<string> _userResponse = new List<string>();
+        private List<string> PossibleAnswer { get; set; } 
+        private List<string> UserResponse { get; set; }
 
         public MultipleChoice(string content, decimal score, string optionalImage = "", string options = "", string answer = "", string type = "MultipleChoice") : base(content, score, optionalImage, options, answer, type)
         {
         }
-
-        public override string AddResponse(string response = "")
+        
+        public override bool ValidateResponse(QExamAnswers answers)
         {
-            if(StringOperations.IsEmpty(response)) return "No se admite una respuesta vacia.";
-            foreach (var responses in StringOperations.Split(response))
-            {
-                _userResponse.Add(responses);
-            }
-            return "Respuesta añadida";
-        }
-
-        public override bool ValidateResponse()
-        {
-            _possibleAnswer = (List<string>) StringOperations.Split(Options); 
+            PossibleAnswer = StringOperations.Split(Answer);
+            UserResponse = StringOperations.Split(answers.UserResponse);
             var totalCount = 0;
-            _userResponse.ForEach(delegate(string resp)
+            UserResponse.ForEach(delegate(string resp)
             {
-                totalCount = _possibleAnswer.Contains(resp) ? (totalCount + 1) : totalCount;
+                totalCount = PossibleAnswer.Contains(resp) ? (totalCount + 1) : totalCount;
             });
-            var validate = totalCount == _possibleAnswer.Count;
-            ScoreAnswer = validate ? Score : (Score / _possibleAnswer.Count) * totalCount;
+            var validate = totalCount == PossibleAnswer.Count;
+            answers.ScoreAnswer = validate ? Score : (Score / PossibleAnswer.Count) * totalCount;
             return validate;
         }
     }

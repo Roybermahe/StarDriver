@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using StarDriver.domain.core.Base;
 using StarDriver.domain.core.Contracts;
+
 
 namespace StarDriver.domain.core.Business.Exams
 {
@@ -11,34 +11,36 @@ namespace StarDriver.domain.core.Business.Exams
         public Exam()
         {
             _questions = new List<Question>();
+            _answerses = new List<QExamAnswers>();
         }
         
         public string Tittle { get; set; }
         public string Description { get; set; }
         public List<Question> _questions { get; set; }
-        private readonly IDates _dateRealization;
-        private readonly IDates _dateFinish;
+        public List<QExamAnswers> _answerses { get; set; }
+        private IDates _dateRealization;
+        private IDates _dateFinish;
 
         public string DateRealization
         {
             get => _dateRealization.GetTime();
-            set => _dateRealization.SetTime(value);
+            set => _dateRealization = new MyDate(value);
         }
 
         public string DateFinish
         {
             get => _dateFinish.GetTime();
-            set => _dateFinish.SetTime(value);
+            set => _dateFinish = new MyDate(value);
         }
 
-        public Exam(int id, string tittle, string description, IDates dateRealization, IDates dateFinish)
+        public Exam(string tittle, string description, IDates dateRealization, IDates dateFinish)
         {
-            Id = id;
             Tittle = tittle;
             Description = description;
             _dateRealization = dateRealization;
             _dateFinish = dateFinish;
             _questions = new List<Question>();
+            _answerses = new List<QExamAnswers>();
         }
 
         public string AddQuestion(Question question)
@@ -46,6 +48,11 @@ namespace StarDriver.domain.core.Business.Exams
             if (StringOperations.IsEmpty(question.Content)) return "No se permite una Pregunta sin contenido";
             _questions.Add(question);
             return "Se agrego la pregunta al examen";
+        }
+
+        public string ExamAnswersed()
+        {
+            return _answerses.Count == _questions.Count ? "Examen respondido." : "Examen no completado.";
         }
 
         public decimal TotalScores()
@@ -58,33 +65,44 @@ namespace StarDriver.domain.core.Business.Exams
             return total;
         }
 
-        public string RespondQuestion(int idQuestion, string respond)
+        public string RespondQuestion(QExamAnswers qExamAnswers)
         {
-            return GetQuestion(idQuestion)?.AddResponse(respond);
+            if (StringOperations.IsEmpty(qExamAnswers.UserResponse)) return "No se admite una respuesta vacia.";
+            _answerses.Add(qExamAnswers);
+            return "Respuesta Añadida.";
         }
 
         public decimal ExamResult()
         {
             var total = 0m;
-            _questions.ForEach(delegate(Question question)
+            _answerses.ForEach(delegate(QExamAnswers answers)
             {
-                question.ValidateResponse();
-                total += question.ScoreAnswer;
+                if (GetQuestion(answers.QuestionId).ValidateResponse(answers))
+                {
+                    total += answers.ScoreAnswer;
+                    
+                }
             });
             return total;
         }
 
-        public string ModifyScoreAnswer(int idPregunta, decimal scorePoints)
+        public string ModifyScoreAnswer(QExamAnswers examAnswers, decimal scorePoints)
         {
-            var question = GetQuestion(idPregunta);
+            var question = GetQuestion(examAnswers.QuestionId);
             if (scorePoints > question.Score) return "Los puntos de respuesta no pueden ser mayor al puntaje total";
-            GetQuestion(idPregunta).ScoreAnswer = scorePoints;
+            var answer = _answerses.Find(t => t.Id == examAnswers.Id);
+            if (answer != null) answer.ScoreAnswer = scorePoints;
             return "Se modificó los puntos de esta pregunta";
         }
-        
-        private Question GetQuestion(int IdQuestion)
+
+        public bool ValidateDates()
         {
-            return _questions.Find(t => t.Id == IdQuestion);
+            return _dateFinish.CompareTo(DateRealization) >= 0;
         }
+        private Question GetQuestion(int idQuestion)
+        {
+            return _questions.Find(t => t.Id == idQuestion);
+        }
+        
     }
 }

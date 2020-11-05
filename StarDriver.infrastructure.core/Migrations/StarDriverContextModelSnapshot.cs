@@ -8,8 +8,8 @@ using StarDriver.infrastructure.core.DomainContexts;
 
 namespace StarDriver.infrastructure.core.Migrations
 {
-    [DbContext(typeof(ExamContext))]
-    partial class ExamContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(StarDriverContext))]
+    partial class StarDriverContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -43,6 +43,35 @@ namespace StarDriver.infrastructure.core.Migrations
                     b.ToTable("Exams");
                 });
 
+            modelBuilder.Entity("StarDriver.domain.core.Business.Exams.QExamAnswers", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int?>("ExamId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ScoreAnswer")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("UserResponse")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExamId");
+
+                    b.ToTable("ExamAnswerses");
+                });
+
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.Question", b =>
                 {
                     b.Property<int>("Id")
@@ -72,9 +101,6 @@ namespace StarDriver.infrastructure.core.Migrations
                     b.Property<decimal>("Score")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("ScoreAnswer")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
@@ -85,6 +111,39 @@ namespace StarDriver.infrastructure.core.Migrations
                     b.ToTable("Questions");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Question");
+                });
+
+            modelBuilder.Entity("StarDriver.domain.core.Business.Persons.Person", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Direction")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Persons");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Person");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.MultipleChoice", b =>
@@ -98,9 +157,6 @@ namespace StarDriver.infrastructure.core.Migrations
                 {
                     b.HasBaseType("StarDriver.domain.core.Business.Exams.Question");
 
-                    b.Property<string>("UserAnswer")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasDiscriminator().HasValue("OnlyAnswer");
                 });
 
@@ -109,6 +165,27 @@ namespace StarDriver.infrastructure.core.Migrations
                     b.HasBaseType("StarDriver.domain.core.Business.Exams.Question");
 
                     b.HasDiscriminator().HasValue("Open");
+                });
+
+            modelBuilder.Entity("StarDriver.domain.core.Business.Persons.Apprentice", b =>
+                {
+                    b.HasBaseType("StarDriver.domain.core.Business.Persons.Person");
+
+                    b.HasDiscriminator().HasValue("Apprentice");
+                });
+
+            modelBuilder.Entity("StarDriver.domain.core.Business.Persons.Instructor", b =>
+                {
+                    b.HasBaseType("StarDriver.domain.core.Business.Persons.Person");
+
+                    b.HasDiscriminator().HasValue("Instructor");
+                });
+
+            modelBuilder.Entity("StarDriver.domain.core.Business.Exams.QExamAnswers", b =>
+                {
+                    b.HasOne("StarDriver.domain.core.Business.Exams.Exam", null)
+                        .WithMany("_answerses")
+                        .HasForeignKey("ExamId");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.Question", b =>
@@ -120,6 +197,8 @@ namespace StarDriver.infrastructure.core.Migrations
 
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.Exam", b =>
                 {
+                    b.Navigation("_answerses");
+
                     b.Navigation("_questions");
                 });
 #pragma warning restore 612, 618

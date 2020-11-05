@@ -5,24 +5,14 @@ namespace StarDriver.domain.core.Business.Exams
 {
     public class OnlyAnswer: Question
     {
-        
-        public string UserAnswer { get; private set; }
-
         public OnlyAnswer(string content, decimal score, string optionalImage = "", string options = "", string answer = "", string type = "OnlyAnswer") : base(content, score, optionalImage, options, answer, type)
         {
         }
 
-        public override string AddResponse(string response = "")
+        public override bool ValidateResponse(QExamAnswers answers)
         {
-            if (StringOperations.IsEmpty(response)) return "No se admite una respuesta vacia.";
-            UserAnswer = response;
-            return "Respuesta añadida";
-        }
-
-        public override bool ValidateResponse()
-        {
-            var validate = StringOperations.IsEqual(UserAnswer, Answer);
-            ScoreAnswer =  validate ? Score : 0m;
+            var validate = StringOperations.IsEqual(answers.UserResponse, Answer);
+            answers.ScoreAnswer =  validate ? Score : 0m;
             return validate;
         }
     }
