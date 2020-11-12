@@ -7,9 +7,9 @@
             
         }
         
-        public Apprentice(int id, string name, string surname,  string phone, string mail, string direction)
+        public Apprentice(int identificacion, string name, string surname,  string phone, string mail, string direction)
         {
-            Id = id;
+            Id = identificacion;
             Name = name;
             Surname = surname;
             Phone = phone;

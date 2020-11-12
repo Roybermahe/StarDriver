@@ -21,6 +21,9 @@ namespace StarDriver.application.core.PersonServices
            _unitOfWork.PersonsRepository.Add(person);
             _unitOfWork.Commit();
             return new PersonCreateResponse() { Message = "Persona creada con exito"};
+            
+            
+           
         }
         
     }
@@ -28,7 +31,7 @@ namespace StarDriver.application.core.PersonServices
     public class PersonCreateRequest
     {
         [Required(ErrorMessage ="El id es un campo requerido")]
-        public int Id { get; set; }
+        public int Identificacion { get; set; }
         [Required(ErrorMessage ="El nombre es un campo requerido")]
         public string Name { get; set; }
         [Required(ErrorMessage ="El apellido es un campo requerido")]
@@ -45,7 +48,7 @@ namespace StarDriver.application.core.PersonServices
         public Person Map()
         {
             var person = new PersonFactory().FactoryMethod(Type);
-            person.Id = Id;
+            person.Identificacion = Identificacion;
             person.Name = Name;
             person.Surname = Surname;
             person.Phone = Phone;

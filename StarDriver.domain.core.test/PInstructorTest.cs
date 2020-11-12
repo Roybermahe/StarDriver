@@ -29,11 +29,11 @@ namespace StarDriver.domain.core.test
         public void IdentificacionInstructorUnicaInstructorTest()
         {
             var administrator = new Administrator(id: 1065630700, name: "Eva", surname: "Rodrigues");
-            var instructor1 = new Instructor(id: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+            var instructor1 = new Instructor(identificacion: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
             instructor1.AddSpecializations("Normas de tránsito Urbanas");
-            var instructor2 = new Instructor(id: 1065630700, name: "Alvaro", surname: "Camacho", phone: "3012745590", mail: "armando@gmail.com", direction: "Manzana 58 Casa 50 450 años");
+            var instructor2 = new Instructor(identificacion: 1065630700, name: "Alvaro", surname: "Camacho", phone: "3012745590", mail: "armando@gmail.com", direction: "Manzana 58 Casa 50 450 años");
             instructor2.AddSpecializations("Normas de tránsito Urbanas");
-            var instructor3 = new Instructor(id: 1065630800, name: "Armando", surname: "Camacho", phone: "3012745590", mail: "armando@gmail.com", direction: "Manzana 58 Casa 50 450 años");
+            var instructor3 = new Instructor(identificacion: 1065630800, name: "Armando", surname: "Camacho", phone: "3012745590", mail: "armando@gmail.com", direction: "Manzana 58 Casa 50 450 años");
             var createInstructor1 = administrator.SaveInstructor(instructor1);
             var createInstructor2 = administrator.SaveInstructor(instructor2);
             
@@ -65,7 +65,7 @@ namespace StarDriver.domain.core.test
         {
             
             var administrator = new Administrator(id: 1065630700, name: "Eva", surname: "Rodrigues");
-            var instructor = new Instructor(id: 1065630430, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+            var instructor = new Instructor(identificacion: 1065630430, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
             
             var createInstructor = administrator.SaveInstructor(instructor);
 
@@ -94,7 +94,7 @@ namespace StarDriver.domain.core.test
            
             
             var administrator = new Administrator(id: 1065630700, name: "Eva", surname: "Rodrigues");
-            var instructor = new Instructor(id: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+            var instructor = new Instructor(identificacion: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
             instructor.AddSpecializations("Normas de tránsito Urbanas");
             instructor.AddSpecializations("Normas de tránsito Rurales");
             
@@ -122,7 +122,7 @@ namespace StarDriver.domain.core.test
         {
             
             var administrator = new Administrator(id: 1065630700, name: "Eva", surname: "Rodrigues");
-            var instructor = new Instructor(id: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+            var instructor = new Instructor(identificacion: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
             var vacia =  instructor.AddSpecializations("");
             
 
@@ -154,7 +154,7 @@ namespace StarDriver.domain.core.test
         {
             
             var administrator = new Administrator(id: 1065630700, name: "Eva", surname: "Rodrigues");
-            var instructor = new Instructor(id: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+            var instructor = new Instructor(identificacion: 1065630800, name: "Javier", surname: "Rodrigues", phone: "3022745590", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
             instructor.AddSpecializations("Normas de tránsito Urbanas");
             
             var createInstructor = administrator.SaveInstructor(instructor);
@@ -179,7 +179,7 @@ namespace StarDriver.domain.core.test
         public void DigitosDeTelefonoNoPermitidoInstructorTest()
         {
             var administrator = new Administrator(id: 1065630700, name: "Eva", surname: "Rodrigues");
-            var instructor = new Instructor(id: 1065630800, name: "Javier", surname: "Rodrigues", phone: "30227455890", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+            var instructor = new Instructor(identificacion: 1065630800, name: "Javier", surname: "Rodrigues", phone: "30227455890", mail: "javier@gmail.com", direction: "Manzana 59 Casa 13 450 años");
             instructor.AddSpecializations("Normas de tránsito Urbanas");
             
             var createInstructor = administrator.SaveInstructor(instructor);

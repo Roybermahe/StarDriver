@@ -40,7 +40,7 @@ namespace StarDriver.domain.core.test
         {
             //Preparar
                // crear instructor
-               var instructor = new Instructor(id: 1065630800, name: "Esteban", surname: "Rodrigues", phone: "3022745590", mail: "esteban@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+               var instructor = new Instructor(identificacion: 1065630800, name: "Esteban", surname: "Rodrigues", phone: "3022745590", mail: "esteban@gmail.com", direction: "Manzana 59 Casa 13 450 años");
                instructor.AddSpecializations("Normas de tránsito rurales");
                
                // crear plan de desarrollo
@@ -51,9 +51,9 @@ namespace StarDriver.domain.core.test
 
                // crear lista de aprendices 
                List<Apprentice> apprentices = new List<Apprentice>();
-               var apprentice1 = new Apprentice(id: 1003874583, name: "Adriana", surname: "Castilla", phone: "3152745517", mail: "acastilla@gmail.com", direction: "Cra 35 # 17 - 08");
-               var apprentice2 = new Apprentice(id: 1033858731, name: "Juan", surname: "Garcia", phone: "3182772119", mail: "jgarcia@gmail.com", direction: "Cra 16 # 25 - 14");
-               var apprentice3 = new Apprentice(id: 1023871587, name: "Daniela", surname: "Curvelo", phone: "3152540118", mail: "dcurvelo@gmail.com", direction: "Cra 23 # 35 - 17");
+               var apprentice1 = new Apprentice(identificacion: 1003874583, name: "Adriana", surname: "Castilla", phone: "3152745517", mail: "acastilla@gmail.com", direction: "Cra 35 # 17 - 08");
+               var apprentice2 = new Apprentice(identificacion: 1033858731, name: "Juan", surname: "Garcia", phone: "3182772119", mail: "jgarcia@gmail.com", direction: "Cra 16 # 25 - 14");
+               var apprentice3 = new Apprentice(identificacion: 1023871587, name: "Daniela", surname: "Curvelo", phone: "3152540118", mail: "dcurvelo@gmail.com", direction: "Cra 23 # 35 - 17");
               
                apprentices.Add(apprentice1);
                apprentices.Add(apprentice2);
@@ -95,7 +95,7 @@ namespace StarDriver.domain.core.test
         {
             //Preparar
                // crear instructor
-               var instructor = new Instructor(id: 1065630800, name: "Esteban", surname: "Rodrigues", phone: "3022745590", mail: "esteban@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+               var instructor = new Instructor(identificacion: 1065630800, name: "Esteban", surname: "Rodrigues", phone: "3022745590", mail: "esteban@gmail.com", direction: "Manzana 59 Casa 13 450 años");
                instructor.AddSpecializations("Normas de tránsito rurales");
                
                // crear plan de desarrollo
@@ -106,9 +106,9 @@ namespace StarDriver.domain.core.test
 
                // crear lista de aprendices 
                List<Apprentice> apprentices = new List<Apprentice>();
-               var apprentice1 = new Apprentice(id: 1003874583, name: "Adriana", surname: "Castilla", phone: "3152745517", mail: "acastilla@gmail.com", direction: "Cra 35 # 17 - 08");
-               var apprentice2 = new Apprentice(id: 1033858731, name: "Juan", surname: "Garcia", phone: "3182772119", mail: "jgarcia@gmail.com", direction: "Cra 16 # 25 - 14");
-               var apprentice3 = new Apprentice(id: 1023871587, name: "Daniela", surname: "Curvelo", phone: "3152540118", mail: "dcurvelo@gmail.com", direction: "Cra 23 # 35 - 17");
+               var apprentice1 = new Apprentice(identificacion: 1003874583, name: "Adriana", surname: "Castilla", phone: "3152745517", mail: "acastilla@gmail.com", direction: "Cra 35 # 17 - 08");
+               var apprentice2 = new Apprentice(identificacion: 1033858731, name: "Juan", surname: "Garcia", phone: "3182772119", mail: "jgarcia@gmail.com", direction: "Cra 16 # 25 - 14");
+               var apprentice3 = new Apprentice(identificacion: 1023871587, name: "Daniela", surname: "Curvelo", phone: "3152540118", mail: "dcurvelo@gmail.com", direction: "Cra 23 # 35 - 17");
               
                apprentices.Add(apprentice1);
                apprentices.Add(apprentice2);

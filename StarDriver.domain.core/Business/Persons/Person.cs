@@ -8,15 +8,17 @@ namespace StarDriver.domain.core.Business.Persons
         {
         }
 
-        public Person(string name, string surname, string phone, string mail, string direction)
+        public Person(int identificacion,string name, string surname, string phone, string mail, string direction)
         {
+            Identificacion = identificacion;
             Name = name;
             Surname = surname;
             Phone = phone;
             Mail = mail;
             Direction = direction;
         }
-
+        
+        public int Identificacion { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Phone { get; set; }

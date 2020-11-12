@@ -45,7 +45,7 @@ namespace StarDriver.domain.core.test
         [Test]
         public void ApprenticeDoneExam()
         {
-            var apprentice = new Apprentice(id: 1065630700, name: "Ana", surname: "Castillo", phone: "30227455890", mail: "ana@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+            var apprentice = new Apprentice(identificacion: 1065630700, name: "Ana", surname: "Castillo", phone: "30227455890", mail: "ana@gmail.com", direction: "Manzana 59 Casa 13 450 años");
             var exam = new Exam(tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             GetQuestions().ForEach(delegate(Question question)
             {
@@ -60,7 +60,7 @@ namespace StarDriver.domain.core.test
         [Test]
         public void GetExamResultOfApprentice()
         {
-            var apprentice = new Apprentice(id: 1065630700, name: "Ana", surname: "Castillo", phone: "30227455890", mail: "ana@gmail.com", direction: "Manzana 59 Casa 13 450 años");
+            var apprentice = new Apprentice(identificacion: 1065630700, name: "Ana", surname: "Castillo", phone: "30227455890", mail: "ana@gmail.com", direction: "Manzana 59 Casa 13 450 años");
             var exam = new Exam(tittle: "Examen 1", description: "Examen de estado",dateRealization: new MyDate("01/09/2020"),dateFinish: new MyDate("01/09/2020"));
             GetQuestions().ForEach(delegate(Question question)
             {
