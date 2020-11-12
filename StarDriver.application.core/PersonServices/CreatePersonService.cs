@@ -42,7 +42,7 @@ namespace StarDriver.application.core.PersonServices
         public  string Mail { get; set; }
         public  string Direction { get; set; }
         
-        [Required]
+        [Required(ErrorMessage ="El tipo es un campo requerido")]
         public  string Type { get; set; }
         
         public Person Map()
