@@ -107,7 +107,7 @@ namespace StarDriver.infrastructure.core.Migrations
 
                     b.HasIndex("ExamId");
 
-                    b.ToTable("ExamAnswerses");
+                    b.ToTable("QExamAnswers");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.Question", b =>
@@ -146,7 +146,7 @@ namespace StarDriver.infrastructure.core.Migrations
 
                     b.HasIndex("ExamId");
 
-                    b.ToTable("Questions");
+                    b.ToTable("Question");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Question");
                 });
@@ -260,14 +260,14 @@ namespace StarDriver.infrastructure.core.Migrations
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.QExamAnswers", b =>
                 {
                     b.HasOne("StarDriver.domain.core.Business.Exams.Exam", null)
-                        .WithMany("_answerses")
+                        .WithMany("Answerses")
                         .HasForeignKey("ExamId");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.Question", b =>
                 {
                     b.HasOne("StarDriver.domain.core.Business.Exams.Exam", null)
-                        .WithMany("_questions")
+                        .WithMany("Questions")
                         .HasForeignKey("ExamId");
                 });
 
@@ -293,9 +293,9 @@ namespace StarDriver.infrastructure.core.Migrations
 
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.Exam", b =>
                 {
-                    b.Navigation("_answerses");
+                    b.Navigation("Answerses");
 
-                    b.Navigation("_questions");
+                    b.Navigation("Questions");
                 });
 #pragma warning restore 612, 618
         }

@@ -12,7 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using StarDriver.application.core.QuestionsServices;
 using StarDriver.domain.core.Contracts;
+using StarDriver.domain.core.Factorys.Questions;
 using StarDriver.infrastructure.core.Base;
 using StarDriver.infrastructure.core.DomainContexts;
 
@@ -34,8 +36,8 @@ namespace WebApplication
             services.AddDbContext<DbContext>(opt => opt.UseSqlServer(connectionString));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IDbContext, StarDriverContext>();
-            //services.AddScoped<IDbContext, PersonContext>();
             services.AddScoped<IDates, MyDate>();
+            
 
             #region swagger doc generation
             services.AddSwaggerGen(options =>
@@ -63,7 +65,6 @@ namespace WebApplication
             
             services.AddControllers();
         }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

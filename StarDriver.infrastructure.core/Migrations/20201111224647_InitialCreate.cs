@@ -75,7 +75,7 @@ namespace StarDriver.infrastructure.core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ExamAnswerses",
+                name: "QExamAnswers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -88,9 +88,9 @@ namespace StarDriver.infrastructure.core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ExamAnswerses", x => x.Id);
+                    table.PrimaryKey("PK_QExamAnswers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ExamAnswerses_Exams_ExamId",
+                        name: "FK_QExamAnswers_Exams_ExamId",
                         column: x => x.ExamId,
                         principalTable: "Exams",
                         principalColumn: "Id",
@@ -98,7 +98,7 @@ namespace StarDriver.infrastructure.core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Questions",
+                name: "Question",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -114,9 +114,9 @@ namespace StarDriver.infrastructure.core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Questions", x => x.Id);
+                    table.PrimaryKey("PK_Question", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Questions_Exams_ExamId",
+                        name: "FK_Question_Exams_ExamId",
                         column: x => x.ExamId,
                         principalTable: "Exams",
                         principalColumn: "Id",
@@ -153,18 +153,18 @@ namespace StarDriver.infrastructure.core.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ExamAnswerses_ExamId",
-                table: "ExamAnswerses",
-                column: "ExamId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_MainTheme_DevelopmentPlanId",
                 table: "MainTheme",
                 column: "DevelopmentPlanId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Questions_ExamId",
-                table: "Questions",
+                name: "IX_QExamAnswers_ExamId",
+                table: "QExamAnswers",
+                column: "ExamId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Question_ExamId",
+                table: "Question",
                 column: "ExamId");
 
             migrationBuilder.CreateIndex(
@@ -181,13 +181,13 @@ namespace StarDriver.infrastructure.core.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ExamAnswerses");
-
-            migrationBuilder.DropTable(
                 name: "MainTheme");
 
             migrationBuilder.DropTable(
-                name: "Questions");
+                name: "QExamAnswers");
+
+            migrationBuilder.DropTable(
+                name: "Question");
 
             migrationBuilder.DropTable(
                 name: "Rooms");
