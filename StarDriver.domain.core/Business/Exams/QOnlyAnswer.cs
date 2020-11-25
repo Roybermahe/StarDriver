@@ -9,6 +9,10 @@ namespace StarDriver.domain.core.Business.Exams
         {
         }
 
+        public OnlyAnswer()
+        {
+        }
+
         public override bool ValidateResponse(QExamAnswers answers)
         {
             var validate = StringOperations.IsEqual(answers.UserResponse, Answer);

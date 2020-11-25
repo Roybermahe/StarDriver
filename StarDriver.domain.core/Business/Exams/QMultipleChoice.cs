@@ -11,7 +11,11 @@ namespace StarDriver.domain.core.Business.Exams
         public MultipleChoice(string content, decimal score, string optionalImage = "", string options = "", string answer = "", string type = "MultipleChoice") : base(content, score, optionalImage, options, answer, type)
         {
         }
-        
+
+        public MultipleChoice()
+        {
+        }
+
         public override bool ValidateResponse(QExamAnswers answers)
         {
             PossibleAnswer = StringOperations.Split(Answer);

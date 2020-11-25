@@ -10,6 +10,10 @@ namespace StarDriver.domain.core.Business.Exams
         {
         }
 
+        public Open()
+        {
+        }
+
         public override bool ValidateResponse(QExamAnswers answers)
         {
             answers.ScoreAnswer = Score;

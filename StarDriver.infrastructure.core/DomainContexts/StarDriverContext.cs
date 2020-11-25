@@ -14,6 +14,8 @@ namespace StarDriver.infrastructure.core.DomainContexts
         }
         
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<DevelopmentPlan> DevelopmentPlans { get; set; }
+        public DbSet<MainTheme> MainThemes { get; set; }
         
         public DbSet<QExamAnswers> ExamAnswerses { get; set; }
         public DbSet<Exam> Exams { get; set; }
@@ -21,7 +23,7 @@ namespace StarDriver.infrastructure.core.DomainContexts
         public DbSet<OnlyAnswer> OnlyAnswers { get; set; }
         public DbSet<MultipleChoice> MultipleChoices { get; set; }
         public DbSet<Open> Opens { get; set; }
-        
+
         public DbSet<Person> Persons { get; set; }
         public DbSet<Apprentice> Apprentices { get; set; }
         public DbSet<Instructor> Instructors { get; set; }

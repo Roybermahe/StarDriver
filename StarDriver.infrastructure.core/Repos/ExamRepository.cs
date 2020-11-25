@@ -9,5 +9,7 @@ namespace StarDriver.infrastructure.core.Repos
         public ExamRepository(IDbContext context) : base(context)
         {
         }
+        
+        
     }
 }

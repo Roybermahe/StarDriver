@@ -12,9 +12,9 @@ namespace StarDriver.domain.core.Business.Exams
         public string Answer { get; set; }
         public string Type { get; set; }
         
-        protected Question() {}
+        public Question() {}
 
-        protected Question(string content, decimal score, string optionalImage = "",  string options = "", string answer = "", string type = "")
+        public Question(string content, decimal score, string optionalImage = "",  string options = "", string answer = "", string type = "")
         {
             Content = content;
             Score = score;

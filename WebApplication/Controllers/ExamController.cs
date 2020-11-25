@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using StarDriver.application.core;
 using StarDriver.application.core.ExamsServices;
+using StarDriver.application.core.QuestionsServices;
 using StarDriver.domain.core.Contracts;
 
 namespace WebApplication.Controllers
@@ -55,6 +56,33 @@ namespace WebApplication.Controllers
         {
             var service = new GetExamService(_unitOfWork);
             var response = service.Ejecutar(id);
+            return Ok(response);
+        }
+
+        [Route("Question")]
+        [HttpPost]
+        public ActionResult<CreateQuestionResponse> AddQuestion(CreateQuestionRequest request)
+        {
+            var service = new AddQuestionService(_unitOfWork);
+            var response = service.Ejecutar(request);
+            return Ok(response);
+        }
+
+        [Route("Question")]
+        [HttpDelete]
+        public ActionResult<DelQuestionResponse> DeleteQuestion(DelQuestionRequest request)
+        {
+            var service = new DeleteQuestionService(_unitOfWork);
+            var response = service.Ejecutar(request);
+            return Ok(response);
+        }
+        
+        [Route("GetQuestions")]
+        [HttpGet]
+        public ActionResult<DelQuestionResponse> DeleteQuestion([FromQuery] int IdExam)
+        {
+            var service = new GetQuestionService(_unitOfWork);
+            var response = service.Ejecutar(IdExam);
             return Ok(response);
         }
         
