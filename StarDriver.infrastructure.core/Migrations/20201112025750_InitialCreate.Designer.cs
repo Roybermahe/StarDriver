@@ -10,7 +10,7 @@ using StarDriver.infrastructure.core.DomainContexts;
 namespace StarDriver.infrastructure.core.Migrations
 {
     [DbContext(typeof(StarDriverContext))]
-    [Migration("20201105042403_InitialCreate")]
+    [Migration("20201112025750_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -166,6 +166,9 @@ namespace StarDriver.infrastructure.core.Migrations
                     b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Identificacion")
+                        .HasColumnType("int");
 
                     b.Property<string>("Mail")
                         .HasColumnType("nvarchar(max)");

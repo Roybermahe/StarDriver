@@ -8,11 +8,5 @@
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
       <jdbc-url>jdbc:sqlserver://localhost\MSSQLSERVER:1433;database=master</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="StarDriverDev@localhost" uuid="f2ef9d0a-8da7-4ec0-a4b9-422daae68333">
-      <driver-ref>mariadb</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://localhost:3306/StarDriverDev</jdbc-url>
-    </data-source>
   </component>
 </project>

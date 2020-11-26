@@ -165,6 +165,9 @@ namespace StarDriver.infrastructure.core.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Identificacion")
+                        .HasColumnType("int");
+
                     b.Property<string>("Mail")
                         .HasColumnType("nvarchar(max)");
 

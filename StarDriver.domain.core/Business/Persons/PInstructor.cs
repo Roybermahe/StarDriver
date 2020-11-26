@@ -12,10 +12,10 @@ namespace StarDriver.domain.core.Business.Persons
         
         public Instructor(){}
    
-        public Instructor(int id, string name, string surname,  string phone, string mail, string direction) 
+        public Instructor(int identificacion, string name, string surname,  string phone, string mail, string direction) 
         {
             _specializations =  new List<string>();
-            Id = id;
+            Id = identificacion;
             Name = name;
             Surname = surname;
             Phone = phone;
