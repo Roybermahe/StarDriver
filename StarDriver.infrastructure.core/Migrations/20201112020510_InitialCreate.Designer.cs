@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StarDriver.infrastructure.core.DomainContexts;
 
 namespace StarDriver.infrastructure.core.Migrations
 {
     [DbContext(typeof(StarDriverContext))]
-    partial class StarDriverContextModelSnapshot : ModelSnapshot
+    [Migration("20201112020510_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,7 +109,7 @@ namespace StarDriver.infrastructure.core.Migrations
 
                     b.HasIndex("ExamId");
 
-                    b.ToTable("QExamAnswers");
+                    b.ToTable("ExamAnswerses");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.Question", b =>
@@ -146,7 +148,7 @@ namespace StarDriver.infrastructure.core.Migrations
 
                     b.HasIndex("ExamId");
 
-                    b.ToTable("Question");
+                    b.ToTable("Questions");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Question");
                 });
@@ -260,14 +262,14 @@ namespace StarDriver.infrastructure.core.Migrations
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.QExamAnswers", b =>
                 {
                     b.HasOne("StarDriver.domain.core.Business.Exams.Exam", null)
-                        .WithMany("Answerses")
+                        .WithMany("_answerses")
                         .HasForeignKey("ExamId");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.Question", b =>
                 {
                     b.HasOne("StarDriver.domain.core.Business.Exams.Exam", null)
-                        .WithMany("Questions")
+                        .WithMany("_questions")
                         .HasForeignKey("ExamId");
                 });
 
@@ -293,9 +295,9 @@ namespace StarDriver.infrastructure.core.Migrations
 
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.Exam", b =>
                 {
-                    b.Navigation("Answerses");
+                    b.Navigation("_answerses");
 
-                    b.Navigation("Questions");
+                    b.Navigation("_questions");
                 });
 #pragma warning restore 612, 618
         }
