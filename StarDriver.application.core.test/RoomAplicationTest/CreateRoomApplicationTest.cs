@@ -14,7 +14,7 @@ namespace StarDriver.application.core.test
         [SetUp]
         public void Setup()
         {
-            var optionsInMemory = new DbContextOptionsBuilder<StarDriverContext>().UseInMemoryDatabase("StarDriver").Options;
+            var optionsInMemory = new DbContextOptionsBuilder<StarDriverContext>().UseInMemoryDatabase(GetType().Name).Options;
             _context = new StarDriverContext(optionsInMemory);
 
         }
@@ -30,22 +30,22 @@ namespace StarDriver.application.core.test
         }
         
         [Test]
-        public void CanNotCreateRoomWithoutInstructorCreated()
+        public void CannotCreateRoomWithoutRegisteredInstructorTest()
         {
             loadData();
-            var request1 = new CreateRoomRequest(){ Name = "salon 3", Description = "salon clases intensivas", State = "creado", IdInsturctor = 4, IdDevPlan = 1};
+            var request = new CreateRoomRequest(){ Name = "salon 3", Description = "salon clases intensivas", State = "creado", IdInsturctor = 4, IdDevPlan = 1};
             CreateRoomService _service = new CreateRoomService(new UnitOfWork(_context));
-            var response = _service.Run(request1);
+            var response = _service.Run(request);
             Assert.AreEqual("El instructor ingresado no se encuentra registrado.", response.Message);
         }
         
         [Test]
-        public void CanNotCreateRoomWithoutDevelopmentPlanCreated()
+        public void CannotCreateRoomWithoutRegisteredDevelopmentPlanTest()
         {
             loadData();
-            var request2 = new CreateRoomRequest(){Name = "salon 3", Description = "salon clases intensivas", State = "creado", IdInsturctor = 1, IdDevPlan = 4};
+            var request = new CreateRoomRequest(){Name = "salon 3", Description = "salon clases intensivas", State = "creado", IdInsturctor = 1, IdDevPlan = 4};
             CreateRoomService _service = new CreateRoomService(new UnitOfWork(_context));
-            var response = _service.Run(request2);
+            var response = _service.Run(request);
             Assert.AreEqual("El plan de desarrollo ingresado no se encuentra registrado.", response.Message);
         }
 

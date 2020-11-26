@@ -30,7 +30,16 @@ namespace StarDriver.infrastructure.core.Base
         {
             get { return _mainThemeRepository ??= new MainThemeRepository(DbContext); }
         }
+
+        private IRoomRepository _roomRepository;
+
+        public IRoomRepository RoomRepository
+        {
+            get { return _roomRepository ??= new RoomRepository(DbContext); }
+        }
         
+        
+
         private IPersonsRepository _personsRepository;
         public IPersonsRepository PersonsRepository
         {
