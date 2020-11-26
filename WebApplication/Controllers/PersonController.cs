@@ -4,7 +4,7 @@ using StarDriver.domain.core.Contracts;
 
 namespace WebApplication.Controllers
 {
-    [Route("Person/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class PersonController : ControllerBase
     {
