@@ -9,57 +9,54 @@ namespace StarDriver.domain.core.Business.VirtualRooms
 {
     public class Room: Entity<int>
     {
+        
         public string Name { get; set; }
         public string Description { get; set; }
-        public bool State { get; set; }
-        public Instructor _instructor { get; set; }
-        public DevelopmentPlan _developmentPlan { get; set; }
+        public string State { get; set; }
+        
+        public Instructor Instructor { get; set; }
+        
+        public DevelopmentPlan DevelopmentPlan { get; set; }
 
-        private List<Apprentice> _apprentice;
+        public List<Apprentice> _apprentice;
 
         public Room()
         {
+            _apprentice = new List<Apprentice>();
         }
 
-        public Room(int identification, string name, string description, bool state, Instructor instructor, DevelopmentPlan developmentPlan, List<Apprentice> apprentice)
+        public Room( string name, string description, string state, Instructor instructor, DevelopmentPlan developmentPlan, List<Apprentice> apprentice)
         {
-            Id = identification;
             Name = name;
             Description = description;
             State = state;
-            _instructor = instructor;
-            _developmentPlan = developmentPlan;
+            Instructor = instructor;
+            DevelopmentPlan = developmentPlan;
             _apprentice = apprentice;
         }
         
-        public string UpdateVirtualRoom(string name, string description, bool state, List<Apprentice> newApprentices, Instructor instructor)
+        public string UpdateVirtualRoom(string name, string description, string state, Instructor instructor, DevelopmentPlan developmentPlan)
         {
-            if (Name.Equals(name) && Description.Equals(description) && state.Equals(State) && newApprentices.Count == 0 && instructor.Id == _instructor.Id)
+            if ( StringOperations.IsEqual(Name, name) && StringOperations.IsEqual(Description, description) && StringOperations.IsEqual(state, State) && DevelopmentPlan.Id == DevelopmentPlan.Id && Instructor.Id == instructor.Id)
                 return "Debe modificar al menos un campo para poder actualizar la sala virtual";
 
             Name = name;
             Description = description;
             State = state;
-            _instructor = instructor;
-            
-            foreach (var newApprentice in newApprentices)
-            {
-                int count = 0;
-
-                foreach (var apprenticeRegister in _apprentice){
-
-                    if(apprenticeRegister.Id == newApprentice.Id ){
-                        count = 1;
-                    }
-                }
-                if(count == 0){
-                    _apprentice.Add(newApprentice);
-                }
-            }
+            Instructor = instructor;
+            DevelopmentPlan = DevelopmentPlan;
 
             return "sala virtual actualizada con exito";
             
         }
+
+        /*
+         * estados del salon:
+         *   creado
+         *   en curso
+         *   pausado
+         *   finalizado
+         */
 
     }
 }

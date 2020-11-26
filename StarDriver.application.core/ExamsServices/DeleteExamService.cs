@@ -15,7 +15,7 @@ namespace StarDriver.application.core.ExamsServices
 
         public DeleteExamResponse Ejecutar(DeleteExamRequest request)
         {
-            var exam = _unitOfWork.ExamRepository.FindFirstOrDefault(t => t.Id == request.ExamId);
+            var exam = _unitOfWork.ExamRepository.Find(request.ExamId);
             if(exam == null) return new DeleteExamResponse() { Message = "El examen no existe."};
             _unitOfWork.ExamRepository.Delete(exam);
             _unitOfWork.Commit();

@@ -24,7 +24,7 @@ namespace StarDriver.application.core.ExamsServices
         
         public GetExamResponse Ejecutar(int id)
         {
-            var exam = _unitOfWork.ExamRepository.Find(id);
+            var exam = _unitOfWork.ExamRepository.FindFirstOrDefault(t => t.Id == id);
             return exam == null ? 
                 new GetExamResponse("No se encontro el examen") : 
                 new GetExamResponse($"El examen {exam.Id} fue encontrado.", exam: exam);
@@ -35,10 +35,10 @@ namespace StarDriver.application.core.ExamsServices
     public class GetExamResponse
     {
         public string Message { get; }
-        public Exam Exam { get;  }
-        public IEnumerable<Exam> Examlist { get; }
+        public object Exam { get; }
+        public IEnumerable<object> Examlist { get; }
 
-        public GetExamResponse(string message, IEnumerable<Exam> examlist = null, Exam exam = null)
+        public GetExamResponse(string message, IEnumerable<object> examlist = null, object exam = null)
         {
             Message = message;
             Exam = exam;

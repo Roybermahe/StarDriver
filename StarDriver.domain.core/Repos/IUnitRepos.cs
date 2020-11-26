@@ -8,5 +8,6 @@
         IPersonsRepository PersonsRepository { get; }
         IQuestionRepository QuestionRepository { get; }
         IMainThemeRepository MainThemeRepository { get; }
+        IRoomRepository RoomRepository { get; }
     }
 }

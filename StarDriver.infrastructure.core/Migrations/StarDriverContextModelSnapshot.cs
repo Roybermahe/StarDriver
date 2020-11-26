@@ -107,7 +107,7 @@ namespace StarDriver.infrastructure.core.Migrations
 
                     b.HasIndex("ExamId");
 
-                    b.ToTable("ExamAnswerses");
+                    b.ToTable("QExamAnswers");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.Question", b =>
@@ -146,7 +146,7 @@ namespace StarDriver.infrastructure.core.Migrations
 
                     b.HasIndex("ExamId");
 
-                    b.ToTable("Questions");
+                    b.ToTable("Question");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Question");
                 });
@@ -197,23 +197,23 @@ namespace StarDriver.infrastructure.core.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("DevelopmentPlanId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("InstructorId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("State")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("_developmentPlanId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("_instructorId")
-                        .HasColumnType("int");
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("_developmentPlanId");
+                    b.HasIndex("DevelopmentPlanId");
 
-                    b.HasIndex("_instructorId");
+                    b.HasIndex("InstructorId");
 
                     b.ToTable("Rooms");
                 });
@@ -263,30 +263,30 @@ namespace StarDriver.infrastructure.core.Migrations
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.QExamAnswers", b =>
                 {
                     b.HasOne("StarDriver.domain.core.Business.Exams.Exam", null)
-                        .WithMany("_answerses")
+                        .WithMany("Answerses")
                         .HasForeignKey("ExamId");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.Question", b =>
                 {
                     b.HasOne("StarDriver.domain.core.Business.Exams.Exam", null)
-                        .WithMany("_questions")
+                        .WithMany("Questions")
                         .HasForeignKey("ExamId");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.VirtualRooms.Room", b =>
                 {
-                    b.HasOne("StarDriver.domain.core.Business.DevPlans.DevelopmentPlan", "_developmentPlan")
+                    b.HasOne("StarDriver.domain.core.Business.DevPlans.DevelopmentPlan", "DevelopmentPlan")
                         .WithMany()
-                        .HasForeignKey("_developmentPlanId");
+                        .HasForeignKey("DevelopmentPlanId");
 
-                    b.HasOne("StarDriver.domain.core.Business.Persons.Instructor", "_instructor")
+                    b.HasOne("StarDriver.domain.core.Business.Persons.Instructor", "Instructor")
                         .WithMany()
-                        .HasForeignKey("_instructorId");
+                        .HasForeignKey("InstructorId");
 
-                    b.Navigation("_developmentPlan");
+                    b.Navigation("DevelopmentPlan");
 
-                    b.Navigation("_instructor");
+                    b.Navigation("Instructor");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.DevPlans.DevelopmentPlan", b =>
@@ -296,9 +296,9 @@ namespace StarDriver.infrastructure.core.Migrations
 
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.Exam", b =>
                 {
-                    b.Navigation("_answerses");
+                    b.Navigation("Answerses");
 
-                    b.Navigation("_questions");
+                    b.Navigation("Questions");
                 });
 #pragma warning restore 612, 618
         }

@@ -60,10 +60,10 @@ namespace StarDriver.domain.core.test
                apprentices.Add(apprentice3);
                
                // crear sala virtual
-               var salaVirtual = new Room(identification: 001, name: "room1", description: "enseñanza de norvas rurales", state: true, instructor: instructor, developmentPlan: plan, apprentice: apprentices);
+               var salaVirtual = new Room( name: "room1", description: "enseñanza de norvas rurales", state: "creado", instructor: instructor, developmentPlan: plan, apprentice: apprentices);
             
             //Acción
-            var modificar = salaVirtual.UpdateVirtualRoom(name: "room2", description: "enseñanza de normas urbanas y rurales", state: true, newApprentices: apprentices, instructor: instructor );
+            var modificar = salaVirtual.UpdateVirtualRoom(name: "room2", description: "enseñanza de normas urbanas y rurales", state: "creado", instructor: instructor, developmentPlan: plan);
 
             //Verificación
             Assert.AreEqual("sala virtual actualizada con exito", modificar);
@@ -115,11 +115,11 @@ namespace StarDriver.domain.core.test
                apprentices.Add(apprentice3);
                
                // crear sala virtual
-               var salaVirtual = new Room(identification: 001, name: "room1", description: "enseñanza de norvas rurales", state: true, instructor: instructor, developmentPlan: plan, apprentice: apprentices);
+               var salaVirtual = new Room( name: "room1", description: "enseñanza de norvas rurales", state: "creado", instructor:instructor , developmentPlan: plan, apprentice: apprentices);
             
             //Acción
             List<Apprentice> emptyApprentices = new List<Apprentice>();
-            var modificar = salaVirtual.UpdateVirtualRoom(name: "room1", description: "enseñanza de norvas rurales", state: true, newApprentices: emptyApprentices, instructor: instructor );
+            var modificar = salaVirtual.UpdateVirtualRoom(name: "room1", description: "enseñanza de norvas rurales", state: "creado", instructor:instructor , developmentPlan: plan );
 
             //Verificación
             Assert.AreEqual("Debe modificar al menos un campo para poder actualizar la sala virtual", modificar);

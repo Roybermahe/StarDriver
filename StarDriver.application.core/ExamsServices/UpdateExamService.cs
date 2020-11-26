@@ -15,7 +15,9 @@ namespace StarDriver.application.core.ExamsServices
 
         public UpdateExamResponse Ejecutar(UpdateExamRequest request)
         {
-            var exam = request.Map();
+            var exam = _unitOfWork.ExamRepository.Find(request.ExamId);
+            if(exam == null) return new UpdateExamResponse() { Message = "El examen que desea editar no existe." };
+            request.Map(exam);
             if (!exam.ValidateDates()) return new UpdateExamResponse() {Message = "La fecha de finalización debe ser posterior o igual a la fecha de realización."};
             _unitOfWork.ExamRepository.Edit(exam);
             _unitOfWork.Commit();
@@ -38,9 +40,12 @@ namespace StarDriver.application.core.ExamsServices
         [Required(ErrorMessage = "Las fechas deben ser en formato 'DD/MM/YYYY' o algunos de los formatos para fechas de .Net core")]
         public string DateFinish { get; set; }
 
-        public Exam Map()
+        public void Map(Exam exam)
         {
-            return new Exam(Tittle, Description, new MyDate(DateRealization), new MyDate(DateFinish)) { Id = ExamId };
+            exam.Tittle = Tittle;
+            exam.DateFinish = DateRealization;
+            exam.DateRealization = DateFinish;
+            exam.Description = Description;
         }
     }
     
