@@ -131,5 +131,8 @@
       }
     }
   },
-  "defaultProject": "StarDriverFront"
+  "defaultProject": "StarDriverFront",
+  "cli": {
+    "analytics": "c97c6eb2-5bb5-49e1-8c07-5b555e8768f9"
+  }
 }

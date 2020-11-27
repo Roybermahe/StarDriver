@@ -1,0 +1,15 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { PersonComponent } from './person.component';
+import {PersonRouteModule} from "./person-route.module";
+
+
+
+@NgModule({
+  declarations: [PersonComponent],
+  imports: [
+    CommonModule,
+    PersonRouteModule
+  ]
+})
+export class PersonModule { }
