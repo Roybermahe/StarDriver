@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ExamsComponent } from './exams.component';
-import {angularMaterialModule} from "../angularMaterial.module";
 import {ExamsRouteModule} from "./exams-route.module";
 
 @NgModule({
@@ -10,7 +9,6 @@ import {ExamsRouteModule} from "./exams-route.module";
   ],
   imports: [
     CommonModule,
-    angularMaterialModule,
     ExamsRouteModule
   ]
 })

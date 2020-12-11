@@ -5,7 +5,11 @@ import {Observable} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class HttpGenericService<T, M extends String> {
+/**
+ * T Representa el body que será procesado
+ * M Representa la respuesta que se va a recibir
+ * */
+export class HttpGenericService<T, M> {
 
   private readonly END_POINT: string;
 
@@ -15,19 +19,19 @@ export class HttpGenericService<T, M extends String> {
     this.END_POINT = "https://localhost:5001/api";
   }
 
-  async Get(route: string) {
-    return this.http.get<T>(`${this.END_POINT}/${route}`);
+  Get(route: string): Observable<M> {
+    return this.http.get<M>(`${this.END_POINT}/${route}`);
   }
 
-  async Post(route: string, body: T) {
+  Post(route: string, body: T): Observable<M> {
     return this.http.post<M>(`${this.END_POINT}/${route}`, body);
   }
 
-  async Put(route: string, body: T) {
+  Put(route: string, body: T): Observable<M> {
     return this.http.put<M>(`${this.END_POINT}/${route}`, body);
   }
 
-  async Delete(route: string, id: number) {
-    return this.http.delete<M>(`${this.END_POINT}/${route}`);
+  Delete(route: string, id: number): Observable<M> {
+    return this.http.delete<M>(`${this.END_POINT}/${route}/${id}`);
   }
 }

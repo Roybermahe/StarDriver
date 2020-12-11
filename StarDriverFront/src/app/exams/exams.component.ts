@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ExamsModule} from "./exams.module";
+import {ExamModel} from "../../Model/Exam/exam-model";
 
 @Component({
   selector: 'app-exams',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExamsComponent implements OnInit {
 
+  public Exam = new ExamModel();
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() {
+
   }
 
 }
