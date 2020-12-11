@@ -25,7 +25,7 @@ namespace StarDriver.application.core.test
         {
             LoadData();
             
-            var request = new UpdateRoomRequest(){Id = 1, Name = "salon 3", Description = "salon normas rurales", State = "en curso", IdInsturctor = 1, IdDevPlan = 1};
+            var request = new UpdateRoomRequest(){RoomId = 1, Name = "salon 3", Description = "salon normas rurales", State = "en curso", IdInsturctor = 1, IdDevPlan = 1};
             UpdateRoomService service = new UpdateRoomService(new UnitOfWork(_context));
             var response = service.Run(request);
             Assert.AreEqual("La sala virtual fue actualizada.", response.Message);
@@ -35,7 +35,7 @@ namespace StarDriver.application.core.test
         public void CannotUpdateRoomWithoutRegisteredInstructorTest()
         {
             LoadData();
-            var request = new UpdateRoomRequest(){Id = 1, Name = "salon 3", Description = "salon normas rurales", State = "en curso", IdInsturctor = 3, IdDevPlan = 1};
+            var request = new UpdateRoomRequest(){RoomId = 1, Name = "salon 3", Description = "salon normas rurales", State = "en curso", IdInsturctor = 3, IdDevPlan = 1};
             UpdateRoomService service = new UpdateRoomService(new UnitOfWork(_context));
             var response = service.Run(request);
             Assert.AreEqual("El instructor que desea modificar no se encuentra registrado.", response.Message);
@@ -46,7 +46,7 @@ namespace StarDriver.application.core.test
         {
             LoadData();
             
-            var request = new UpdateRoomRequest(){Id = 1, Name = "salon 3", Description = "salon normas rurales", State = "en curso", IdInsturctor = 1, IdDevPlan = 12};
+            var request = new UpdateRoomRequest(){RoomId = 1, Name = "salon 3", Description = "salon normas rurales", State = "en curso", IdInsturctor = 1, IdDevPlan = 12};
             UpdateRoomService service = new UpdateRoomService(new UnitOfWork(_context));
             var response = service.Run(request);
             Assert.AreEqual("El plan de desarrollo que desea modificar no se encuentra registrado.", response.Message);
