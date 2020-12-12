@@ -39,4 +39,10 @@ describe('ExamFormComponent', () => {
   it('No puede hacer submit con el title y el description vacios', () => {
       expect(component.onSubmit()).toEqual("Hacen falta title y descripcion");
   });
+
+  it('Enviar petición submit con el title y el description llenos', () => {
+    component.exam.Tittle="Ingreso un valor";
+    component.exam.Description="Ingreso un valor";
+    expect(component.onSubmit()).toEqual("Datos guardados exitosamente");
+  });
 });
