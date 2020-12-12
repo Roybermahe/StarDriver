@@ -40,4 +40,10 @@ describe('RoomFormComponent', () => {
   it('No puede hacer submit con el nombre vacio', () =>{
     expect(component.onSubmit).toEqual("hace falta el nombre");
   });
+
+  it('Enviar petición submit con el nombre y el description llenos', () => {
+    component.room.Name="Ingreso un valor";
+    component.room.Description="Ingreso un valor";
+    expect(component.onSubmit()).toEqual("Datos guardados exitosamente");
+  });
 });

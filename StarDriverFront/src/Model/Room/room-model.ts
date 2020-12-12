@@ -12,7 +12,7 @@ constructor() {
 
 
   onValid() {
-    if(this.Name && this.RoomId){
+    if(this.Name){
       return this.Name?.length > 0 ;
     }
     return false;
