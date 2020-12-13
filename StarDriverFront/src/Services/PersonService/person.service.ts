@@ -11,7 +11,7 @@ export class PersonService extends HttpGenericService<PersonModel, ResponsePerso
 }
 
 export class  ResponsePerson{
-  Message?: string;
-  Person?: PersonModel;
-  Personlist?: PersonModel[];
+  message?: string;
+  person?: PersonModel;
+  personlist?: PersonModel[];
 }

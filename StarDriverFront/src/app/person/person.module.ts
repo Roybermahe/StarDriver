@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PersonComponent } from './person.component';
 import {PersonRouteModule} from "./person-route.module";
+import {SharedModule} from "../shared/shared.module";
+import {angularMaterialModule} from "../angularMaterial.module";
 
 
 
@@ -9,7 +11,9 @@ import {PersonRouteModule} from "./person-route.module";
   declarations: [PersonComponent],
   imports: [
     CommonModule,
-    PersonRouteModule
+    PersonRouteModule,
+    SharedModule,
+    angularMaterialModule
   ]
 })
 export class PersonModule { }

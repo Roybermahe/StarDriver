@@ -8,13 +8,16 @@ namespace StarDriver.domain.core.Business.Persons
 {
     public class Instructor : Person
     {
-        public readonly List<string> _specializations;
-        
-        public Instructor(){}
+        public List<Specialization> _specializations { get; set; }
+
+        public Instructor()
+        {
+            _specializations =  new List<Specialization>();
+        }
    
         public Instructor(int identificacion, string name, string surname,  string phone, string mail, string direction) 
         {
-            _specializations =  new List<string>();
+            _specializations =  new List<Specialization>();
             Id = identificacion;
             Name = name;
             Surname = surname;
@@ -26,7 +29,7 @@ namespace StarDriver.domain.core.Business.Persons
         public string AddSpecializations(string specializations)
         {
             if (StringOperations.IsEmpty(specializations)) return "No se puede realizar el registro";
-            _specializations.Add(specializations);
+            _specializations.Add(new Specialization(){Name = specializations});
             return "Especializaciones agregadas";
         }
        

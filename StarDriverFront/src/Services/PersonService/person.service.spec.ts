@@ -39,15 +39,7 @@ describe('PersonService', () => {
       Message : "Se guardo la persona"
     };
 
-    let objecCreate = new  PersonModel();
-
-    objecCreate.Identificacion = 1003385884;
-    objecCreate.Name= "Eva Camacho";
-    objecCreate.Surname= "Romero Cardeño";
-    objecCreate.Phone= "3106405582";
-    objecCreate.Mail= "Eva@gmail.com";
-    objecCreate.Direction= "Nanado Marin";
-
+    let objecCreate = new  PersonModel(1003385884,"Eva Camacho","Romero Cardeño","3106405582","Eva@gmail.com","Nanado Marin", "Apprentice");
 
 
     service.Post("Person", objecCreate).subscribe(responsePerson =>
@@ -66,14 +58,8 @@ describe('PersonService', () => {
       Message : "Se necesita el id para actualizar"
     };
 
-    let objecCreate = new  PersonModel();
+    let objecCreate = new  PersonModel(1003385884,"Eva Camacho","Romero Cardeño","3106405582","Eva@gmail.com","Nanado Marin", "Apprentice");
 
-    objecCreate.Identificacion = 1003385884;
-    objecCreate.Name= "Eva Camacho";
-    objecCreate.Surname= "Romero Cardeño";
-    objecCreate.Phone= "3106405582";
-    objecCreate.Mail= "Eva@gmail.com";
-    objecCreate.Direction= "Nanado Marin";
 
     service.Put("Person", objecCreate).subscribe(responsePerson =>
       expect(responsePerson).toEqual(PersonResponse, "Se debe indicar una ID"), fail
@@ -92,14 +78,9 @@ describe('PersonService', () => {
       Message : "Se necesita el id para actualizar"
     };
 
-    let objecCreate = new  PersonModel();
+    let objecCreate = new  PersonModel(1003385884,"Eva Camacho","Romero Cardeño","3106405582","Eva@gmail.com","Nanado Marin", "Apprentice");
 
-    objecCreate.Identificacion = 1003385884;
-    objecCreate.Name= "Eva Camacho";
-    objecCreate.Surname= "Romero Cardeño";
-    objecCreate.Phone= "3106405582";
-    objecCreate.Mail= "Eva@gmail.com";
-    objecCreate.Direction= "Nanado Marin";
+
 
     service.Put("Person", objecCreate).subscribe(responsePerson =>
       expect(responsePerson).toEqual(PersonResponse, "Se debe indicar una ID"), fail
@@ -114,14 +95,9 @@ describe('PersonService', () => {
   });
 
   it('Obtener lista persona', () => {
-    let objecCreate = new  PersonModel();
+    let objecCreate = new  PersonModel(1003385884,"Eva Camacho","Romero Cardeño","3106405582","Eva@gmail.com","Nanado Marin", "Apprentice");
 
-    objecCreate.Identificacion = 1003385884;
-    objecCreate.Name= "Eva Camacho";
-    objecCreate.Surname= "Romero Cardeño";
-    objecCreate.Phone= "3106405582";
-    objecCreate.Mail= "Eva@gmail.com";
-    objecCreate.Direction= "Nanado Marin";
+
     const PersonResponse: ResponsePerson = {
       Message : "Se necesita el id para obtener a la persona",
       Personlist: [objecCreate]
@@ -140,14 +116,8 @@ describe('PersonService', () => {
   });
 
   it('Obtener persona', () => {
-    let objecCreate = new  PersonModel();
+    let objecCreate = new  PersonModel(1003385884,"Eva Camacho","Romero Cardeño","3106405582","Eva@gmail.com","Nanado Marin", "Apprentice");
 
-    objecCreate.Identificacion = 1003385884;
-    objecCreate.Name= "Eva Camacho";
-    objecCreate.Surname= "Romero Cardeño";
-    objecCreate.Phone= "3106405582";
-    objecCreate.Mail= "Eva@gmail.com";
-    objecCreate.Direction= "Nanado Marin";
 
     const PersonResponse: ResponsePerson = {
       Message : "Se necesita el id para obtener a la persona",

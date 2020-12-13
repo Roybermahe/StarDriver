@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PersonComponent } from './person.component';
+import {angularMaterialModule} from "../angularMaterial.module";
 
 describe('PersonComponent', () => {
   let component: PersonComponent;
@@ -8,7 +9,8 @@ describe('PersonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PersonComponent ]
+      declarations: [ PersonComponent ],
+      imports: [angularMaterialModule]
     })
     .compileComponents();
   });

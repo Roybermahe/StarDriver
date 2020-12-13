@@ -1,0 +1,88 @@
+<form  (ngSubmit)="form.form.valid && onForm(form)"  #form="ngForm">
+  <h2 mat-dialog-title>Registrar Persona</h2>
+  <mat-dialog-content class="mat-typography">
+
+    <p> <!-- Identificación for person-->
+      <mat-form-field appearance="outline"  class="w-100" id="ipt-identificacion">
+        <mat-label>Identificación</mat-label>
+        <input matInput type="number" name="identificacion" [(ngModel)]="person.Identificacion"  placeholder="Placeholder" required>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </p>
+
+    <p> <!-- Name for person-->
+      <mat-form-field appearance="outline" class="w-100" id="ipt-name">
+        <mat-label>Nombres</mat-label>
+        <input matInput name="name" [(ngModel)]="person.Name" placeholder="Placeholder" required>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </p>
+
+    <p> <!-- Surname for person-->
+      <mat-form-field appearance="outline" class="w-100" id="ipt-surname">
+        <mat-label>Apellidos</mat-label>
+        <input matInput  name="surname" [(ngModel)]="person.Surname" placeholder="Placeholder" required>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </p>
+
+    <p> <!-- Email for person-->
+      <mat-form-field appearance="outline" class="w-100" id="ipt-email">
+        <mat-label>Email</mat-label>
+        <input matInput  name="mail" [(ngModel)]="person.Mail" placeholder="Placeholder" required>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </p>
+
+    <p> <!-- Phone for person-->
+      <mat-form-field appearance="outline" class="w-100" id="ipt-phone">
+        <mat-label>Teléfono</mat-label>
+        <input matInput  name="phone" [(ngModel)]="person.Phone" placeholder="Placeholder" required>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </p>
+
+    <p> <!-- Direction for person-->
+      <mat-form-field appearance="outline" class="w-100" id="ipt-direction">
+        <mat-label>Dirección</mat-label>
+        <input matInput  name="direction" [(ngModel)]="person.Direction" placeholder="Placeholder" required>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </p>
+
+    <p><!-- Type the person-->
+      <mat-form-field appearance="outline" class="w-100" id="ipt-type">
+        <mat-label>Tipo</mat-label>
+        <mat-select  name="type" [(value)]="person.type" required>
+          <mat-option value="Instructor">Instructor</mat-option>
+          <mat-option value="Apprentice">Aprendiz</mat-option>
+        </mat-select>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </p>
+
+    <p *ngIf="person.type=='Instructor'"> <!-- Especialization for instructor-->
+      <mat-form-field appearance="outline" class="w-100 especialization" id="ipt-specialization">
+        <mat-label>Especializaciones</mat-label>
+        <mat-chip-list #chipList aria-label="Fruit selection">
+          <mat-chip *ngFor="let specialization of specializations" [selectable]="selectable"
+                    [removable]="removable" (removed)="remove(specialization)">
+            {{specialization.name}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="Nueva especialización"  name="specialization"
+                 [matChipInputFor]="chipList"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 [matChipInputAddOnBlur]="addOnBlur"
+                 (matChipInputTokenEnd)="add($event)" required>
+        </mat-chip-list>
+      </mat-form-field>
+    </p>
+
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button type="submit" [mat-dialog-close]="true" [disabled]="form.invalid" >Guardar</button>
+  </mat-dialog-actions>
+
+</form>

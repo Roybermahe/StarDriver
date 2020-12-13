@@ -1,5 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {PersonFormComponent} from "../shared/person-form/person-form.component";
+import {PersonModel} from "../../Model/Person/person-model";
+import {PersonService, ResponsePerson} from "../../Services/PersonService/person.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
+import {PersonFormUpdateComponent} from "../shared/person-form-update/person-form-update.component";
 
+
+let  ELEMENT_DATA: PersonModel[] = [
+  new PersonModel(1003376884,"EVA","Camacho","3106400314","@mail","nando marin", "Apprentice"),
+  new PersonModel(1003376889,"EVA","Camacho","3106400314","@mail","nando marin", "Apprentice"),
+];
 @Component({
   selector: 'app-person',
   templateUrl: './person.component.html',
@@ -7,9 +21,62 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonComponent implements OnInit {
 
-  constructor() { }
+  response = new ResponsePerson();
 
-  ngOnInit(): void {
+  displayedColumns: string[] = ['Identificacion', 'Name', 'Surname', 'Phone', 'Mail', 'Direction', 'Ver'];
+  columnsToDisplay: string[] = this.displayedColumns.slice();
+  data: PersonModel[] = [];
+  dataSource: MatTableDataSource<PersonModel>;
+
+
+  constructor(public dialog: MatDialog, private personService: PersonService, private _snackBar: MatSnackBar) {
+    this.dataSource = new MatTableDataSource(this.data);
   }
 
+
+  ngOnInit(): void {
+  this.onGet();
+  }
+
+  onGet(): void{
+
+    this.personService.Get("Person",).subscribe(Response=>{
+      this.response = Response;
+      this.data = <PersonModel[]>Response.personlist;
+      this.dataSource = new MatTableDataSource(this.data);
+      console.log(this.data);
+    }, error => console.log(error));
+
+  }
+
+
+  openDialog() {
+    const dialogRef = this.dialog.open(PersonFormComponent, {
+      width: '700px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openDialogUpdate() {
+    const dialogRef = this.dialog.open(PersonFormUpdateComponent, {
+      width: '700px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 }

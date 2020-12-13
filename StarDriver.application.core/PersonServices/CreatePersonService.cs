@@ -18,12 +18,19 @@ namespace StarDriver.application.core.PersonServices
         public PersonCreateResponse Ejecutar(PersonCreateRequest request)
         {
             var person = request.Map();
+            
+            if (person is Instructor)
+            {
+                StringOperations.Split(request.Specialization).ForEach(delegate(string s)
+                {
+                    ((Instructor) person).AddSpecializations(s);
+                });
+                
+            }
            _unitOfWork.PersonsRepository.Add(person);
             _unitOfWork.Commit();
             return new PersonCreateResponse() { Message = "Persona creada con exito"};
             
-            
-           
         }
         
     }
@@ -36,6 +43,7 @@ namespace StarDriver.application.core.PersonServices
         public string Name { get; set; }
         [Required(ErrorMessage ="El apellido es un campo requerido")]
         public  string Surname { get; set; }
+        public string Specialization { get; set; }
         
         [Required]
         public  string Phone { get; set; }
