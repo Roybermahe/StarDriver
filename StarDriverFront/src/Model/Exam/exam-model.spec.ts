@@ -12,4 +12,11 @@ describe('ExamModel', () => {
     examModel.Description = "Algun dato";
     expect(examModel.onValid()).toBeTrue();
   });
+
+  it('fecha de inicio y fecha de fin', () => {
+    let examModel = new ExamModel();
+    let dateTest = examModel.formattedDate(new Date().toDateString());
+    expect(dateTest).toEqual(dateTest);
+    expect(dateTest).toEqual(dateTest);
+  });
 });

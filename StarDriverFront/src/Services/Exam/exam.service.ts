@@ -9,7 +9,7 @@ export class ExamService extends HttpGenericService<ExamModel, ResponseExam> {
 }
 
 export class ResponseExam {
-  Message?: string;
-  Exam?: ExamModel;
-  Examlist?: ExamModel[];
+  message?: string;
+  exam?: ExamModel;
+  examlist?: ExamModel[];
 }

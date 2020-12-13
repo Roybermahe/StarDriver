@@ -13,32 +13,32 @@ export class ExamFormComponent implements OnInit {
 
   response = new ResponseExam();
   exam = new ExamModel();
-  DateFinish: string = "";
-  DateStart: string = "";
+  DateFinish: Date = new Date();
+  DateStart: Date = new Date();
   constructor(
     private examService: ExamService,
     private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
+
   }
 
   onSubmit(): string {
     if(!this.exam.onValid()) return "Hacen falta title y descripcion";
-
     this.examService.Post("Exam", this.exam).subscribe(Response => {
       this.response = Response;
-      if(this.response.Message) {
-        this._snackBar.open(this.response.Message);
-      }
+      this._snackBar.open(<string>this.response.message, 'cerrar', {
+        duration: 2000
+      });
     }, error => console.log(error));
-
     return "Datos guardados exitosamente";
   }
 
   onForm(f: NgForm) {
-    this.exam.DateRealization = this.exam.formattedDate(this.DateStart);
-    this.exam.DateFinish = this.exam.formattedDate(this.DateFinish);
+    this.exam.DateRealization = this.exam.formattedDate(this.DateStart.toDateString());
+    this.exam.DateFinish = this.exam.formattedDate(this.DateFinish.toDateString());
     console.log(this.onSubmit());
+
   }
 }

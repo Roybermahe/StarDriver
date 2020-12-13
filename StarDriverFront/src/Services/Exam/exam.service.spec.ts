@@ -37,7 +37,7 @@ describe('ExamService', () => {
 
   it('Crear examen', () => {
     const ExamResponse: ResponseExam = {
-      Message: "Examen creado con exito"
+      message: "Examen creado con exito"
     };
 
     let objetCreate = new ExamModel();
@@ -60,7 +60,7 @@ describe('ExamService', () => {
 
   it('Update examen', () => {
     const ExamResponse: ResponseExam = {
-      Message: "Examen actualizado con exito"
+      message: "Examen actualizado con exito"
     };
 
     let objetUpdate = new ExamModel();

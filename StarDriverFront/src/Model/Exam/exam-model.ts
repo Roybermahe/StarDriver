@@ -5,11 +5,12 @@ export class ExamModel {
   DateRealization?: string;
   DateFinish?: string;
 
-  constructor() {
-    this.Tittle = "";
-    this.Description = "";
-    this.DateRealization = "";
-    this.DateFinish = "";
+  constructor(ExamId?: number,Tittle?: string, Description?: string, DateRealization?: string, DateFinish?: string) {
+    this.ExamId = ExamId;
+    this.Tittle = Tittle;
+    this.Description = Description;
+    this.DateRealization = DateRealization;
+    this.DateFinish = DateFinish;
   }
 
   onValid() {

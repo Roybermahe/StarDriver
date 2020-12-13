@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace StarDriver.domain.core.Contracts
 {
@@ -13,18 +14,18 @@ namespace StarDriver.domain.core.Contracts
 
         public int CompareTo(string dateB)
         {
-            var timeB = Convert.ToDateTime(dateB);
+            var timeB = DateTime.ParseExact(dateB, "dd'/'MM'/'yyyy", new CultureInfo("en-CA"));
             return _dateTime.CompareTo(timeB);
         }
 
         public void SetTime(string date)
         {
-            _dateTime = Convert.ToDateTime(date);
+            _dateTime = DateTime.ParseExact(date, "dd'/'MM'/'yyyy", new CultureInfo("en-CA"));
         }
 
         public string GetTime()
         {
-            return _dateTime.ToString("MM'/'dd'/'yyyy");
+            return _dateTime.ToString("dd'/'MM'/'yyyy");
         }
     }
 }
