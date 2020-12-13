@@ -3,8 +3,8 @@ export class RoomModel {
   Name?: string;
   Description?: string;
   State?: string;
-  IdInsturctor?: string;
-  IdDevPlan?: string;
+  IdInsturctor?: number;
+  IdDevPlan?: number;
 
 constructor() {
   this.Name = "";

@@ -4,6 +4,7 @@ import { RoomFormComponent } from './room-form.component';
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {ResponseRoom, RoomService} from "../../../../Services/RoomService/room.service";
 import {RoomModel} from "../../../../Model/Room/room-model";
+import {angularMaterialModule} from "../../../angularMaterial.module";
 
 describe('RoomFormComponent', () => {
   let component: RoomFormComponent;
@@ -13,7 +14,8 @@ describe('RoomFormComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ RoomFormComponent ],
       imports:[
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        angularMaterialModule
       ],
       providers:[
         RoomService

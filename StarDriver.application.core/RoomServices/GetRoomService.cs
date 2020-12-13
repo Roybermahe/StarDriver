@@ -18,8 +18,8 @@ namespace StarDriver.application.core.RoomServices
         {
             var list = _unitOfWork.RoomRepository.GetAll().ToArray();
             return !list.Any() ?
-                new GetRoomResponse("No se encontro ningun examen.") : 
-                new GetRoomResponse($"Se encontraron {list.Count()} examenes.", roomList: list);
+                new GetRoomResponse("No se encontro ninguna sala virtual.") : 
+                new GetRoomResponse($"Se encontraron {list.Count()} salas virtuales.", roomList: list);
         }
 
         public GetRoomResponse Run(int id)

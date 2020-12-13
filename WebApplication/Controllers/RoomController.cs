@@ -8,7 +8,7 @@ namespace WebApplication.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoomController : Controller
+    public class RoomController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -27,12 +27,29 @@ namespace WebApplication.Controllers
         
         
         [HttpPut]
-        public ActionResult<UpdateRoomResponse> Post(UpdateRoomRequest request)
+        public ActionResult<UpdateRoomResponse> Put(UpdateRoomRequest request)
         {
             var service = new UpdateRoomService(_unitOfWork);
             var response = service.Run(request);
             return Ok(response);
         }
+
+        [HttpGet]
+        public ActionResult<GetRoomResponse> Get()
+        {
+            var service = new GetRoomService(_unitOfWork);
+            var response = service.Run();
+            return Ok(response);
+        }
         
+        [Route("GetRoom")]
+        [HttpGet]
+        public ActionResult<GetRoomResponse> GetById([FromQuery] int id)
+        {
+            var service = new GetRoomService(_unitOfWork);
+            var response = service.Run(id);
+            return Ok(response);
+        }
+
     }
 }
