@@ -2,38 +2,38 @@ import {TypePerson} from "../../Types/TypePerson";
 
 export class PersonModel {
   Id?: number;
-  Identificacion?: number;
-  Name?: string;
-  Surname?: string;
-  Phone?: string;
-  Mail?: string;
-  Direction?: string;
+  identificacion?: number;
+  name?: string;
+  surname?: string;
+  phone?: string;
+  mail?: string;
+  direction?: string;
   type?: TypePerson;
-  Specialization?: string;
+  specialization?: string;
 
 
   constructor(Identificacion: number, Name: string, Surname: string, Phone: string, Mail: string, Direction: string, type: TypePerson) {
-    this.Identificacion = Identificacion;
-    this.Name = Name;
-    this.Surname = Surname;
-    this.Phone = Phone;
-    this.Mail = Mail;
-    this.Direction = Direction;
+    this.identificacion = Identificacion;
+    this.name = Name;
+    this.surname = Surname;
+    this.phone = Phone;
+    this.mail = Mail;
+    this.direction = Direction;
     this.type = type;
   }
 
   onValid(){
-    if (this.Name && this.Identificacion){
-      return this.Name.length >0 && this.Identificacion > 0;
+    if (this.name && this.identificacion){
+      return this.name.length >0 && this.identificacion > 0;
     }
     return false;
   }
 
   onSpecialization(specialization: Specialization[]){
     specialization.forEach(item=>{
-      this.Specialization += ("|" + item.name);
+      this.specialization += ("|" + item.name);
     });
-    this.Specialization = this.Specialization?.slice(1);
+    this.specialization = this.specialization?.slice(1);
   }
 }
 

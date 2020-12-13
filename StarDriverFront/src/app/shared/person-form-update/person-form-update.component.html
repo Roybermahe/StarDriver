@@ -1,0 +1,61 @@
+<form  (ngSubmit)="form.form.valid && onForm(form)"  #form="ngForm" *ngIf="person">
+  <h2 mat-dialog-title>Actualizar Persona</h2>
+  <mat-dialog-content class="mat-typography">
+
+    <p> <!-- Identificación for person-->
+      <mat-form-field appearance="outline"  class="w-100" id="ipt-identificacion">
+        <mat-label>Identificación</mat-label>
+        <input matInput type="number" name="identificacion" [(ngModel)]="person.identificacion"   disabled>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </p>
+
+    <p> <!-- Name for person-->
+      <mat-form-field appearance="outline" class="w-100" id="ipt-name">
+        <mat-label>Nombres</mat-label>
+        <input matInput name="name" [(ngModel)]="person.name" required>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </p>
+
+    <p> <!-- Surname for person-->
+      <mat-form-field appearance="outline" class="w-100" id="ipt-surname">
+        <mat-label>Apellidos</mat-label>
+        <input matInput  name="surname" [(ngModel)]="person.surname"  required>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </p>
+
+    <p> <!-- Email for person-->
+      <mat-form-field appearance="outline" class="w-100" id="ipt-email">
+        <mat-label>Email</mat-label>
+        <input matInput  name="mail" [(ngModel)]="person.mail"  required>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </p>
+
+    <p> <!-- Phone for person-->
+      <mat-form-field appearance="outline" class="w-100" id="ipt-phone">
+        <mat-label>Teléfono</mat-label>
+        <input matInput  name="phone" [(ngModel)]="person.phone" required>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </p>
+
+    <p> <!-- Direction for person-->
+      <mat-form-field appearance="outline" class="w-100" id="ipt-direction">
+        <mat-label>Dirección</mat-label>
+        <input matInput  name="direction" [(ngModel)]="person.direction"  required>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </p>
+
+
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button type="submit" [mat-dialog-close]="true" [disabled]="form.invalid" >Guardar</button>
+  </mat-dialog-actions>
+
+</form>
+

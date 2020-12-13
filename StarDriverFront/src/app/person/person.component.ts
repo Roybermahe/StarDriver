@@ -5,15 +5,9 @@ import {PersonModel} from "../../Model/Person/person-model";
 import {PersonService, ResponsePerson} from "../../Services/PersonService/person.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatTableDataSource} from "@angular/material/table";
-import {MatPaginator} from "@angular/material/paginator";
-import {MatSort} from "@angular/material/sort";
 import {PersonFormUpdateComponent} from "../shared/person-form-update/person-form-update.component";
 
 
-let  ELEMENT_DATA: PersonModel[] = [
-  new PersonModel(1003376884,"EVA","Camacho","3106400314","@mail","nando marin", "Apprentice"),
-  new PersonModel(1003376889,"EVA","Camacho","3106400314","@mail","nando marin", "Apprentice"),
-];
 @Component({
   selector: 'app-person',
   templateUrl: './person.component.html',
@@ -60,9 +54,11 @@ export class PersonComponent implements OnInit {
     });
   }
 
-  openDialogUpdate() {
+  openDialogUpdate(element: PersonModel) {
+    console.log(element);
     const dialogRef = this.dialog.open(PersonFormUpdateComponent, {
-      width: '700px'
+      width: '700px',
+      data: element
     });
 
     dialogRef.afterClosed().subscribe(result => {
