@@ -38,7 +38,11 @@ namespace WebApplication
             services.AddScoped<IDbContext, StarDriverContext>();
             services.AddScoped<IDates, MyDate>();
             
-
+            services.AddCors(options => {
+                options.AddDefaultPolicy(builder => {  
+                    builder.WithOrigins("https://localhost:4200", "http://localhost:4200").AllowAnyMethod().AllowAnyHeader().AllowCredentials();  
+                });  
+            });
             #region swagger doc generation
             services.AddSwaggerGen(options =>
             {
@@ -73,6 +77,8 @@ namespace WebApplication
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors();
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

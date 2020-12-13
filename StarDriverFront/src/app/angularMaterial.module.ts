@@ -16,6 +16,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatNativeDateModule } from "@angular/material/core";
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { MatDialogModule } from "@angular/material/dialog";
     MatPaginatorModule,
     MatCheckboxModule,
     MatSlideToggleModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     MatFormFieldModule,
@@ -54,7 +56,8 @@ import { MatDialogModule } from "@angular/material/dialog";
     MatPaginatorModule,
     MatCheckboxModule,
     MatSlideToggleModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 

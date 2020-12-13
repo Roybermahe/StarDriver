@@ -4,6 +4,7 @@ import { ExamFormComponent } from './exam-form.component';
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {ExamService, ResponseExam} from "../../../Services/Exam/exam.service";
 import {ExamModel} from "../../../Model/Exam/exam-model";
+import {angularMaterialModule} from "../../angularMaterial.module";
 
 describe('ExamFormComponent', () => {
   let component: ExamFormComponent;
@@ -13,7 +14,8 @@ describe('ExamFormComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ ExamFormComponent ],
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        angularMaterialModule
       ],
       providers: [
         ExamService
