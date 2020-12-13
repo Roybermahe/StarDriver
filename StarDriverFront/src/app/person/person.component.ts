@@ -17,7 +17,7 @@ export class PersonComponent implements OnInit {
 
   response = new ResponsePerson();
 
-  displayedColumns: string[] = ['Identificacion', 'Name', 'Surname', 'Phone', 'Mail', 'Direction', 'Ver'];
+  displayedColumns: string[] = ['No','Identificacion', 'Name', 'Surname', 'Phone', 'Mail', 'Direction', 'Ver'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   data: PersonModel[] = [];
   dataSource: MatTableDataSource<PersonModel>;
