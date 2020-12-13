@@ -5,11 +5,11 @@ import {HttpGenericService} from "../http-generic/http-generic.service";
 @Injectable({
   providedIn: 'root'
 })
-export class RoomService extends HttpGenericService<RoomModel, ResponseRoom>{
+export class RoomService extends HttpGenericService<RoomModel, responseRoom>{
 
 }
 
-export  class ResponseRoom {
+export  class responseRoom {
   Message?: string;
   Room?: RoomModel;
   Roomlist?: RoomModel[];

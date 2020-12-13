@@ -20,7 +20,7 @@ namespace StarDriver.application.core.DevPlanServices
             var list = _unitOfWork.DevPlanRepository.GetAll().ToArray();
             return !list.Any() ?
                 new GetDevPlanResponse("No se encontro ningun plan de desarrollo.") : 
-                new GetDevPlanResponse($"Se encontraron {list.Count()} planes de desarrollo.", list);
+                new GetDevPlanResponse($"Se encontraron {list.Count()} planes de desarrollo.", developmentPlanList: list);
         }
 
         public GetDevPlanResponse Run(int id)
@@ -28,7 +28,7 @@ namespace StarDriver.application.core.DevPlanServices
             var devPlan = _unitOfWork.DevPlanRepository.Find(id);
             return devPlan == null
                 ? new GetDevPlanResponse("no se encontro el plan de desarrollo")
-                : new GetDevPlanResponse($"El plan de desarrollo {devPlan.Level} fue encontrado.", null, devPlan);
+                : new GetDevPlanResponse($"El plan de desarrollo {devPlan.Level} fue encontrado.", developmentPlan: devPlan);
 
         }
         
@@ -37,14 +37,14 @@ namespace StarDriver.application.core.DevPlanServices
     public class GetDevPlanResponse
     {
         public  string Message { get; }
-        public DevelopmentPlan DevelopmentPlan { get; }
-        public IEnumerable<DevelopmentPlan> DevelopmentPlanList { get; }
+        public object DevPlan { get; }
+        public IEnumerable<object> List { get; }
         
-        public GetDevPlanResponse(string message, IEnumerable<DevelopmentPlan> developmentPlanList = null, DevelopmentPlan developmentPlan = null)
+        public GetDevPlanResponse(string message, IEnumerable<object> developmentPlanList = null, object developmentPlan = null)
         {
             Message = message;
-            DevelopmentPlan = developmentPlan;
-            DevelopmentPlanList = developmentPlanList;
+            DevPlan  = developmentPlan;
+            List = developmentPlanList;
         }
     }
 }

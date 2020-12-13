@@ -7,7 +7,7 @@ namespace StarDriver.infrastructure.core.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "DevelopmentPlan",
+                name: "DevelopmentPlans",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -16,7 +16,7 @@ namespace StarDriver.infrastructure.core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DevelopmentPlan", x => x.Id);
+                    table.PrimaryKey("PK_DevelopmentPlans", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,7 +55,7 @@ namespace StarDriver.infrastructure.core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MainTheme",
+                name: "MainThemes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -66,11 +66,11 @@ namespace StarDriver.infrastructure.core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MainTheme", x => x.Id);
+                    table.PrimaryKey("PK_MainThemes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MainTheme_DevelopmentPlan_DevelopmentPlanId",
+                        name: "FK_MainThemes_DevelopmentPlans_DevelopmentPlanId",
                         column: x => x.DevelopmentPlanId,
-                        principalTable: "DevelopmentPlan",
+                        principalTable: "DevelopmentPlans",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -132,22 +132,22 @@ namespace StarDriver.infrastructure.core.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    State = table.Column<bool>(type: "bit", nullable: false),
-                    _instructorId = table.Column<int>(type: "int", nullable: true),
-                    _developmentPlanId = table.Column<int>(type: "int", nullable: true)
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InstructorId = table.Column<int>(type: "int", nullable: true),
+                    DevelopmentPlanId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Rooms", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Rooms_DevelopmentPlan__developmentPlanId",
-                        column: x => x._developmentPlanId,
-                        principalTable: "DevelopmentPlan",
+                        name: "FK_Rooms_DevelopmentPlans_DevelopmentPlanId",
+                        column: x => x.DevelopmentPlanId,
+                        principalTable: "DevelopmentPlans",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Rooms_Persons__instructorId",
-                        column: x => x._instructorId,
+                        name: "FK_Rooms_Persons_InstructorId",
+                        column: x => x.InstructorId,
                         principalTable: "Persons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -159,8 +159,8 @@ namespace StarDriver.infrastructure.core.Migrations
                 column: "ExamId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MainTheme_DevelopmentPlanId",
-                table: "MainTheme",
+                name: "IX_MainThemes_DevelopmentPlanId",
+                table: "MainThemes",
                 column: "DevelopmentPlanId");
 
             migrationBuilder.CreateIndex(
@@ -169,14 +169,14 @@ namespace StarDriver.infrastructure.core.Migrations
                 column: "ExamId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rooms__developmentPlanId",
+                name: "IX_Rooms_DevelopmentPlanId",
                 table: "Rooms",
-                column: "_developmentPlanId");
+                column: "DevelopmentPlanId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rooms__instructorId",
+                name: "IX_Rooms_InstructorId",
                 table: "Rooms",
-                column: "_instructorId");
+                column: "InstructorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -185,7 +185,7 @@ namespace StarDriver.infrastructure.core.Migrations
                 name: "ExamAnswerses");
 
             migrationBuilder.DropTable(
-                name: "MainTheme");
+                name: "MainThemes");
 
             migrationBuilder.DropTable(
                 name: "Questions");
@@ -197,7 +197,7 @@ namespace StarDriver.infrastructure.core.Migrations
                 name: "Exams");
 
             migrationBuilder.DropTable(
-                name: "DevelopmentPlan");
+                name: "DevelopmentPlans");
 
             migrationBuilder.DropTable(
                 name: "Persons");

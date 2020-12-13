@@ -1,7 +1,7 @@
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
-import {ResponseRoom, RoomService} from './room.service';
+import {responseRoom, RoomService} from './room.service';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {RoomModel} from "../../Model/Room/room-model";
 
@@ -34,7 +34,7 @@ describe('RoomService', () => {
   });
 
   it('Crear salon', () =>{
-    const RoomResoponse: ResponseRoom = {
+    const RoomResoponse: responseRoom = {
       Message: "salon creado con exito"
     };
 
@@ -42,8 +42,8 @@ describe('RoomService', () => {
       objetCreate.Name = "Nombre del salon";
       objetCreate.Description = "Descripción del salon";
       objetCreate.State = "Estado para el salon";
-      objetCreate.IdInsturctor = "Identificación del instructor";
-      objetCreate.IdDevPlan = "Codigo del plan de desarrollo";
+      objetCreate.IdInsturctor = 1;
+      objetCreate.IdDevPlan = 1;
 
 
     service.Post("Room", objetCreate).subscribe(responseRoom =>
@@ -67,10 +67,10 @@ describe('RoomService', () => {
       objetquery.Name = "Nombre del salon";
       objetquery.Description = "Descripción del salon";
       objetquery.State = "Estado para el salon";
-      objetquery.IdInsturctor = "Identificación del instructor";
-      objetquery.IdDevPlan = "Codigo del plan de desarrollo";
+      objetquery.IdInsturctor = 1;
+      objetquery.IdDevPlan = 1;
 
-    const RoomResoponse: ResponseRoom = {
+    const RoomResoponse: responseRoom = {
       Message: "consulta realizada con exito",
       Roomlist:[objetquery]
     };
@@ -94,10 +94,10 @@ describe('RoomService', () => {
       objetUpdate.Name = "Nombre del salon";
       objetUpdate.Description = "Descripción del salon";
       objetUpdate.State = "Estado para el salon";
-      objetUpdate.IdInsturctor = "Identificación del instructor";
-      objetUpdate.IdDevPlan = "Codigo del plan de desarrollo";
+      objetUpdate.IdInsturctor = 1;
+      objetUpdate.IdDevPlan = 1;
 
-    const RoomResoponse: ResponseRoom = {
+    const RoomResoponse: responseRoom = {
       Message: "actualización realizada con exito",
     };
 

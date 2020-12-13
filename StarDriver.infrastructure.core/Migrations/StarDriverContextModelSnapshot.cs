@@ -31,7 +31,7 @@ namespace StarDriver.infrastructure.core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DevelopmentPlan");
+                    b.ToTable("DevelopmentPlans");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.DevPlans.MainTheme", b =>
@@ -54,7 +54,7 @@ namespace StarDriver.infrastructure.core.Migrations
 
                     b.HasIndex("DevelopmentPlanId");
 
-                    b.ToTable("MainTheme");
+                    b.ToTable("MainThemes");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.Exam", b =>
@@ -107,7 +107,7 @@ namespace StarDriver.infrastructure.core.Migrations
 
                     b.HasIndex("ExamId");
 
-                    b.ToTable("QExamAnswers");
+                    b.ToTable("ExamAnswerses");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.Question", b =>
@@ -146,7 +146,7 @@ namespace StarDriver.infrastructure.core.Migrations
 
                     b.HasIndex("ExamId");
 
-                    b.ToTable("Question");
+                    b.ToTable("Questions");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Question");
                 });

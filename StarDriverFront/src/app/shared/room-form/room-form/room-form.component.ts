@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ResponseRoom, RoomService} from "../../../../Services/RoomService/room.service";
+import {responseRoom, RoomService} from "../../../../Services/RoomService/room.service";
 import {RoomModel} from "../../../../Model/Room/room-model";
 import {NgForm} from "@angular/forms";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
@@ -11,7 +11,7 @@ import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 })
 export class RoomFormComponent implements OnInit {
 
-  response = new ResponseRoom();
+  response = new responseRoom();
   room = new RoomModel();
 
   constructor(
