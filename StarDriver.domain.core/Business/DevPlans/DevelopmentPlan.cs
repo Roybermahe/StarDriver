@@ -10,7 +10,10 @@ namespace StarDriver.domain.core.Business.DevPlans
         public string Level { get; set; }
         public List<MainTheme> MainThemes { get; set; }
 
-        public DevelopmentPlan() {}
+        public DevelopmentPlan()
+        {
+            MainThemes = new List<MainTheme>();
+        }
         public DevelopmentPlan(int id, string level)
         {
             Id = id;

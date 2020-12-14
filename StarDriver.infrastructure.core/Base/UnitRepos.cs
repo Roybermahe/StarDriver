@@ -32,13 +32,10 @@ namespace StarDriver.infrastructure.core.Base
         }
 
         private IRoomRepository _roomRepository;
-
         public IRoomRepository RoomRepository
         {
             get { return _roomRepository ??= new RoomRepository(DbContext); }
         }
-        
-        
 
         private IPersonsRepository _personsRepository;
         public IPersonsRepository PersonsRepository

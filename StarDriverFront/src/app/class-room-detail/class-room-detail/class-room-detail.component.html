@@ -1,0 +1,106 @@
+<div class="container">
+  <h2>Room</h2>
+  <h5 class="text-secondary">{{room.name}}</h5>
+  <div class="row mt-5">
+    <div class="col-md-6  " *ngIf="room.instructor">
+      <mat-card class="mat-elevation-z8">
+        <mat-card-header>
+          <mat-card-title>{{room.instructor.name + ' ' + room.instructor.surname}}</mat-card-title>
+          <mat-card-subtitle>Instructor</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item><span class="text-secondary">Identification:</span> {{room.instructor.identificacion}}</mat-list-item>
+            <mat-list-item><span class="text-secondary">Address:</span> {{room.instructor.direction}}</mat-list-item>
+            <mat-list-item><span class="text-secondary">Phone:</span> {{room.instructor.phone}}</mat-list-item>
+            <mat-list-item><span class="text-secondary">Mail:</span> {{room.instructor.mail}}</mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-6" *ngIf="room.instructor">
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSourceApprentice" class="w-100">
+          <!-- 'No', 'Name', 'Surname', 'Mail', 'Direction', 'Phone', 'Add' -->
+          <ng-container matColumnDef="No">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element;  let i = index;"> {{(i+1)}} </td>
+          </ng-container>
+
+          <!-- Sala -->
+          <ng-container matColumnDef="Name">
+            <th mat-header-cell *matHeaderCellDef>Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Surname">
+            <th mat-header-cell *matHeaderCellDef>Surname </th>
+            <td mat-cell *matCellDef="let element"> {{element.surname}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Remove">
+            <th mat-header-cell *matHeaderCellDef>Remove </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-button (click)="removeApprentice(element.id)">
+                <mat-icon>remove</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsApprentice"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsApprentice;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+    </div>
+  </div>
+  <h4 class="mt-3 mt-5">Lista de Aprendices en el sistema</h4>
+  <div class="mat-elevation-z8 my-5">
+    <table mat-table [dataSource]="dataSource" class="w-100">
+      <!-- 'No', 'Name', 'Surname', 'Mail', 'Direction', 'Phone', 'Add' -->
+      <ng-container matColumnDef="No">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element;  let i = index;"> {{(i+1)}} </td>
+      </ng-container>
+
+      <!-- Sala -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef>Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Surname">
+        <th mat-header-cell *matHeaderCellDef>Surname </th>
+        <td mat-cell *matCellDef="let element"> {{element.surname}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Mail">
+        <th mat-header-cell *matHeaderCellDef>Mail </th>
+        <td mat-cell *matCellDef="let element"> {{element.mail}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Direction">
+        <th mat-header-cell *matHeaderCellDef>Direction </th>
+        <td mat-cell *matCellDef="let element"> {{element.direction}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Phone">
+        <th mat-header-cell *matHeaderCellDef>Phone </th>
+        <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Add">
+        <th mat-header-cell *matHeaderCellDef>Add </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="chekApprentice(element.id)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

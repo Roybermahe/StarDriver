@@ -10,8 +10,8 @@ namespace StarDriver.infrastructure.core.Base
 {
     public abstract  class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
-        private IDbContext _dbContext;
-        private readonly DbSet<T> _dbset;
+        protected IDbContext _dbContext;
+        protected readonly DbSet<T> _dbset;
 
         protected GenericRepository(IDbContext context)
         {

@@ -31,7 +31,7 @@ namespace StarDriver.infrastructure.core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DevelopmentPlan");
+                    b.ToTable("DevelopmentPlans");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.DevPlans.MainTheme", b =>
@@ -54,7 +54,7 @@ namespace StarDriver.infrastructure.core.Migrations
 
                     b.HasIndex("DevelopmentPlanId");
 
-                    b.ToTable("MainTheme");
+                    b.ToTable("MainThemes");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.Exam", b =>
@@ -107,7 +107,7 @@ namespace StarDriver.infrastructure.core.Migrations
 
                     b.HasIndex("ExamId");
 
-                    b.ToTable("QExamAnswers");
+                    b.ToTable("ExamAnswerses");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.Exams.Question", b =>
@@ -146,7 +146,7 @@ namespace StarDriver.infrastructure.core.Migrations
 
                     b.HasIndex("ExamId");
 
-                    b.ToTable("Question");
+                    b.ToTable("Questions");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Question");
                 });
@@ -243,6 +243,11 @@ namespace StarDriver.infrastructure.core.Migrations
                 {
                     b.HasBaseType("StarDriver.domain.core.Business.Persons.Person");
 
+                    b.Property<int?>("RoomId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("RoomId");
+
                     b.HasDiscriminator().HasValue("Apprentice");
                 });
 
@@ -289,6 +294,13 @@ namespace StarDriver.infrastructure.core.Migrations
                     b.Navigation("Instructor");
                 });
 
+            modelBuilder.Entity("StarDriver.domain.core.Business.Persons.Apprentice", b =>
+                {
+                    b.HasOne("StarDriver.domain.core.Business.VirtualRooms.Room", null)
+                        .WithMany("_apprentice")
+                        .HasForeignKey("RoomId");
+                });
+
             modelBuilder.Entity("StarDriver.domain.core.Business.DevPlans.DevelopmentPlan", b =>
                 {
                     b.Navigation("MainThemes");
@@ -299,6 +311,11 @@ namespace StarDriver.infrastructure.core.Migrations
                     b.Navigation("Answerses");
 
                     b.Navigation("Questions");
+                });
+
+            modelBuilder.Entity("StarDriver.domain.core.Business.VirtualRooms.Room", b =>
+                {
+                    b.Navigation("_apprentice");
                 });
 #pragma warning restore 612, 618
         }

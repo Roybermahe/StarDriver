@@ -2,6 +2,7 @@
 using System.Linq;
 using StarDriver.domain.core.Business.VirtualRooms;
 using StarDriver.domain.core.Contracts;
+using StarDriver.infrastructure.core.Repos;
 
 namespace StarDriver.application.core.RoomServices
 {
@@ -18,13 +19,13 @@ namespace StarDriver.application.core.RoomServices
         {
             var list = _unitOfWork.RoomRepository.GetAll().ToArray();
             return !list.Any() ?
-                new GetRoomResponse("No se encontro ningun examen.") : 
-                new GetRoomResponse($"Se encontraron {list.Count()} examenes.", roomList: list);
+                new GetRoomResponse("No se encontro ninguna sala virtual.") : 
+                new GetRoomResponse($"Se encontraron {list.Count()} salas virtuales.", roomList: list);
         }
 
         public GetRoomResponse Run(int id)
         {
-            var room = _unitOfWork.RoomRepository.Find(id);
+            var room = ((RoomRepository)_unitOfWork.RoomRepository).getAllData(id);
             return room == null
                 ? new GetRoomResponse("no se encontro la sala virtual")
                 : new GetRoomResponse($"La sala {room.Name} fue encontrada.", room: room);

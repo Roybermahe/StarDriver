@@ -18,7 +18,7 @@ namespace StarDriver.application.core.RoomServices
        public UpdateRoomResponse Run(UpdateRoomRequest request)
        {
            
-           var saveOption = _unitOfWork.RoomRepository.Find(request.Id);
+           var saveOption = _unitOfWork.RoomRepository.Find(request.RoomId);
            if (saveOption == null)
            {
                return new UpdateRoomResponse(){Message = "La sala virtual que desea actualizar no esta registrada"};
@@ -55,7 +55,7 @@ namespace StarDriver.application.core.RoomServices
     public class UpdateRoomRequest
     {
         [Required(ErrorMessage = "Es necesario el Id de la sala virtual.")]
-        public int Id { get; set; }
+        public int RoomId { get; set; }
         
         [Required(ErrorMessage = "Es necesario el Nombre de la sala virtual.")]
         public string Name { get; set; }
