@@ -7,7 +7,7 @@ namespace StarDriver.infrastructure.core.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "DevelopmentPlan",
+                name: "DevelopmentPlans",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -16,7 +16,7 @@ namespace StarDriver.infrastructure.core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DevelopmentPlan", x => x.Id);
+                    table.PrimaryKey("PK_DevelopmentPlans", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -54,7 +54,7 @@ namespace StarDriver.infrastructure.core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MainTheme",
+                name: "MainThemes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -65,17 +65,17 @@ namespace StarDriver.infrastructure.core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MainTheme", x => x.Id);
+                    table.PrimaryKey("PK_MainThemes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MainTheme_DevelopmentPlan_DevelopmentPlanId",
+                        name: "FK_MainThemes_DevelopmentPlans_DevelopmentPlanId",
                         column: x => x.DevelopmentPlanId,
-                        principalTable: "DevelopmentPlan",
+                        principalTable: "DevelopmentPlans",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "QExamAnswers",
+                name: "ExamAnswerses",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -88,9 +88,9 @@ namespace StarDriver.infrastructure.core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_QExamAnswers", x => x.Id);
+                    table.PrimaryKey("PK_ExamAnswerses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_QExamAnswers_Exams_ExamId",
+                        name: "FK_ExamAnswerses_Exams_ExamId",
                         column: x => x.ExamId,
                         principalTable: "Exams",
                         principalColumn: "Id",
@@ -98,7 +98,7 @@ namespace StarDriver.infrastructure.core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Question",
+                name: "Questions",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -114,9 +114,9 @@ namespace StarDriver.infrastructure.core.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Question", x => x.Id);
+                    table.PrimaryKey("PK_Questions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Question_Exams_ExamId",
+                        name: "FK_Questions_Exams_ExamId",
                         column: x => x.ExamId,
                         principalTable: "Exams",
                         principalColumn: "Id",
@@ -139,9 +139,9 @@ namespace StarDriver.infrastructure.core.Migrations
                 {
                     table.PrimaryKey("PK_Rooms", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Rooms_DevelopmentPlan__developmentPlanId",
+                        name: "FK_Rooms_DevelopmentPlans__developmentPlanId",
                         column: x => x._developmentPlanId,
-                        principalTable: "DevelopmentPlan",
+                        principalTable: "DevelopmentPlans",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -153,18 +153,18 @@ namespace StarDriver.infrastructure.core.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_MainTheme_DevelopmentPlanId",
-                table: "MainTheme",
-                column: "DevelopmentPlanId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_QExamAnswers_ExamId",
-                table: "QExamAnswers",
+                name: "IX_ExamAnswerses_ExamId",
+                table: "ExamAnswerses",
                 column: "ExamId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Question_ExamId",
-                table: "Question",
+                name: "IX_MainThemes_DevelopmentPlanId",
+                table: "MainThemes",
+                column: "DevelopmentPlanId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Questions_ExamId",
+                table: "Questions",
                 column: "ExamId");
 
             migrationBuilder.CreateIndex(
@@ -181,13 +181,13 @@ namespace StarDriver.infrastructure.core.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "MainTheme");
+                name: "ExamAnswerses");
 
             migrationBuilder.DropTable(
-                name: "QExamAnswers");
+                name: "MainThemes");
 
             migrationBuilder.DropTable(
-                name: "Question");
+                name: "Questions");
 
             migrationBuilder.DropTable(
                 name: "Rooms");
@@ -196,7 +196,7 @@ namespace StarDriver.infrastructure.core.Migrations
                 name: "Exams");
 
             migrationBuilder.DropTable(
-                name: "DevelopmentPlan");
+                name: "DevelopmentPlans");
 
             migrationBuilder.DropTable(
                 name: "Persons");
