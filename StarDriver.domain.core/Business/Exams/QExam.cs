@@ -10,6 +10,8 @@ namespace StarDriver.domain.core.Business.Exams
     {
         public Exam()
         {
+            Questions = new List<Question>();
+            Answerses = new List<QExamAnswers>();
         }
         
         public string Tittle { get; set; }

@@ -36,8 +36,8 @@ export class ExamFormComponent implements OnInit {
   }
 
   onForm(f: NgForm) {
-    this.exam.DateRealization = this.exam.formattedDate(this.DateStart.toDateString());
-    this.exam.DateFinish = this.exam.formattedDate(this.DateFinish.toDateString());
+    this.exam.dateRealization = this.exam.formattedDate(this.DateStart.toDateString());
+    this.exam.dateFinish = this.exam.formattedDate(this.DateFinish.toDateString());
     console.log(this.onSubmit());
 
   }

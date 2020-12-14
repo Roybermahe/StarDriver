@@ -2,31 +2,49 @@
   <h2>Examenes</h2>
   <button id="btnCrearExamen" mat-raised-button color="primary" (click)="openDialog()">Crear Examen</button>
   <button id="actualizar" mat-raised-button color="primary" class="mx-1">Actualizar</button>
+
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" class="w-100">
 
-      <!-- Position Column -->
-      <ng-container matColumnDef="position">
+      <!-- Columna posicicion -->
+      <ng-container matColumnDef="No">
         <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        <td mat-cell *matCellDef="let element; let i = index;" > {{(i+1)}} </td>
       </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      <!-- Columna Titulo -->
+      <ng-container matColumnDef="Título">
+        <th mat-header-cell *matHeaderCellDef> Título </th>
+        <td mat-cell *matCellDef="let exam"> {{exam.tittle}} </td>
       </ng-container>
 
-      <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef> Weight </th>
-        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+      <!-- Columna Descripción -->
+      <ng-container matColumnDef="Descripción">
+        <th mat-header-cell *matHeaderCellDef> Descripción </th>
+        <td mat-cell *matCellDef="let exam"> {{exam.description}} </td>
       </ng-container>
 
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef> Symbol </th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      <!-- Columna Realización -->
+      <ng-container matColumnDef="Realización">
+        <th mat-header-cell *matHeaderCellDef> Realización </th>
+        <td mat-cell *matCellDef="let exam"> {{exam.dateRealization}} </td>
+      </ng-container>
+
+      <!-- Columna Terminación -->
+      <ng-container matColumnDef="Terminación">
+        <th mat-header-cell *matHeaderCellDef> Terminación </th>
+        <td mat-cell *matCellDef="let exam"> {{exam.dateFinish}} </td>
+      </ng-container>
+
+      <!-- Columna Ver -->
+      <ng-container matColumnDef="Ver">
+        <th mat-header-cell *matHeaderCellDef> Ver </th>
+        <td mat-cell *matCellDef="let exam">
+          <a mat-icon-button [routerLink]="['/verExamen',exam.id]">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </a>
+
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

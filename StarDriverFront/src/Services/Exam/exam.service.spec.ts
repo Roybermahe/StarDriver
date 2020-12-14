@@ -42,9 +42,9 @@ describe('ExamService', () => {
 
     let objetCreate = new ExamModel();
     objetCreate.Tittle = "Titulo del examen";
-    objetCreate.Description = "Description examen";
-    objetCreate.DateRealization = "01/01/2020";
-    objetCreate.DateRealization = "01/01/2020";
+    objetCreate.description = "Description examen";
+    objetCreate.dateRealization = "01/01/2020";
+    objetCreate.dateRealization = "01/01/2020";
 
     service.Post("Exam",objetCreate).subscribe(responseExam =>
       expect(responseExam).toEqual(ExamResponse, "Deberia mostrar que se creo el examen exitosamente."), fail
@@ -66,9 +66,9 @@ describe('ExamService', () => {
     let objetUpdate = new ExamModel();
     objetUpdate.ExamId = 1;
     objetUpdate.Tittle = "Titulo del examen";
-    objetUpdate.Description = "Description examen";
-    objetUpdate.DateRealization = "01/01/2020";
-    objetUpdate.DateRealization = "01/01/2020";
+    objetUpdate.description = "Description examen";
+    objetUpdate.dateRealization = "01/01/2020";
+    objetUpdate.dateRealization = "01/01/2020";
 
     service.Put("Exam",objetUpdate).subscribe(responseExam =>
       expect(responseExam).toEqual(ExamResponse, "Deberia mostrar que se actualizo el examen exitosamente."), fail

@@ -44,7 +44,7 @@ describe('ExamFormComponent', () => {
 
   it('Enviar petición submit con el title y el description llenos', () => {
     component.exam.Tittle="Ingreso un valor";
-    component.exam.Description="Ingreso un valor";
+    component.exam.description="Ingreso un valor";
     expect(component.onSubmit()).toEqual("Datos guardados exitosamente");
   });
 });

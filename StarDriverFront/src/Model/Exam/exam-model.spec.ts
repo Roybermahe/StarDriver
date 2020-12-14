@@ -9,7 +9,7 @@ describe('ExamModel', () => {
     let examModel = new ExamModel();
     expect(examModel.onValid()).toBeFalse();
     examModel.Tittle = "Algun dato";
-    examModel.Description = "Algun dato";
+    examModel.description = "Algun dato";
     expect(examModel.onValid()).toBeTrue();
   });
 

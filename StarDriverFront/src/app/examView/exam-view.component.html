@@ -1,1 +1,39 @@
-<p>exam-view works!</p>
+<div class="container" *ngIf="data">
+  <form (ngSubmit)="form.form.valid && onForm(form)"  #form="ngForm">
+    <h2 mat-dialog-title>Actualizar Examen</h2>
+    <mat-dialog-content class="mat-typography">
+      <p><!-- Title for exam -->
+        <mat-form-field id="ipt-titulo" class="w-100" appearance="outline" >
+          <mat-label>titulo del examen</mat-label>
+          <input type="text" matInput name="title" [(ngModel)]="data.tittle"  placeholder="Titulo" required>
+          <mat-hint></mat-hint>
+        </mat-form-field>
+      </p><!-- Title for exam -->
+
+      <p><!-- Description for exam -->
+        <mat-form-field id="ipt-descripcion" class="w-100" appearance="outline">
+          <mat-label>Descripcion del examen</mat-label>
+          <textarea matInput name="description" [(ngModel)]="data.description" placeholder="Descripcion" required></textarea>
+          <mat-hint></mat-hint>
+        </mat-form-field>
+      </p><!-- Description for exam -->
+
+      <p><!-- Date range begin and end exam -->
+        <mat-form-field id="ipt-rangedates" class="w-100" appearance="outline" >
+          <mat-label>Editar fecha de inicio y de fin del examen</mat-label>
+          <mat-date-range-input [rangePicker]="picker" >
+            <input matStartDate name="date-begin" [(ngModel)]="DateStart"  placeholder="Start date" required>
+            <input matEndDate  name="date-end" [(ngModel)]="DateFinish" placeholder="End date" required>
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </p><!-- Date range begin and end exam -->
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button >Cancelar</button>
+      <button mat-button type="submit"  [disabled]="form.invalid">Guardar</button>
+    </mat-dialog-actions>
+  </form>
+
+</div>
