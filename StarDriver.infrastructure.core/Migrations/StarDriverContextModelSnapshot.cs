@@ -340,14 +340,14 @@ namespace StarDriver.infrastructure.core.Migrations
                     b.Navigation("Questions");
                 });
 
-            modelBuilder.Entity("StarDriver.domain.core.Business.Persons.Instructor", b =>
-                {
-                    b.Navigation("_specializations");
-                });
-
             modelBuilder.Entity("StarDriver.domain.core.Business.VirtualRooms.Room", b =>
                 {
                     b.Navigation("_apprentice");
+                });
+
+            modelBuilder.Entity("StarDriver.domain.core.Business.Persons.Instructor", b =>
+                {
+                    b.Navigation("_specializations");
                 });
 #pragma warning restore 612, 618
         }

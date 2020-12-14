@@ -4,9 +4,10 @@ import { PersonFormComponent } from './person-form/person-form.component';
 import {angularMaterialModule} from "../angularMaterial.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { PersonFormUpdateComponent } from './person-form-update/person-form-update.component';
+import {RoomFormComponent} from "./room-form/room-form/room-form.component";
 
 @NgModule({
-  declarations: [PersonFormComponent, PersonFormUpdateComponent, RoomFormComponent],  
+  declarations: [PersonFormComponent, PersonFormUpdateComponent, RoomFormComponent],
   imports: [
     CommonModule, angularMaterialModule, ReactiveFormsModule, FormsModule
   ],

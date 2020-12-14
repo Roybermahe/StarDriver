@@ -154,6 +154,26 @@ namespace StarDriver.infrastructure.core.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Specialization",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InstructorId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Specialization", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Specialization_Persons_InstructorId",
+                        column: x => x.InstructorId,
+                        principalTable: "Persons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_ExamAnswerses_ExamId",
                 table: "ExamAnswerses",
@@ -184,6 +204,11 @@ namespace StarDriver.infrastructure.core.Migrations
                 table: "Rooms",
                 column: "InstructorId");
 
+            migrationBuilder.CreateIndex(
+                name: "IX_Specialization_InstructorId",
+                table: "Specialization",
+                column: "InstructorId");
+
             migrationBuilder.AddForeignKey(
                 name: "FK_Rooms_Persons_InstructorId",
                 table: "Rooms",
@@ -211,6 +236,9 @@ namespace StarDriver.infrastructure.core.Migrations
 
             migrationBuilder.DropTable(
                 name: "Questions");
+
+            migrationBuilder.DropTable(
+                name: "Specialization");
 
             migrationBuilder.DropTable(
                 name: "Exams");

@@ -5,8 +5,6 @@ import {PersonRouteModule} from "./person-route.module";
 import {SharedModule} from "../shared/shared.module";
 import {angularMaterialModule} from "../angularMaterial.module";
 
-
-
 @NgModule({
   declarations: [PersonComponent],
   imports: [

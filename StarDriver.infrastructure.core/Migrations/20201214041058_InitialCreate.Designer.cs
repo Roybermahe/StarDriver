@@ -10,7 +10,7 @@ using StarDriver.infrastructure.core.DomainContexts;
 namespace StarDriver.infrastructure.core.Migrations
 {
     [DbContext(typeof(StarDriverContext))]
-    [Migration("20201212221359_InitialCreate")]
+    [Migration("20201214041058_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -265,6 +265,11 @@ namespace StarDriver.infrastructure.core.Migrations
                 {
                     b.HasBaseType("StarDriver.domain.core.Business.Persons.Person");
 
+                    b.Property<int?>("RoomId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("RoomId");
+
                     b.HasDiscriminator().HasValue("Apprentice");
                 });
 
@@ -318,6 +323,13 @@ namespace StarDriver.infrastructure.core.Migrations
                     b.Navigation("Instructor");
                 });
 
+            modelBuilder.Entity("StarDriver.domain.core.Business.Persons.Apprentice", b =>
+                {
+                    b.HasOne("StarDriver.domain.core.Business.VirtualRooms.Room", null)
+                        .WithMany("_apprentice")
+                        .HasForeignKey("RoomId");
+                });
+
             modelBuilder.Entity("StarDriver.domain.core.Business.DevPlans.DevelopmentPlan", b =>
                 {
                     b.Navigation("MainThemes");
@@ -328,6 +340,11 @@ namespace StarDriver.infrastructure.core.Migrations
                     b.Navigation("Answerses");
 
                     b.Navigation("Questions");
+                });
+
+            modelBuilder.Entity("StarDriver.domain.core.Business.VirtualRooms.Room", b =>
+                {
+                    b.Navigation("_apprentice");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.Persons.Instructor", b =>
