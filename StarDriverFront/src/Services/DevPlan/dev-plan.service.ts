@@ -10,7 +10,7 @@ export class DevPlanService extends HttpGenericService<DevPlanModel, responseDev
 }
 
 export  class responseDevPlan {
-  Message?: string;
-  DevPlan?: DevPlanModel;
-  DevPlanlist?: DevPlanModel[];
+  message?: string;
+  devplan?: DevPlanModel;
+  list?: DevPlanModel[];
 }

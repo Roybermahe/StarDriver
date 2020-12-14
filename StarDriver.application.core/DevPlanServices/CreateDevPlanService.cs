@@ -17,16 +17,6 @@ namespace StarDriver.application.core.DevPlanServices
         public CreateDevPlanResponse Run(CreateDevPlanRequest request)
         {
             var devPlan = request.Map();
-
-            var mainTheme = _unitOfWork.MainThemeRepository.Find(request.IdMainTheme);
-
-            if (mainTheme == null)
-            {
-                return new CreateDevPlanResponse() {Message = "El tema principal ingresado no se encuentra registrado."};
-            }
-
-            devPlan.MainThemes.Add(mainTheme);
-
             _unitOfWork.DevPlanRepository.Add(devPlan);
             _unitOfWork.Commit();
             return new CreateDevPlanResponse() {Message = "El plan de desarrollo fue creado con exito."};
@@ -40,12 +30,9 @@ namespace StarDriver.application.core.DevPlanServices
         [Required(ErrorMessage = "Es necesario el Nivel del plan de desarrollo.")]
         public string Level { get; set; }
 
-        [Required(ErrorMessage = "Es necesaria la id del tema principal para el plan de desarrollo.")]
-        public int IdMainTheme { get; set; }
-
         public DevelopmentPlan Map()
         { 
-            return new DevelopmentPlan(){Level = Level};
+            return new DevelopmentPlan(){ Level = Level };
         }
             
     }

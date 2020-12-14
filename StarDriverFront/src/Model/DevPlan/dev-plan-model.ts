@@ -1,17 +1,16 @@
 export class DevPlanModel {
-  DevPlanId?: number;
-  Level?: string;
+  id?: number;
+  level?: string;
 
-  constructor() {
-    this.DevPlanId;
+  constructor(level?: string) {
+    this.level = level;
   }
 
 
   onValid() {
-    if(this.DevPlanId){
-      return this.DevPlanId?.toString().length > 0 ;
+    if(this.level){
+      return this.level?.toString().length > 0 ;
     }
     return false;
-
   }
 }

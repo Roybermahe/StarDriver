@@ -18,7 +18,7 @@ namespace StarDriver.domain.core.Business.VirtualRooms
         
         public DevelopmentPlan DevelopmentPlan { get; set; }
 
-        public List<Apprentice> _apprentice;
+        public List<Apprentice> _apprentice  { get; set; }
 
         public Room()
         {
@@ -39,7 +39,6 @@ namespace StarDriver.domain.core.Business.VirtualRooms
         {
             if ( StringOperations.IsEqual(Name, name) && StringOperations.IsEqual(Description, description) && StringOperations.IsEqual(state, State) && DevelopmentPlan.Id == DevelopmentPlan.Id && Instructor.Id == instructor.Id)
                 return "Debe modificar al menos un campo para poder actualizar la sala virtual";
-
             Name = name;
             Description = description;
             State = state;
@@ -47,7 +46,6 @@ namespace StarDriver.domain.core.Business.VirtualRooms
             DevelopmentPlan = DevelopmentPlan;
 
             return "sala virtual actualizada con exito";
-            
         }
 
         /*
@@ -58,5 +56,12 @@ namespace StarDriver.domain.core.Business.VirtualRooms
          *   finalizado
          */
 
+        public string AddApprentices(Apprentice apprentice)
+        {
+            var item = _apprentice.Find(t => t.Id == apprentice.Id);
+            if (item != null) return "Ya este aprendiz esta agregado";
+            _apprentice.Add(apprentice);
+            return "Se añadio el aprendiz a la sala.";
+        }
     }
 }

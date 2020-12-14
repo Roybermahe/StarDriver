@@ -51,5 +51,23 @@ namespace WebApplication.Controllers
             return Ok(response);
         }
 
+        [Route("Apprentices")]
+        [HttpPost]
+        public ActionResult<AddApprenticeResponse> AddApprentices(AddApprenticeRequest request)
+        {
+            var service = new AddApprenticeService(_unitOfWork);
+            var response = service.Ejecutar(request);
+            return Ok(response);
+        }
+        
+        [Route("RemoveApprentices")]
+        [HttpPost]
+        public ActionResult<AddApprenticeResponse> RemoveApprentices(AddApprenticeRequest request)
+        {
+            var service = new AddApprenticeService(_unitOfWork);
+            var response = service.EjecutarRemove(request);
+            return Ok(response);
+        }
+        
     }
 }

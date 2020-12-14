@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+﻿import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RoomFormComponent } from './room-form.component';
 import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {ResponseRoom, RoomService} from "../../../../Services/RoomService/room.service";
+import {responseRoom, RoomService} from "../../../../Services/RoomService/room.service";
 import {RoomModel} from "../../../../Model/Room/room-model";
 import {angularMaterialModule} from "../../../angularMaterial.module";
 
@@ -33,10 +33,10 @@ describe('RoomFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
     expect(component.room).toBeDefined(new RoomModel());
-    expect(component.response).toBeDefined(ResponseRoom);
+    expect(component.response).toBeDefined(responseRoom);
 
     expect(component.room).toEqual(new RoomModel());
-    expect(component.response).toEqual( new ResponseRoom());
+    expect(component.response).toEqual( new responseRoom());
   });
 
   it('No puede hacer submit con el nombre vacio', () =>{
@@ -44,8 +44,8 @@ describe('RoomFormComponent', () => {
   });
 
   it('Enviar petición submit con el nombre y el description llenos', () => {
-    component.room.Name="Ingreso un valor";
-    component.room.Description="Ingreso un valor";
+    component.room.name="Ingreso un valor";
+    component.room.description="Ingreso un valor";
     expect(component.onSubmit()).toEqual("Datos guardados exitosamente");
   });
 });

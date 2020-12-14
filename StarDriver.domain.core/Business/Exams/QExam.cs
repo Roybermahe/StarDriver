@@ -8,10 +8,6 @@ namespace StarDriver.domain.core.Business.Exams
 {
     public class Exam : Entity<int>
     {
-        public Exam()
-        {
-        }
-        
         public string Tittle { get; set; }
         public string Description { get; set; }
         public List<Question> Questions { get; set; }
@@ -19,6 +15,12 @@ namespace StarDriver.domain.core.Business.Exams
         private IDates _dateRealization;
         private IDates _dateFinish;
 
+        public Exam()
+        {
+            Questions = new List<Question>();
+            Answerses = new List<QExamAnswers>();
+        }
+        
         public string DateRealization
         {
             get => _dateRealization.GetTime();

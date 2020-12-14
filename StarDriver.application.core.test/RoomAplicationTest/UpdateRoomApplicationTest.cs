@@ -3,11 +3,10 @@ using NUnit.Framework;
 using StarDriver.application.core.RoomServices;
 using StarDriver.domain.core.Business.DevPlans;
 using StarDriver.domain.core.Business.Persons;
-using StarDriver.domain.core.Business.VirtualRooms;
 using StarDriver.infrastructure.core.Base;
 using StarDriver.infrastructure.core.DomainContexts;
 
-namespace StarDriver.application.core.test
+namespace StarDriver.application.core.test.RoomAplicationTest
 
 {
     public class UpdateRoomApplicationTest
@@ -65,11 +64,8 @@ namespace StarDriver.application.core.test
               _context.SaveChanges(); */
             
             var requestSave = new CreateRoomRequest(){ Name = "salon 3", Description = "salon clases intensivas", State = "creado", IdInsturctor = 1, IdDevPlan = 1};
-            CreateRoomService serviceSave = new CreateRoomService(new UnitOfWork(_context));
+            var serviceSave = new CreateRoomService(new UnitOfWork(_context));
             var responseSave = serviceSave.Run(requestSave);
         }
-        
-
-        
     }
 }

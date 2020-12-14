@@ -1,22 +1,31 @@
+import {states} from "../../Types/TypeRoom";
+import {InstructorModel} from "../Instructor/instructor-model";
+import {ApprenticeModel} from "../Apprentice/apprentice-model";
+
 export class RoomModel {
-  RoomId?: number;
-  Name?: string;
-  Description?: string;
-  State?: string;
-  IdInsturctor?: number;
-  IdDevPlan?: number;
+  roomId?: number;
+  name?: string;
+  description?: string;
+  state?: states;
+  idInsturctor?: number;
+  idDevPlan?: number;
+  instructor?: InstructorModel;
+  _apprentice?: ApprenticeModel[];
 
-constructor() {
-  this.Name = "";
-}
-
+  constructor(RoomId?: number, Name?: string, Description?: string, IdInstructor?: number, IdDevPlan?: number) {
+    this.roomId = RoomId;
+    this.name = Name;
+    this.description = Description;
+    this.state = 'creado';
+    this.idInsturctor = IdInstructor;
+    this.idDevPlan = IdDevPlan;
+  }
 
   onValid() {
-    if(this.Name){
-      return this.Name?.length > 0 ;
+    if(this.name){
+      return this.name?.length > 0 ;
     }
     return false;
-
   }
 }
 

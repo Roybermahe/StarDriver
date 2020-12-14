@@ -49,5 +49,21 @@ namespace WebApplication.Controllers
             return Ok(response);
         }
         
+        
+        [HttpGet("Instructors")]
+        public ActionResult<GetPersonResponse> GetInstructors()
+        {
+            var service = new GetPersonService(_unitOfWork);
+            var response = service.ListaInstructors();
+            return Ok(response);
+        }
+        
+        [HttpGet("Apprentices")]
+        public ActionResult<GetPersonResponse> GetApprentices()
+        {
+            var service = new GetPersonService(_unitOfWork);
+            var response = service.ListaApprentices();
+            return Ok(response);
+        }
     }
 }

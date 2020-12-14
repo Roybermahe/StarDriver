@@ -10,7 +10,7 @@ export class RoomService extends HttpGenericService<RoomModel, responseRoom>{
 }
 
 export  class responseRoom {
-  Message?: string;
-  Room?: RoomModel;
-  Roomlist?: RoomModel[];
+  message?: string;
+  room?: RoomModel;
+  roomList?: RoomModel[];
 }

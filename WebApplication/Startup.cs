@@ -78,6 +78,7 @@ namespace WebApplication
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors();
             app.UseHttpsRedirection();
 
             app.UseRouting();

@@ -3,6 +3,7 @@ using System.Linq;
 using StarDriver.domain.core.Business.Exams;
 using StarDriver.domain.core.Business.Persons;
 using StarDriver.domain.core.Contracts;
+using StarDriver.infrastructure.core.Repos;
 
 namespace StarDriver.application.core.PersonServices
 {
@@ -29,6 +30,24 @@ namespace StarDriver.application.core.PersonServices
             return person == null ? 
                 new GetPersonResponse("No se encontro la persona") : 
                 new GetPersonResponse($"La persona {person.Id} fue encontrada.", person: person);
+        }
+        
+        public GetPersonResponse ListaInstructors()
+        {
+            var person = ((PersonRepository)_unitOfWork.PersonsRepository).getAllInstructor();
+            var enumerable = person as Person[] ?? person.ToArray();
+            return !enumerable.Any() ? 
+                new GetPersonResponse("No se encontraron instructores.") : 
+                new GetPersonResponse($"La persona {enumerable.Count()} fue encontrada.", personlist: enumerable);
+        }
+        
+        public GetPersonResponse ListaApprentices()
+        {
+            var person = ((PersonRepository)_unitOfWork.PersonsRepository).GetAllApprentice();
+            var enumerable = person as Person[] ?? person.ToArray();
+            return !enumerable.Any() ? 
+                new GetPersonResponse("No se encontraron instructores.") : 
+                new GetPersonResponse($"La persona {enumerable.Count()} fue encontrada.", personlist: enumerable);
         }
 
     }

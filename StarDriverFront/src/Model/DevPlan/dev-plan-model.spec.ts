@@ -9,7 +9,7 @@ describe('DevPlanModel', () => {
   it('Validar campo nivel', () => {
     let devPlanModel = new DevPlanModel();
     expect(devPlanModel.onValid()).toBeFalse();
-    devPlanModel.Level = "Algun dato";
+    devPlanModel.level = "Algun dato";
     expect(devPlanModel.onValid()).toBeTrue();
   });
 

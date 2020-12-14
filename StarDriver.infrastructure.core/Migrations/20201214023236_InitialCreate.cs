@@ -36,25 +36,6 @@ namespace StarDriver.infrastructure.core.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Persons",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Identificacion = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Mail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Direction = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Persons", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "MainThemes",
                 columns: table => new
                 {
@@ -145,10 +126,30 @@ namespace StarDriver.infrastructure.core.Migrations
                         principalTable: "DevelopmentPlans",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Persons",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Identificacion = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Mail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Direction = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RoomId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Persons", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Rooms_Persons_InstructorId",
-                        column: x => x.InstructorId,
-                        principalTable: "Persons",
+                        name: "FK_Persons_Rooms_RoomId",
+                        column: x => x.RoomId,
+                        principalTable: "Rooms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -164,6 +165,11 @@ namespace StarDriver.infrastructure.core.Migrations
                 column: "DevelopmentPlanId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Persons_RoomId",
+                table: "Persons",
+                column: "RoomId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Questions_ExamId",
                 table: "Questions",
                 column: "ExamId");
@@ -177,10 +183,26 @@ namespace StarDriver.infrastructure.core.Migrations
                 name: "IX_Rooms_InstructorId",
                 table: "Rooms",
                 column: "InstructorId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Rooms_Persons_InstructorId",
+                table: "Rooms",
+                column: "InstructorId",
+                principalTable: "Persons",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Rooms_DevelopmentPlans_DevelopmentPlanId",
+                table: "Rooms");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Persons_Rooms_RoomId",
+                table: "Persons");
+
             migrationBuilder.DropTable(
                 name: "ExamAnswerses");
 
@@ -191,13 +213,13 @@ namespace StarDriver.infrastructure.core.Migrations
                 name: "Questions");
 
             migrationBuilder.DropTable(
-                name: "Rooms");
-
-            migrationBuilder.DropTable(
                 name: "Exams");
 
             migrationBuilder.DropTable(
                 name: "DevelopmentPlans");
+
+            migrationBuilder.DropTable(
+                name: "Rooms");
 
             migrationBuilder.DropTable(
                 name: "Persons");

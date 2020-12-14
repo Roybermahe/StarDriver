@@ -1,4 +1,33 @@
 <div class="container">
-  <p>class-room works!</p>
+  <h2>Salas virtuales</h2>
   <button id="btn-crearsalon" mat-flat-button color="primary" (click)="openDialog()">Crear salon</button>
+  <div class="mat-elevation-z8 mt-3">
+    <table mat-table [dataSource]="dataSource" class="w-100">
+      <!-- Position Column -->
+      <ng-container matColumnDef="No">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element;  let i = index;"> {{(i+1)}} </td>
+      </ng-container>
+
+      <!-- Sala -->
+      <ng-container matColumnDef="Sala">
+        <th mat-header-cell *matHeaderCellDef>Sala </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+      <!-- Ver sala column -->
+      <ng-container matColumnDef="Ver Sala">
+        <th mat-header-cell *matHeaderCellDef> Ver sala</th>
+        <td mat-cell *matCellDef="let element">
+          <a mat-icon-button [routerLink]="['/room', element.id]">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
 </div>

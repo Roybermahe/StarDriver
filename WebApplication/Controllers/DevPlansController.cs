@@ -1,18 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using StarDriver.application.core;
 using StarDriver.application.core.DevPlanServices;
 using StarDriver.domain.core.Contracts;
 
 namespace WebApplication.Controllers
-{
+{   
     [Route("api/[controller]")]
     [ApiController]
-    public class DevPlanController: ControllerBase
+    public class DevPlansController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public DevPlanController(IUnitOfWork unitOfWork)
+        public DevPlansController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -41,6 +39,5 @@ namespace WebApplication.Controllers
             var response = service.Run(id);
             return Ok(response);
         }
-        
     }
 }
