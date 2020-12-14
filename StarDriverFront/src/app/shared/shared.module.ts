@@ -8,7 +8,7 @@ import {RoomFormComponent} from "./room-form/room-form/room-form.component";
 import { ExamFormComponent } from './exam-form/exam-form.component';
 
 @NgModule({
-  declarations: [PersonFormComponent, PersonFormUpdateComponent, RoomFormComponent],
+  declarations: [PersonFormComponent, PersonFormUpdateComponent, RoomFormComponent, ExamFormComponent],
   imports: [
     CommonModule, angularMaterialModule, ReactiveFormsModule, FormsModule
   ],
@@ -19,4 +19,3 @@ import { ExamFormComponent } from './exam-form/exam-form.component';
 export class SharedModule { }
 
 
-    

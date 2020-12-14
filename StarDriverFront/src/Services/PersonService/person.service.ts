@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpGenericService} from "../http-generic.service";
+import {HttpGenericService} from "../http-generic/http-generic.service";
 import {PersonModel} from "../../Model/Person/person-model";
 
 @Injectable({
