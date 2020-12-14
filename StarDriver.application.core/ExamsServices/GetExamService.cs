@@ -2,6 +2,7 @@
 using System.Linq;
 using StarDriver.domain.core.Business.Exams;
 using StarDriver.domain.core.Contracts;
+using StarDriver.infrastructure.core.Repos;
 
 namespace StarDriver.application.core.ExamsServices
 {
@@ -24,7 +25,7 @@ namespace StarDriver.application.core.ExamsServices
         
         public GetExamResponse Ejecutar(int id)
         {
-            var exam = _unitOfWork.ExamRepository.FindFirstOrDefault(t => t.Id == id);
+            var exam = ((ExamRepository) _unitOfWork.ExamRepository).getAllData(id);
             return exam == null ? 
                 new GetExamResponse("No se encontro el examen") : 
                 new GetExamResponse($"El examen {exam.Id} fue encontrado.", exam: exam);

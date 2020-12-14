@@ -17,6 +17,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatDialogModule } from "@angular/material/dialog";
 import {MatChipsModule} from '@angular/material/chips';
+import { MatNativeDateModule } from "@angular/material/core";
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatCheckboxModule,
     MatSlideToggleModule,
     MatDatepickerModule,
-    MatChipsModule
+    MatChipsModule,
+    MatNativeDateModule
   ],
   exports: [
     MatFormFieldModule,
@@ -57,8 +59,10 @@ import {MatChipsModule} from '@angular/material/chips';
     MatCheckboxModule,
     MatSlideToggleModule,
     MatDatepickerModule,
-    MatChipsModule
+    MatChipsModule,
+    MatNativeDateModule
   ]
 })
 
 export class angularMaterialModule { }
+

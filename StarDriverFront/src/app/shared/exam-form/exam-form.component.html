@@ -1,0 +1,36 @@
+<form (ngSubmit)="form.form.valid && onForm(form)"  #form="ngForm">
+  <h2 mat-dialog-title>Crear Examen</h2>
+  <mat-dialog-content class="mat-typography">
+    <p><!-- Title for exam -->
+      <mat-form-field id="ipt-titulo" class="w-100" appearance="outline" >
+        <mat-label>Añade un titulo para el examen</mat-label>
+        <input matInput name="title" [(ngModel)]="exam.tittle" placeholder="Titulo" required>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </p><!-- Title for exam -->
+
+    <p><!-- Description for exam -->
+      <mat-form-field id="ipt-descripcion" class="w-100" appearance="outline">
+        <mat-label>Descripcion del examen</mat-label>
+        <textarea matInput name="description" [(ngModel)]="exam.description" placeholder="Descripcion" required></textarea>
+        <mat-hint></mat-hint>
+      </mat-form-field>
+    </p><!-- Description for exam -->
+
+    <p><!-- Date range begin and end exam -->
+      <mat-form-field id="ipt-rangedates" class="w-100" appearance="outline" >
+        <mat-label>Ingresa la fecha de inicio y de fin del examen</mat-label>
+        <mat-date-range-input [rangePicker]="picker" >
+          <input matStartDate name="date-begin" [(ngModel)]="DateStart"  placeholder="Start date" required>
+          <input matEndDate  name="date-end" [(ngModel)]="DateFinish" placeholder="End date" required>
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </p><!-- Date range begin and end exam -->
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button type="submit" [mat-dialog-close]="true" [disabled]="form.invalid">Guardar</button>
+  </mat-dialog-actions>
+</form>
