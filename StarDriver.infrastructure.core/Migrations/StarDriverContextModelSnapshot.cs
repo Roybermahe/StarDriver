@@ -187,6 +187,26 @@ namespace StarDriver.infrastructure.core.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Person");
                 });
 
+            modelBuilder.Entity("StarDriver.domain.core.Business.Persons.Specialization", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int?>("InstructorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstructorId");
+
+                    b.ToTable("Specialization");
+                });
+
             modelBuilder.Entity("StarDriver.domain.core.Business.VirtualRooms.Room", b =>
                 {
                     b.Property<int>("Id")
@@ -279,6 +299,13 @@ namespace StarDriver.infrastructure.core.Migrations
                         .HasForeignKey("ExamId");
                 });
 
+            modelBuilder.Entity("StarDriver.domain.core.Business.Persons.Specialization", b =>
+                {
+                    b.HasOne("StarDriver.domain.core.Business.Persons.Instructor", null)
+                        .WithMany("_specializations")
+                        .HasForeignKey("InstructorId");
+                });
+
             modelBuilder.Entity("StarDriver.domain.core.Business.VirtualRooms.Room", b =>
                 {
                     b.HasOne("StarDriver.domain.core.Business.DevPlans.DevelopmentPlan", "DevelopmentPlan")
@@ -311,6 +338,11 @@ namespace StarDriver.infrastructure.core.Migrations
                     b.Navigation("Answerses");
 
                     b.Navigation("Questions");
+                });
+
+            modelBuilder.Entity("StarDriver.domain.core.Business.Persons.Instructor", b =>
+                {
+                    b.Navigation("_specializations");
                 });
 
             modelBuilder.Entity("StarDriver.domain.core.Business.VirtualRooms.Room", b =>

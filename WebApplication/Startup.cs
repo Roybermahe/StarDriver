@@ -80,6 +80,7 @@ namespace WebApplication
 
             app.UseCors();
             app.UseHttpsRedirection();
+            
 
             app.UseRouting();
 

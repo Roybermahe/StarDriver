@@ -1,21 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RoomFormComponent } from './room-form/room-form/room-form.component';
-import { angularMaterialModule} from "../angularMaterial.module";
+import { PersonFormComponent } from './person-form/person-form.component';
+import {angularMaterialModule} from "../angularMaterial.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-
+import { PersonFormUpdateComponent } from './person-form-update/person-form-update.component';
 
 @NgModule({
-  declarations: [RoomFormComponent],
+  declarations: [PersonFormComponent, PersonFormUpdateComponent, RoomFormComponent],  
   imports: [
-    CommonModule,
-    angularMaterialModule,
-    ReactiveFormsModule,
-    FormsModule
-
+    CommonModule, angularMaterialModule, ReactiveFormsModule, FormsModule
   ],
   exports: [
-    RoomFormComponent
+   PersonFormComponent, PersonFormUpdateComponent, RoomFormComponent
   ]
 })
 export class SharedModule { }
