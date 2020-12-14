@@ -14,13 +14,13 @@ namespace StarDriver.domain.core.Contracts
 
         public int CompareTo(string dateB)
         {
-            var timeB = DateTime.ParseExact(dateB, "dd'/'MM'/'yyyy", new CultureInfo("en-CA"));
+            var timeB = DateTime.ParseExact(dateB, "dd'/'MM'/'yyyy", new CultureInfo("es-CO"));
             return _dateTime.CompareTo(timeB);
         }
 
         public void SetTime(string date)
         {
-            _dateTime = DateTime.ParseExact(date, "dd'/'MM'/'yyyy", new CultureInfo("en-CA"));
+            _dateTime = DateTime.ParseExact(date, "dd'/'MM'/'yyyy",  new CultureInfo("es-CO"));
         }
 
         public string GetTime()

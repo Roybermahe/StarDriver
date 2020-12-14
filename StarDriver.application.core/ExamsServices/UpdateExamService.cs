@@ -18,7 +18,7 @@ namespace StarDriver.application.core.ExamsServices
             var exam = _unitOfWork.ExamRepository.Find(request.ExamId);
             if(exam == null) return new UpdateExamResponse() { Message = "El examen que desea editar no existe." };
             request.Map(exam);
-            if (!exam.ValidateDates()) return new UpdateExamResponse() {Message = "La fecha de finalización debe ser posterior o igual a la fecha de realización."};
+          // if (!exam.ValidateDates()) return new UpdateExamResponse() {Message = "La fecha de finalización debe ser posterior o igual a la fecha de realización."};
             _unitOfWork.ExamRepository.Edit(exam);
             _unitOfWork.Commit();
             return new UpdateExamResponse() { Message = "El examen fue actualizado."};

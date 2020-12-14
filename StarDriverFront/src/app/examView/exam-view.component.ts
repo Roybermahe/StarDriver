@@ -19,9 +19,8 @@ export class ExamViewComponent implements OnInit {
   response = new ResponseExam();
   DateFinish: Date = new Date();
   DateStart: Date = new Date();
-
-  data = new ExamModel();
-
+  data: ExamModel = new ExamModel();
+  exam: ExamModel = new ExamModel();
   constructor(
     private activateRoute: ActivatedRoute,
     private router: Router,
@@ -38,13 +37,13 @@ export class ExamViewComponent implements OnInit {
     this.examService.Get("Exam/GetExam?id="+id).subscribe(Response=>{
       this.response = Response;
       this.data = <ExamModel>Response.exam;
-      console.log(this.data);
     }, error => console.log(error));
   }
 
   onSubmit(): string {
-    if(!this.data.onValid()) return "Hacen falta title y descripcion";
-    this.examService.Put("Exam", this.data).subscribe(Response => {
+
+    if(!this.exam.onValid()) return "Hacen falta title y descripcion";
+    this.examService.Put("Exam", this.exam).subscribe(Response => {
       this.response = Response;
       this._snackBar.open(<string>this.response.message, 'cerrar', {
         duration: 2000
@@ -54,8 +53,11 @@ export class ExamViewComponent implements OnInit {
   }
 
   onForm(f: NgForm) {
-    this.data.dateRealization = this.data.formattedDate(this.DateStart.toDateString());
-    this.data.dateFinish = this.data.formattedDate(this.DateFinish.toDateString());
+    this.exam.examId = +this.IdExam;
+    this.exam.tittle = this.data.tittle;
+    this.exam.description = this.data.description;
+    this.exam.dateRealization = this.exam.formattedDate(this.DateStart.toDateString());
+    this.exam.dateFinish = this.exam.formattedDate(this.DateFinish.toDateString());
     console.log(this.onSubmit());
 
   }

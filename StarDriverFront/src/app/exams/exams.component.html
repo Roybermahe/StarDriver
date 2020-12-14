@@ -1,9 +1,9 @@
 <div class="container">
   <h2>Examenes</h2>
   <button id="btnCrearExamen" mat-raised-button color="primary" (click)="openDialog()">Crear Examen</button>
-  <button id="actualizar" mat-raised-button color="primary" class="mx-1">Actualizar</button>
+  <button id="actualizar" mat-raised-button (click)="onGet()" class="mx-1">Actualizar</button>
 
-  <div class="mat-elevation-z8">
+  <div class="mat-elevation-z8 mt-5">
     <table mat-table [dataSource]="dataSource" class="w-100">
 
       <!-- Columna posicicion -->
